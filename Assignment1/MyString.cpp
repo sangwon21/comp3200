@@ -23,8 +23,18 @@ namespace assignment1
 	}
 
 	MyString::MyString(const MyString& other)
+		:mLength(other.mLength)
 	{
+		mString = new char[mLength + 1];
+		
+		int i = 0;
+		const char* s = other.mString;
+		for (; (*s) != '\0'; s++, i++)
+		{
+			this->mString[i] = (*s);
+		}
 
+		mString[i] = '\0';
 	}
 
 	MyString::~MyString()
@@ -37,12 +47,12 @@ namespace assignment1
 
 	unsigned int MyString::GetLength() const
 	{
-		return 0;
+		return mLength;
 	}
 
 	const char* MyString::GetCString() const
 	{
-		return 0;
+		return mString;
 	}
 
 	void MyString::Append(const char* s)

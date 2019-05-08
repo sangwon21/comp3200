@@ -1,25 +1,16 @@
 #include "MyString.h"
+#include <cassert>
 
 namespace assignment1
 {
 	MyString::MyString(const char* s)
 	{
-		int length = 0;
+		assert(s != nullptr);
+		mLength = CountLength(s);
 		
-		for (const char* start = s; (*start) != '\0'; start++)
-		{
-			length++;
-		}
+		mString = new char[mLength];
 
-		mString = new char[length + 1];
-
-		for (int i = 0; (*s) != '\0'; i++,s++)
-		{
-			mString[i] = (*s);
-		}
-
-		mString[length] = '\0';
-		mLength = length + 1;
+		Strcpy(s, mString, mLength);
 	}
 
 	MyString::MyString(const MyString& other)
@@ -28,13 +19,8 @@ namespace assignment1
 		mString = new char[mLength + 1];
 		
 		int i = 0;
-		const char* s = other.mString;
-		for (; (*s) != '\0'; s++, i++)
-		{
-			this->mString[i] = (*s);
-		}
+		Strcpy(other.mString, mString, mLength);
 
-		mString[i] = '\0';
 	}
 
 	MyString::~MyString()
@@ -119,5 +105,25 @@ namespace assignment1
 
 	void MyString::ToUpper()
 	{
+	}
+	int MyString::CountLength(const char* s)
+	{
+		assert(s != nullptr);
+		int length = 0;
+		for (const char* start = s; (*start) != '\0'; start++)
+		{
+			length++;
+		}
+
+		return length + 1;
+	}
+	void MyString::Strcpy(const char* src, char*& dest, int size)
+	{
+		for (int i = 0; (*src) != '\0' && i < size - 1; i++, src++)
+		{
+			dest[i] = (*src);
+		}
+
+		dest[size - 1] = '\0';
 	}
 }

@@ -25,10 +25,14 @@ namespace assignment1
 		MyString& operator=(const MyString& rhs);
 		void ToLower();
 		void ToUpper();
-		int CountLength(const char* s);
+		unsigned int CountLength(const char* s);
 		void Strcpy(const char* src, char*& dest, int size);
+		void Strcat(const char* src, char*& dest);
+		void SetCapacity(int length);
 	private:
 		char* mString = nullptr;
-		int mLength;
+		unsigned int mLength;
+		unsigned int mCapacity;
+		const unsigned int NULL_LENGTH = 1;
 	};
 }

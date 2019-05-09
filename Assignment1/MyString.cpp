@@ -4,23 +4,27 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
+		:mCapacity(1)
 	{
-		assert(s != nullptr);
 		mLength = CountLength(s);
-		
-		mString = new char[mLength];
+		SetCapacity(mLength);
+
+		mString = new char[mCapacity];
+		if (mLength == NULL_LENGTH)
+		{
+			mString[0] = '\0';
+		}
 
 		Strcpy(s, mString, mLength);
 	}
 
 	MyString::MyString(const MyString& other)
-		:mLength(other.mLength)
+		:mLength(other.mLength),
+		mCapacity(other.mCapacity)
 	{
-		mString = new char[mLength + 1];
-		
-		int i = 0;
-		Strcpy(other.mString, mString, mLength);
+		mString = new char[mLength];
 
+		Strcpy(other.mString, mString, mLength);
 	}
 
 	MyString::~MyString()
@@ -43,11 +47,45 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
+		assert(mString != nullptr && s != nullptr);
+		
+		int length = CountLength(s);
+		if (length == 1)
+		{
+			return;
+		}
+
+		mLength = mLength + length;
+		
+		if (mLength > mCapacity)
+		{
+			SetCapacity(mLength);
+
+			char* result = new char[mCapacity];
+			result[0] = '\0';
+
+			Strcat(mString, result);
+			Strcat(s, result);
+
+			delete[] mString;
+			mString = result;
+		}
+		else
+		{
+			Strcat(s, mString);
+		}
 	}
 
 	MyString MyString::operator+(const MyString& other) const
 	{
-		return MyString("temporary");
+		if (other.GetLength() == NULL_LENGTH)
+		{
+			return *this;
+		}
+
+		MyString result(*this);
+		result.Append(other.mString);
+		return result;
 	}
 
 	int MyString::IndexOf(const char* s)
@@ -106,24 +144,54 @@ namespace assignment1
 	void MyString::ToUpper()
 	{
 	}
-	int MyString::CountLength(const char* s)
+	unsigned int MyString::CountLength(const char* s)
 	{
-		assert(s != nullptr);
-		int length = 0;
+		int length = NULL_LENGTH;
+
+		if (s == nullptr)
+		{
+			return length;
+		}
 		for (const char* start = s; (*start) != '\0'; start++)
 		{
 			length++;
 		}
 
-		return length + 1;
+		return length;
 	}
 	void MyString::Strcpy(const char* src, char*& dest, int size)
 	{
-		for (int i = 0; (*src) != '\0' && i < size - 1; i++, src++)
+		if (src != nullptr)
 		{
-			dest[i] = (*src);
+			for (int i = 0; (*src) != '\0' && i < size - 1; i++, src++)
+			{
+				dest[i] = (*src);
+			}
+		}
+		dest[size - 1] = '\0';
+	}
+	void MyString::Strcat(const char* src, char*& dest)
+	{
+		const char* start = dest;
+		unsigned int index = 0;
+
+		for (; (*start) != '\0'; start++)
+		{
+			index++;
 		}
 
-		dest[size - 1] = '\0';
+		for (; (*src) != '\0'; index++, src++)
+		{
+			dest[index] = (*src);
+		}
+
+		dest[index] = '\0';
+	}
+	void MyString::SetCapacity(int length)
+	{
+		while (length >= mCapacity)
+		{
+			mCapacity = mCapacity * 2;
+		}
 	}
 }

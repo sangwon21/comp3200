@@ -30,9 +30,9 @@ namespace assignment1
 		void Strcat(const char* src, char*& dest);
 		void SetCapacity(int length);
 	private:
+		const unsigned int NULL_LENGTH = 1;
 		char* mString = nullptr;
 		unsigned int mLength;
 		unsigned int mCapacity;
-		const unsigned int NULL_LENGTH = 1;
 	};
 }

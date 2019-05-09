@@ -4,7 +4,7 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
-		:mCapacity(1)
+		:mCapacity(NULL_LENGTH)
 	{
 		mLength = CountLength(s);
 		SetCapacity(mLength);
@@ -12,7 +12,7 @@ namespace assignment1
 		mString = new char[mCapacity];
 		if (mLength == NULL_LENGTH)
 		{
-			mString[0] = '\0';
+			mString[NULL_LENGTH - 1] = '\0';
 		}
 
 		Strcpy(s, mString, mLength);
@@ -50,7 +50,7 @@ namespace assignment1
 		assert(mString != nullptr && s != nullptr);
 		
 		int length = CountLength(s);
-		if (length == 1)
+		if (length == NULL_LENGTH)
 		{
 			return;
 		}

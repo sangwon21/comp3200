@@ -98,6 +98,20 @@ int main()
 	s73.Interleave("a");
 	cout << s73.GetCString() << endl;  // bacdef
 
+	/* RemoveAt() Ex */
+	cout << "-----------------------" << endl;
+	cout << "RemoveAt()" << endl;
+	MyString s8("Hello");
+	cout << boolalpha << s8.RemoveAt(0) << ", ";   // true,
+	cout << s8.GetCString() << endl;               // ello
+	cout << boolalpha << s8.RemoveAt(2) << ", ";   // true,
+	cout << s8.GetCString() << endl;               // elo
+	cout << boolalpha << s8.RemoveAt(4) << ", ";   // false,
+	cout << s8.GetCString() << endl;               // elo
+
+	MyString s82("");
+	cout << boolalpha << s82.RemoveAt(0) << endl;  //false
+
 	cin.get();
 	return 0;
 }

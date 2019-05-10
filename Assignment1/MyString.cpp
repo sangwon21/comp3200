@@ -173,7 +173,26 @@ namespace assignment1
 
 	bool MyString::RemoveAt(unsigned int index)
 	{
-		return false;
+		if (mLength == NULL_LENGTH)
+		{
+			return false;
+		}
+
+		if (index >= mLength - NULL_LENGTH)
+		{
+			return false;
+		}
+		
+		mLength = mLength - 1;
+
+		for (unsigned int i = index; i < mLength; i++)
+		{
+			mString[i] = mString[i + 1];
+		}
+
+		mString[mLength] = '\0';
+		
+		return true;
 	}
 
 	void MyString::PadLeft(unsigned int totalLength)

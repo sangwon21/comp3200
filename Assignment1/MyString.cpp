@@ -20,7 +20,7 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 		: mLength(other.mLength),
-		 mCapacity(other.mCapacity)
+		  mCapacity(other.mCapacity)
 	{
 		mString = new char[mCapacity];
 

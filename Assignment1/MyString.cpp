@@ -264,6 +264,22 @@ namespace assignment1
 
 	void MyString::Reverse()
 	{
+		if (mLength == NULL_LENGTH)
+		{
+			return;
+		}
+
+		char* start = mString;
+		char* end = mString + mLength - NULL_LENGTH - 1;
+
+		while (start < end)
+		{
+			char tmp = *start;
+			*start = *end;
+			*end = tmp;
+			start++;
+			end--;
+		}
 	}
 
 	bool MyString::operator==(const MyString& rhs) const

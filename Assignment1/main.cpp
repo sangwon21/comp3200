@@ -142,6 +142,25 @@ int main()
 	s102.PadRight(7, '-');  // "World--"
 	cout << s102.GetCString() << endl;
 
+	/* Reverse() Ex */
+	cout << "-----------------------" << endl;
+	cout << "Reverse()" << endl;
+	MyString s11("Hello");
+	s11.Reverse();  // olleH
+	cout << s11.GetCString() << endl;
+
+	MyString s112("Banana");
+	s112.Reverse();   // ananaB
+	cout << s112.GetCString() << endl;
+
+	MyString s113("A");
+	s113.Reverse();   // A
+	cout << s113.GetCString() << endl;
+
+	MyString s114("");
+	s114.Reverse();   // 
+	cout << s114.GetCString() << endl;
+
 	cin.get();
 	return 0;
 }

@@ -309,10 +309,24 @@ namespace assignment1
 
 	void MyString::ToLower()
 	{
+		for (unsigned int i = 0; i < mLength - NULL_LENGTH; i++)
+		{
+			if (mString[i] >= 'A' && mString[i] <= 'Z')
+			{
+				mString[i] = 'a' + (mString[i] - 'A');
+			}
+		}
 	}
 
 	void MyString::ToUpper()
 	{
+		for (unsigned int i = 0; i < mLength - NULL_LENGTH; i++)
+		{
+			if (mString[i] >= 'a' && mString[i] <= 'z')
+			{
+				mString[i] = 'A' + (mString[i] - 'a');
+			}
+		}
 	}
 	unsigned int MyString::CountLength(const char* s)
 	{

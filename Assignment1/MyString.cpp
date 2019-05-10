@@ -197,10 +197,37 @@ namespace assignment1
 
 	void MyString::PadLeft(unsigned int totalLength)
 	{
+		PadLeft(totalLength, ' ');
 	}
 
 	void MyString::PadLeft(unsigned int totalLength, const char c)
 	{
+		if (totalLength <= mLength)
+		{
+			return;
+		}
+
+		if (totalLength > mCapacity)
+		{
+			SetCapacity(totalLength);
+		}
+
+		unsigned int length = totalLength - mLength + NULL_LENGTH;
+		char* result = new char[mCapacity];
+
+		for (unsigned int i = 0; i < length; i++)
+		{
+			result[i] = c;
+		}
+		result[length] = '\0';
+
+		Strcat(mString, result);
+
+		mLength = totalLength + NULL_LENGTH;
+		
+		result[mLength] = '\0';
+		delete[] mString;
+		mString = result;
 	}
 
 	void MyString::PadRight(unsigned int totalLength)

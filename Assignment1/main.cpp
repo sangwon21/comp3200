@@ -112,6 +112,21 @@ int main()
 	MyString s82("");
 	cout << boolalpha << s82.RemoveAt(0) << endl;  //false
 
+		/* PadLeft() Ex */
+	cout << "-----------------------" << endl;
+	cout << "PadLeft()" << endl;
+	MyString s9("Hello");
+	s9.PadLeft(2);  // "Hello"
+	cout << s9.GetCString() << endl;
+	s9.PadLeft(8);  // "   Hello"
+	cout << s9.GetCString() << endl;
+
+	MyString s92("World");
+	s92.PadLeft(3, '-');  // "World"
+	cout << s92.GetCString() << endl;
+	s92.PadLeft(7, '-');  // "--World"
+	cout << s92.GetCString() << endl;
+
 	cin.get();
 	return 0;
 }

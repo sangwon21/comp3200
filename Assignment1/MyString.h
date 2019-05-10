@@ -26,9 +26,10 @@ namespace assignment1
 		void ToLower();
 		void ToUpper();
 		unsigned int CountLength(const char* s);
-		void Strcpy(const char* src, char*& dest, int size);
+		void Strcpy(const char* src, char*& dest, unsigned int size);
 		void Strcat(const char* src, char*& dest);
-		void SetCapacity(int length);
+		bool Strcmp(const char* from, const char* to, unsigned int size);
+		void SetCapacity(unsigned int length);
 	private:
 		const unsigned int NULL_LENGTH = 1;
 		char* mString = nullptr;

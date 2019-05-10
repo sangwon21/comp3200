@@ -90,12 +90,64 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
-		return 0;
+		unsigned int length = CountLength(s);
+		// 빈 칸일 때 생각하기
+
+		if (length > mLength)
+		{
+			return -1;
+		}
+
+		if (length == NULL_LENGTH)
+		{
+			return 0;
+		}
+
+		length = length - NULL_LENGTH;
+
+
+		for (unsigned int index = 0; index < mLength - length; index++)
+		{
+			bool judge = Strcmp(mString + index, s, length);
+			if (judge == true)
+			{
+				return index;
+			}
+		}
+		return -1;
 	}
 
 	int MyString::LastIndexOf(const char* s)
 	{
-		return 0;
+		unsigned int length = CountLength(s);
+		
+		if (length > mLength)
+		{
+			return -1;
+		}
+
+		if (length == NULL_LENGTH)
+		{
+			return mLength - 1;
+		}
+		
+		length = length -NULL_LENGTH;
+		// 빈 칸일 때 생각하기
+
+		// s의 길이가 mLength보다 길떄 생각하기
+
+		int maxIndex = -1;
+
+		for (int index = mLength - length; index >= length; index--)
+		{
+			bool judge = Strcmp(mString + index, s, length);
+			if (judge == true && maxIndex < index)
+			{
+				 maxIndex = index;
+			}
+		}
+
+		return maxIndex;
 	}
 
 	void MyString::Interleave(const char* s)
@@ -159,11 +211,11 @@ namespace assignment1
 
 		return length;
 	}
-	void MyString::Strcpy(const char* src, char*& dest, int size)
+	void MyString::Strcpy(const char* src, char*& dest, unsigned int size)
 	{
 		if (src != nullptr)
 		{
-			for (int i = 0; (*src) != '\0' && i < size - 1; i++, src++)
+			for (unsigned int i = 0; (*src) != '\0' && i < size - 1; i++, src++)
 			{
 				dest[i] = (*src);
 			}
@@ -187,7 +239,19 @@ namespace assignment1
 
 		dest[index] = '\0';
 	}
-	void MyString::SetCapacity(int length)
+	bool MyString::Strcmp(const char* from, const char* to, unsigned int size)
+	{
+		for (unsigned int i = 0; i < size; i++)
+		{
+			if (from[i] != to[i])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+	void MyString::SetCapacity(unsigned int length)
 	{
 		while (length >= mCapacity)
 		{

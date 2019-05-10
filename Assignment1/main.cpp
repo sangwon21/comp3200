@@ -173,6 +173,25 @@ int main()
 	cout << boolalpha << (s121 == s123) << endl;   // false
 	cout << boolalpha << (s121 == s124) << endl;   // false
 
+		/* ToLower() Ex */
+	cout << "-----------------------" << endl;
+	cout << "ToLower()" << endl;
+	MyString s131("HEllo 123K");
+	MyString s132("A To z");
+	s131.ToLower();   // "hello 123k"
+	s132.ToLower();   // "a to z"
+	cout << s131.GetCString() << endl;
+	cout << s132.GetCString() << endl;
+
+	/* ToUpper() Ex */
+	cout << "-----------------------" << endl;
+	cout << "ToUpper()" << endl;
+	MyString s141("HEllo 123K");
+	MyString s142("A To z");
+	s141.ToUpper();   // "HELLO 123K"
+	s142.ToUpper();   // "A TO Z"
+	cout << s141.GetCString() << endl;
+	cout << s142.GetCString() << endl;
 
 	cin.get();
 	return 0;

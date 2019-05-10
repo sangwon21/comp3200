@@ -295,6 +295,15 @@ namespace assignment1
 
 	MyString& MyString::operator=(const MyString& rhs)
 	{
+		this->mLength = rhs.mLength;
+		this->mCapacity = rhs.mCapacity;
+
+		char* result = new char[mCapacity];
+		Strcpy(rhs.mString, result, rhs.mLength);
+
+		delete[] mString;
+		mString = result;
+
 		return *this;
 	}
 

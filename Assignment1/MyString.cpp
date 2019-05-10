@@ -4,7 +4,7 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
-		:mCapacity(NULL_LENGTH)
+		:mCapacity(NULL_LETTER)
 	{
 		mLength = CountLength(s);
 		SetCapacity(mLength);
@@ -12,7 +12,7 @@ namespace assignment1
 		mString = new char[mCapacity];
 		if (mLength == NULL_LENGTH)
 		{
-			mString[NULL_LENGTH - 1] = '\0';
+			mString[NULL_LENGTH] = '\0';
 		}
 
 		Strcpy(s, mString, mLength);
@@ -22,7 +22,7 @@ namespace assignment1
 		:mLength(other.mLength),
 		mCapacity(other.mCapacity)
 	{
-		mString = new char[mLength];
+		mString = new char[mCapacity];
 
 		Strcpy(other.mString, mString, mLength);
 	}
@@ -47,8 +47,6 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
-		assert(mString != nullptr && s != nullptr);
-		
 		int length = CountLength(s);
 		if (length == NULL_LENGTH)
 		{
@@ -57,7 +55,7 @@ namespace assignment1
 
 		mLength = mLength + length;
 		
-		if (mLength > mCapacity)
+		if (mLength >= mCapacity)
 		{
 			SetCapacity(mLength);
 
@@ -93,7 +91,7 @@ namespace assignment1
 		unsigned int length = CountLength(s);
 		// ºó Ä­ÀÏ ¶§ »ý°¢ÇÏ±â
 
-		if (length > mLength)
+		if (s == nullptr || length > mLength)
 		{
 			return -1;
 		}
@@ -103,10 +101,8 @@ namespace assignment1
 			return 0;
 		}
 
-		length = length - NULL_LENGTH;
 
-
-		for (unsigned int index = 0; index < mLength - length; index++)
+		for (unsigned int index = 0; index <= mLength - length; index++)
 		{
 			bool judge = Strcmp(mString + index, s, length);
 			if (judge == true)
@@ -121,20 +117,17 @@ namespace assignment1
 	{
 		unsigned int length = CountLength(s);
 		
-		if (length > mLength)
+		if (s == nullptr || length > mLength)
 		{
 			return -1;
 		}
 
 		if (length == NULL_LENGTH)
 		{
-			return mLength - 1;
+			return mLength;
 		}
-		
-		length = length -NULL_LENGTH;
-
-		
-		for (int index = mLength - length - 1; index >= 0; index--)
+			
+		for (int index = mLength - length; index >= 0; index--)
 		{
 			bool judge = Strcmp(mString + index, s, length);
 			if (judge == true)
@@ -155,16 +148,16 @@ namespace assignment1
 			return;
 		}
 
-		if (mLength + length - NULL_LENGTH > mCapacity)
+		if (mLength + length > mCapacity)
 		{
-			SetCapacity(mLength + length - NULL_LENGTH);
+			SetCapacity(mLength + length);
 		}
 		
 		char* result = new char[mCapacity];
 
 		unsigned int index = 0;
 
-		mLength = mLength + length - NULL_LENGTH;
+		mLength = mLength + length;
 		
 		Merge(mString, s, result);
 		delete[] mString;
@@ -178,20 +171,19 @@ namespace assignment1
 			return false;
 		}
 
-		if (index >= mLength - NULL_LENGTH)
+		if (index >= mLength)
 		{
 			return false;
 		}
 		
-		mLength = mLength - 1;
-
 		for (unsigned int i = index; i < mLength; i++)
 		{
 			mString[i] = mString[i + 1];
 		}
 
 		mString[mLength] = '\0';
-		
+		mLength--;
+
 		return true;
 	}
 
@@ -207,12 +199,12 @@ namespace assignment1
 			return;
 		}
 
-		if (totalLength > mCapacity)
+		if (totalLength >= mCapacity)
 		{
 			SetCapacity(totalLength);
 		}
 
-		unsigned int length = totalLength - mLength + NULL_LENGTH;
+		unsigned int length = totalLength - mLength;
 		char* result = new char[mCapacity];
 
 		for (unsigned int i = 0; i < length; i++)
@@ -223,8 +215,7 @@ namespace assignment1
 
 		Strcat(mString, result);
 
-		mLength = totalLength + NULL_LENGTH;
-		
+		mLength = totalLength;
 		result[mLength] = '\0';
 		delete[] mString;
 		mString = result;
@@ -242,7 +233,7 @@ namespace assignment1
 			return;
 		}
 
-		if (totalLength > mCapacity)
+		if (totalLength >= mCapacity)
 		{
 			SetCapacity(totalLength);
 		}
@@ -251,13 +242,13 @@ namespace assignment1
 
 		Strcpy(mString, result, mLength);
 
-		for (unsigned int i = mLength - NULL_LENGTH; i < totalLength; i++)
+		for (unsigned int i = mLength; i < totalLength; i++)
 		{
 			result[i] = c;
 		}
 		result[totalLength] = '\0';
 
-		mLength = totalLength + NULL_LENGTH;
+		mLength = totalLength;
 		delete[] mString;
 		mString = result;
 	}
@@ -270,7 +261,7 @@ namespace assignment1
 		}
 
 		char* start = mString;
-		char* end = mString + mLength - NULL_LENGTH - 1;
+		char* end = mString + mLength - NULL_LETTER;
 
 		while (start < end)
 		{
@@ -309,7 +300,7 @@ namespace assignment1
 
 	void MyString::ToLower()
 	{
-		for (unsigned int i = 0; i < mLength - NULL_LENGTH; i++)
+		for (unsigned int i = 0; i < mLength; i++)
 		{
 			if (mString[i] >= 'A' && mString[i] <= 'Z')
 			{
@@ -320,7 +311,7 @@ namespace assignment1
 
 	void MyString::ToUpper()
 	{
-		for (unsigned int i = 0; i < mLength - NULL_LENGTH; i++)
+		for (unsigned int i = 0; i < mLength; i++)
 		{
 			if (mString[i] >= 'a' && mString[i] <= 'z')
 			{
@@ -330,7 +321,7 @@ namespace assignment1
 	}
 	unsigned int MyString::CountLength(const char* s)
 	{
-		int length = NULL_LENGTH;
+		int length = 0;
 
 		if (s == nullptr)
 		{
@@ -347,12 +338,12 @@ namespace assignment1
 	{
 		if (src != nullptr)
 		{
-			for (unsigned int i = 0; (*src) != '\0' && i < size - 1; i++, src++)
+			for (unsigned int i = 0; (*src) != '\0' && i < size; i++, src++)
 			{
 				dest[i] = (*src);
 			}
 		}
-		dest[size - 1] = '\0';
+		dest[size] = '\0';
 	}
 	void MyString::Strcat(const char* src, char*& dest)
 	{

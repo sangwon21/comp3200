@@ -32,7 +32,8 @@ namespace assignment1
 		void Merge(const char* src, const char* obj, char*& dest);
 		void SetCapacity(unsigned int length);
 	private:
-		const unsigned int NULL_LENGTH = 1;
+		const unsigned int NULL_LENGTH = 0;
+		const unsigned int NULL_LETTER = 1;
 		char* mString = nullptr;
 		unsigned int mLength;
 		unsigned int mCapacity;

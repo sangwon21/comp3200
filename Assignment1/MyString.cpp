@@ -232,10 +232,34 @@ namespace assignment1
 
 	void MyString::PadRight(unsigned int totalLength)
 	{
+		PadRight(totalLength, ' ');
 	}
 
 	void MyString::PadRight(unsigned int totalLength, const char c)
 	{
+		if (totalLength <= mLength)
+		{
+			return;
+		}
+
+		if (totalLength > mCapacity)
+		{
+			SetCapacity(totalLength);
+		}
+
+		char* result = new char[mCapacity];
+
+		Strcpy(mString, result, mLength);
+
+		for (unsigned int i = mLength - NULL_LENGTH; i < totalLength; i++)
+		{
+			result[i] = c;
+		}
+		result[totalLength] = '\0';
+
+		mLength = totalLength + NULL_LENGTH;
+		delete[] mString;
+		mString = result;
 	}
 
 	void MyString::Reverse()

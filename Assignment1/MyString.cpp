@@ -4,7 +4,7 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
-		:mCapacity(NULL_LETTER)
+		: mCapacity(NULL_LETTER)
 	{
 		mLength = CountLength(s);
 		SetCapacity(mLength);
@@ -19,8 +19,8 @@ namespace assignment1
 	}
 
 	MyString::MyString(const MyString& other)
-		:mLength(other.mLength),
-		mCapacity(other.mCapacity)
+		: mLength(other.mLength),
+		 mCapacity(other.mCapacity)
 	{
 		mString = new char[mCapacity];
 
@@ -104,8 +104,8 @@ namespace assignment1
 
 		for (unsigned int index = 0; index <= mLength - length; index++)
 		{
-			bool judge = Strcmp(mString + index, s, length);
-			if (judge == true)
+			bool bJudge = Strcmp(mString + index, s, length);
+			if (bJudge == true)
 			{
 				return index;
 			}
@@ -129,8 +129,8 @@ namespace assignment1
 			
 		for (int index = mLength - length; index >= 0; index--)
 		{
-			bool judge = Strcmp(mString + index, s, length);
-			if (judge == true)
+			bool bJudge = Strcmp(mString + index, s, length);
+			if (bJudge == true)
 			{
 				return index;
 			}
@@ -148,7 +148,7 @@ namespace assignment1
 			return;
 		}
 
-		if (mLength + length > mCapacity)
+		if (mLength + length >= mCapacity)
 		{
 			SetCapacity(mLength + length);
 		}
@@ -279,9 +279,9 @@ namespace assignment1
 		{
 			return false;
 		}
-		bool judge = Strcmp(this->mString, rhs.mString, this->mLength);
+		bool bJudge = Strcmp(this->mString, rhs.mString, this->mLength);
 
-		return judge;
+		return bJudge;
 	}
 
 	MyString& MyString::operator=(const MyString& rhs)
@@ -380,7 +380,7 @@ namespace assignment1
 		int indexObj = 0;
 		int indexDest = 0;
 
-		for (;src[indexSrc] != '\0' && obj[indexObj] != '\0'; indexDest++)
+		for (; src[indexSrc] != '\0' && obj[indexObj] != '\0'; indexDest++)
 		{
 			if (indexDest % 2 == 0)
 			{

@@ -132,26 +132,43 @@ namespace assignment1
 		}
 		
 		length = length -NULL_LENGTH;
-		// 빈 칸일 때 생각하기
 
-		// s의 길이가 mLength보다 길떄 생각하기
-
-		int maxIndex = -1;
-
-		for (int index = mLength - length; index >= length; index--)
+		
+		for (int index = mLength - length - 1; index >= 0; index--)
 		{
 			bool judge = Strcmp(mString + index, s, length);
-			if (judge == true && maxIndex < index)
+			if (judge == true)
 			{
-				 maxIndex = index;
+				return index;
 			}
 		}
 
-		return maxIndex;
+		return -1;
 	}
 
 	void MyString::Interleave(const char* s)
 	{
+		unsigned int length = CountLength(s);
+
+		if (length == NULL_LENGTH)
+		{
+			return;
+		}
+
+		if (mLength + length - NULL_LENGTH > mCapacity)
+		{
+			SetCapacity(mLength + length - NULL_LENGTH);
+		}
+		
+		char* result = new char[mCapacity];
+
+		unsigned int index = 0;
+
+		mLength = mLength + length - NULL_LENGTH;
+		
+		Merge(mString, s, result);
+		delete[] mString;
+		mString = result;
 	}
 
 	bool MyString::RemoveAt(unsigned int index)
@@ -250,6 +267,42 @@ namespace assignment1
 		}
 
 		return true;
+	}
+	void MyString::Merge(const char* src, const char* obj, char*& dest)
+	{
+		int indexSrc = 0;
+		int indexObj = 0;
+		int indexDest = 0;
+
+		for (;src[indexSrc] != '\0' && obj[indexObj] != '\0'; indexDest++)
+		{
+			if (indexDest % 2 == 0)
+			{
+				dest[indexDest] = src[indexSrc];
+				indexSrc++;
+			}
+			else
+			{
+				dest[indexDest] = obj[indexObj];
+				indexObj++;
+			}
+		}
+
+		while (src[indexSrc] != '\0')
+		{
+			dest[indexDest] = src[indexSrc];
+			indexDest++;
+			indexSrc++;
+		}
+
+		while (obj[indexObj] != '\0')
+		{
+			dest[indexDest] = obj[indexObj];
+			indexDest++;
+			indexObj++;
+		}
+
+		dest[indexDest] = '\0';
 	}
 	void MyString::SetCapacity(unsigned int length)
 	{

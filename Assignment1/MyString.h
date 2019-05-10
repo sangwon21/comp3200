@@ -29,6 +29,7 @@ namespace assignment1
 		void Strcpy(const char* src, char*& dest, unsigned int size);
 		void Strcat(const char* src, char*& dest);
 		bool Strcmp(const char* from, const char* to, unsigned int size);
+		void Merge(const char* src, const char* obj, char*& dest);
 		void SetCapacity(unsigned int length);
 	private:
 		const unsigned int NULL_LENGTH = 1;

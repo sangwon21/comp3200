@@ -284,7 +284,13 @@ namespace assignment1
 
 	bool MyString::operator==(const MyString& rhs) const
 	{
-		return false;
+		if (rhs.mLength != this->mLength)
+		{
+			return false;
+		}
+		bool judge = Strcmp(this->mString, rhs.mString, this->mLength);
+
+		return judge;
 	}
 
 	MyString& MyString::operator=(const MyString& rhs)
@@ -342,7 +348,7 @@ namespace assignment1
 
 		dest[index] = '\0';
 	}
-	bool MyString::Strcmp(const char* from, const char* to, unsigned int size)
+	bool MyString::Strcmp(const char* from, const char* to, unsigned int size) const
 	{
 		for (unsigned int i = 0; i < size; i++)
 		{

@@ -28,7 +28,7 @@ namespace assignment1
 		unsigned int CountLength(const char* s);
 		void Strcpy(const char* src, char*& dest, unsigned int size);
 		void Strcat(const char* src, char*& dest);
-		bool Strcmp(const char* from, const char* to, unsigned int size);
+		bool Strcmp(const char* from, const char* to, unsigned int size) const;
 		void Merge(const char* src, const char* obj, char*& dest);
 		void SetCapacity(unsigned int length);
 	private:

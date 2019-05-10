@@ -161,6 +161,19 @@ int main()
 	s114.Reverse();   // 
 	cout << s114.GetCString() << endl;
 
+	/* operator== Ex */
+	cout << "-----------------------" << endl;
+	cout << "operator==" << endl;
+	MyString s121("Hello");
+	MyString s122("Hello");
+	MyString s123("World");
+	MyString s124("Hello ");
+
+	cout << boolalpha << (s121 == s122) << endl;   // true
+	cout << boolalpha << (s121 == s123) << endl;   // false
+	cout << boolalpha << (s121 == s124) << endl;   // false
+
+
 	cin.get();
 	return 0;
 }

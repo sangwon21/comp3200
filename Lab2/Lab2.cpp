@@ -68,7 +68,7 @@ namespace lab2
 		}
 		else
 		{
-			out << std::setw(4) << "max:" << std::setw(2) << std::right << '-' << std::setw(14) << std::right << std::setprecision(3) << maxNumber << std::endl;
+			out << std::setw(4) << "max:" << std::setw(2) << std::right << '-' << std::setw(14) << std::right << std::setprecision(3) << std::abs(maxNumber) << std::endl;
 		}
 	}
 }

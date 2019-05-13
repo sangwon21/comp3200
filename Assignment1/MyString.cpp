@@ -89,7 +89,6 @@ namespace assignment1
 	int MyString::IndexOf(const char* s)
 	{
 		unsigned int length = CountLength(s);
-		// ºó Ä­ÀÏ ¶§ »ý°¢ÇÏ±â
 
 		if (s == nullptr || length > mLength)
 		{

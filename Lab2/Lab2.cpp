@@ -9,7 +9,7 @@ namespace lab2
 	void PrintIntegers(std::istream& in, std::ostream& out)
 	{
 		out << std::setw(12) << std::right << "oct" << std::setw(11) << std::right << "dec" << std::setw(9) << std::right << "hex" << std::endl;
-		out << std::setfill('-') << std::setw(13) << std::right <<' ' << std::setw(11) << std::right << ' ' << std::setw(8) << "-" << std::endl;
+		out << std::setfill('-') << std::setw(13) << std::right << ' ' << std::setw(11) << std::right << ' ' << std::setw(8) << "-" << std::endl;
 		out << std::setfill(' ');
 		std::string tmp;
 		int number;
@@ -32,7 +32,7 @@ namespace lab2
 	{	
 		std::string tmp;
 		float number = 0.0f;
-		float maxNumber = std::numeric_limits<float>::min();
+		float maxNumber = std::numeric_limits<float>::lowest();
 		out.setf(std::ios::fixed);
 		out.setf(std::ios::showpoint);
 		out.precision(3);
@@ -47,6 +47,7 @@ namespace lab2
 			}
 			else
 			{
+				out << maxNumber << std::endl;
 				if (maxNumber < number)
 				{
 					maxNumber = number;
@@ -57,7 +58,7 @@ namespace lab2
 				}
 				else
 				{
-					out << std::setw(6) << std::right << '-' << std::setw(14) << std::right << number << std::endl;
+					out << std::setw(6) << std::right << '-' << std::setw(14) << std::right << -number << std::endl;
 				}
 			}
 		}

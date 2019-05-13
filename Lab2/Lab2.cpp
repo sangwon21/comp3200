@@ -8,9 +8,9 @@ namespace lab2
 {
 	void PrintIntegers(std::istream& in, std::ostream& out)
 	{
-		out << std::setfill('.') << std::setw(12) << std::right << "oct" << std::setw(11) << std::right << "dec" << std::setw(9) << std::right << "hex" << std::endl;
-		out << std::setfill('-') << std::setw(13) << std::right << '.' << std::setw(11) << std::right << '.' << std::setw(8) << "-" << std::endl;
-
+		out << std::setw(12) << std::right << "oct" << std::setw(11) << std::right << "dec" << std::setw(9) << std::right << "hex" << std::endl;
+		out << std::setfill('-') << std::setw(13) << std::right <<' ' << std::setw(11) << std::right << ' ' << std::setw(8) << "-" << std::endl;
+		out << std::setfill(' ');
 		std::string tmp;
 		int number;
 		while (!in.eof())
@@ -23,7 +23,7 @@ namespace lab2
 			}
 			else
 			{
-				out << std::setfill('.') << std::setw(12) << std::right << std::oct << number << std::setw(11) << std::right << std::dec << number << std::setw(9) << std::right << std::uppercase << std::hex << number << std::endl;
+				out << std::setw(12) << std::right << std::oct << number << std::setw(11) << std::right << std::dec << number << std::setw(9) << std::right << std::uppercase << std::hex << number << std::endl;
 			}
 		}
 	}
@@ -53,22 +53,22 @@ namespace lab2
 				}
 				if (number >= 0)
 				{
-					out << std::setfill('.') << std::setw(6) << std::right << '+' << std::setw(14) << std::right << number << std::endl;
+					out << std::setw(6) << std::right << '+' << std::setw(14) << std::right << number << std::endl;
 				}
 				else
 				{
-					out << std::setfill('.') << std::setw(6) << std::right << '-' << std::setw(14) << std::right << number << std::endl;
+					out << std::setw(6) << std::right << '-' << std::setw(14) << std::right << number << std::endl;
 				}
 			}
 		}
 
 		if (maxNumber >= 0)
 		{
-			out << std::setfill('.') << std::setw(4) << "max:" << std::setw(2) << std::right << '+' << std::setw(14) << std::right << std::setprecision(3) << number << std::endl;
+			out << std::setw(4) << "max:" << std::setw(2) << std::right << '+' << std::setw(14) << std::right << std::setprecision(3) << maxNumber << std::endl;
 		}
 		else
 		{
-			out << std::setfill('.') << std::setw(4) << "max:" << std::setw(2) << std::right << '-' << std::setw(14) << std::right << std::setprecision(3) << number << std::endl;
+			out << std::setw(4) << "max:" << std::setw(2) << std::right << '-' << std::setw(14) << std::right << std::setprecision(3) << maxNumber << std::endl;
 		}
 	}
 }

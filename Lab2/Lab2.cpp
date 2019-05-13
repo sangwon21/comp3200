@@ -47,7 +47,6 @@ namespace lab2
 			}
 			else
 			{
-				out << maxNumber << std::endl;
 				if (maxNumber < number)
 				{
 					maxNumber = number;
@@ -58,7 +57,7 @@ namespace lab2
 				}
 				else
 				{
-					out << std::setw(6) << std::right << '-' << std::setw(14) << std::right << -number << std::endl;
+					out << std::setw(6) << std::right << '-' << std::setw(14) << std::right << std::abs(number) << std::endl;
 				}
 			}
 		}

@@ -3,14 +3,18 @@
 namespace lab3
 {
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
-		: mName(nullptr),
-		  mTime(nullptr),
+		: mTime(nullptr),
 		  mIndex(0),
 		  mMaxEntries(maxEntries)
 	{
-		int length = GetLength(name);
-		mName = new char[length];
-		Strcpy(name, mName);
+		if (name == nullptr)
+		{
+			mName = "";
+		}
+		else
+		{
+			mName = name;
+		}
 		mTime = new int[maxEntries];
 	}
 
@@ -26,7 +30,12 @@ namespace lab3
 
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
-		return 0;
+		if (index >= mIndex)
+		{
+			return -1;
+		}
+
+		return mTime[index];
 	}
 
 	int TimeSheet::GetTotalTime() const
@@ -46,34 +55,6 @@ namespace lab3
 
 	const std::string& TimeSheet::GetName() const
 	{
-		return "temporary";
-	}
-	int TimeSheet::GetLength(const char* name)
-	{
-		int length = 0;
-		if (name == nullptr)
-		{
-			return length;
-		}
-		for (; (*name) != '\0'; name++)
-		{
-			length++;
-		}
-
-		return length;
-	}
-	void TimeSheet::Strcpy(const char* src, char*& dest)
-	{
-		if (src == nullptr || src == "")
-		{
-			dest[0] = '\0';
-			return;
-		}
-
-		for (int i = 0; (*src) != '\0'; src++)
-		{
-			dest[i] = src[i];
-			i++;
-		}
+		return mName;
 	}
 }

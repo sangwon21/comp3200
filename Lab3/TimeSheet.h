@@ -16,9 +16,7 @@ namespace lab3
 		const std::string& GetName() const;
 
 	private:
-		int GetLength(const char* name);
-		void Strcpy(const char* src, char*& dest);
-		char* mName;
+		std::string mName;
 		int* mTime;
 		unsigned int mIndex;
 		unsigned int mMaxEntries;

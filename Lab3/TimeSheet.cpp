@@ -34,18 +34,20 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& rhs)
 	{
-		this->mName = rhs.mName;
-		this->mIndex = rhs.mIndex;
-		this->mMaxEntries = rhs.mMaxEntries;
-
-		delete[] mTime;
-		mTime = new int[mMaxEntries];
-
-		for (unsigned int i = 0; i < mIndex; i++)
+		if (&rhs != this)
 		{
-			mTime[i] = rhs.mTime[i];
-		}
+			this->mName = rhs.mName;
+			this->mIndex = rhs.mIndex;
+			this->mMaxEntries = rhs.mMaxEntries;
 
+			delete[] mTime;
+			mTime = new int[mMaxEntries];
+
+			for (unsigned int i = 0; i < mIndex; i++)
+			{
+				mTime[i] = rhs.mTime[i];
+			}
+		}
 		return *this;
 	}
 

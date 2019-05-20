@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 namespace lab3
 {
@@ -15,6 +16,11 @@ namespace lab3
 		const std::string& GetName() const;
 
 	private:
-		// 필요에 따라 private 변수와 메서드를 추가하세요.
+		int GetLength(const char* name);
+		void Strcpy(const char* src, char*& dest);
+		char* mName;
+		int* mTime;
+		unsigned int mIndex;
+		unsigned int mMaxEntries;
 	};
 }

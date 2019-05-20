@@ -88,20 +88,29 @@ namespace lab3
 
 	float TimeSheet::GetAverageTime() const
 	{
+		if (mIndex == 0)
+		{
+			return 0.0f;
+		}
 		return (float)GetTotalTime() / mIndex;
 	}
 
 	float TimeSheet::GetStandardDeviation() const
 	{
+		if (mIndex == 0)
+		{
+			return 0.0f;
+		}
+
 		float sum = 0.0f;
 		float average = GetAverageTime();
 		for (unsigned int i = 0; i < mIndex; i++)
 		{
 			sum += (mTime[i] - average) * (mTime[i] - average);
 		}
-		float d = sum / mIndex;
+		float variance = sum / mIndex;
 
-		return sqrtf(d);
+		return sqrtf(variance);
 	}
 
 	const std::string& TimeSheet::GetName() const

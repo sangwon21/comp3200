@@ -1,4 +1,5 @@
 #include "Timesheet.h"
+#include <cmath>
 
 namespace lab3
 {
@@ -16,6 +17,41 @@ namespace lab3
 			mName = name;
 		}
 		mTime = new int[maxEntries];
+	}
+
+	TimeSheet::TimeSheet(const TimeSheet& rhs)
+		: mName(rhs.mName),
+		  mIndex(rhs.mIndex),
+		  mMaxEntries(rhs.mMaxEntries)
+	{
+		mTime = new int[mMaxEntries];
+
+		for (unsigned int i = 0; i < mIndex; i++)
+		{
+			mTime[i] = rhs.mTime[i];
+		}
+	}
+
+	TimeSheet& TimeSheet::operator=(const TimeSheet& rhs)
+	{
+		this->mName = rhs.mName;
+		this->mIndex = rhs.mIndex;
+		this->mMaxEntries = rhs.mMaxEntries;
+
+		delete[] mTime;
+		mTime = new int[mMaxEntries];
+
+		for (unsigned int i = 0; i < mIndex; i++)
+		{
+			mTime[i] = rhs.mTime[i];
+		}
+
+		return *this;
+	}
+
+	TimeSheet::~TimeSheet()
+	{
+		delete[] mTime;
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
@@ -40,17 +76,30 @@ namespace lab3
 
 	int TimeSheet::GetTotalTime() const
 	{
-		return 0;
+		int sum = 0;
+		for (unsigned int i = 0; i < mIndex; i++)
+		{
+			sum += mTime[i];
+		}
+		return sum;
 	}
 
 	float TimeSheet::GetAverageTime() const
 	{
-		return 0.0f;
+		return (float)GetTotalTime() / mIndex;
 	}
 
 	float TimeSheet::GetStandardDeviation() const
 	{
-		return 0.0f;
+		float sum = 0.0f;
+		float average = GetAverageTime();
+		for (unsigned int i = 0; i < mIndex; i++)
+		{
+			sum += (mTime[i] - average) * (mTime[i] - average);
+		}
+		float d = sum / mIndex;
+
+		return sqrtf(d);
 	}
 
 	const std::string& TimeSheet::GetName() const

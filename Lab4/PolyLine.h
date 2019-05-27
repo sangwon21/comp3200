@@ -21,7 +21,7 @@ namespace lab4
 	private:
 		const unsigned int MAX_POINT_NUMBER = 10;
 		const unsigned int MIN_POINT_NUMBER = 1;
-		const Point* *mPoints;
+		const Point** mPoints;
 		unsigned int mSize = 0;
 	};
 }

@@ -65,7 +65,7 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		if (mSize > MAX_POINT_NUMBER || point == nullptr)
+		if (mSize >= MAX_POINT_NUMBER || point == nullptr)
 		{
 			return false;
 		}

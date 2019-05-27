@@ -13,7 +13,7 @@ namespace assignment2
 	public:
 		Boat(unsigned int maxPassengersCount);
 		~Boat();
-
+	
 		unsigned int GetMaxSpeed();
 		unsigned int GetSailSpeed();
 		Boatplane operator+(Airplane& plane);

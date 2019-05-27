@@ -7,6 +7,8 @@ namespace assignment2
 		: Vehicle(4),
 		  mTrailer(nullptr)
 	{
+		this->mTravelLimits = 5;
+		this->mTotalLimits = 6;
 	}
 
 	Sedan::~Sedan()
@@ -22,6 +24,9 @@ namespace assignment2
 			return false;
 		}
 
+		this->mTravelLimits = 5;
+		this->mTotalLimits = 7;
+
 		mTrailer = trailer;
 		return true;
 	}
@@ -35,12 +40,17 @@ namespace assignment2
 		delete mTrailer;
 		mTrailer = nullptr;
 
+		this->mTravelLimits = 5;
+		this->mTotalLimits = 6;
+
 		return true;
 	}
+
 	unsigned int Sedan::GetMaxSpeed()
 	{
 		return GetDriveSpeed();
 	}
+
 	unsigned int Sedan::GetDriveSpeed()
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();

@@ -7,6 +7,8 @@ namespace assignment2
 	Boat::Boat(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
+		this->mTravelLimits = 2;
+		this->mTotalLimits = 3;
 	}
 
 	Boat::~Boat()
@@ -20,18 +22,19 @@ namespace assignment2
 
 	unsigned int Boat::GetSailSpeed()
 	{
-		unsigned int compareSpeedRhs = 20;
-		unsigned int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();
-		unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
+		const unsigned int compareSpeedRhs = 20;
+		const unsigned int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();
+		const unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
 		
 		return sailSpeed;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)
 	{
-		
-		unsigned int passengerCounts = plane.GetPassengersCount() + this->GetPassengersCount();
-		Boatplane bp(passengerCounts);
+		const unsigned int maxPassengersCount = plane.GetMaxPassengersCount() + this->GetMaxPassengersCount();
+		Boatplane bp(maxPassengersCount);
+		bp.MoveTo(plane);
+		bp.MoveTo(*this);
 		return bp;
 	}
 }

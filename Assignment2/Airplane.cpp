@@ -8,7 +8,8 @@ namespace assignment2
 	Airplane::Airplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
-
+		this->mTravelLimits = 1;
+		this->mTotalLimits = 4;
 	}
 
 	Airplane::~Airplane()
@@ -17,29 +18,33 @@ namespace assignment2
 
 	unsigned int Airplane::GetMaxSpeed()
 	{
-		unsigned int flySpeed = GetFlySpeed();
-		unsigned int driveSpeed = GetDriveSpeed();
+		const unsigned int flySpeed = GetFlySpeed();
+		const unsigned int driveSpeed = GetDriveSpeed();
 
-		unsigned int maxSpeed = flySpeed > driveSpeed ? flySpeed : driveSpeed;
+		const unsigned int maxSpeed = flySpeed > driveSpeed ? flySpeed : driveSpeed;
 		return maxSpeed;
 	}
 
 	unsigned int Airplane::GetFlySpeed()
 	{
-		unsigned int sumOfWeight = this->GetSumOfWeight();
-		return 200 * exp((800 - sumOfWeight) / 500);
+		const unsigned int sumOfWeight = this->GetSumOfWeight();
+		const unsigned int flySpeed = static_cast<unsigned int>(round(200 * exp((800 - sumOfWeight) / 500.0)));
+		return flySpeed;
 	}
 
 	unsigned int Airplane::GetDriveSpeed()
 	{
-		unsigned int sumOfWeight = this->GetSumOfWeight();
-		return 4 * exp((400 - sumOfWeight) / 70);
+		const unsigned int sumOfWeight = this->GetSumOfWeight();
+		const unsigned int driveSpeed = static_cast<unsigned int>(round(4 * exp((400 - sumOfWeight) / 70.0)));
+		return driveSpeed;
 	}
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		unsigned int passengerCounts = boat.GetPassengersCount() + this->GetPassengersCount();
-		Boatplane bp(passengerCounts);
+		const unsigned int maxPassengersCount = boat.GetMaxPassengersCount() + this->GetMaxPassengersCount();
+		Boatplane bp(maxPassengersCount);
+		bp.MoveTo(*this);
+		bp.MoveTo(boat);
 		return bp;
 	}
 }

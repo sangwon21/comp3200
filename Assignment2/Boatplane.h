@@ -15,5 +15,6 @@ namespace assignment2
 		unsigned int GetMaxSpeed();
 		unsigned int GetFlySpeed();
 		unsigned int GetSailSpeed();
+
 	};
 }

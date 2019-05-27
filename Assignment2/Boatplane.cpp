@@ -6,26 +6,31 @@ namespace assignment2
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
+		this->mTravelLimits = 1;
+		this->mTotalLimits = 4;
 	}
 
 	Boatplane::~Boatplane()
 	{
 	}
+
 	unsigned int Boatplane::GetMaxSpeed()
 	{
 		return 0;
 	}
+
 	unsigned int Boatplane::GetFlySpeed()
 	{
-		unsigned int sumOfWeight = this->GetSumOfWeight();
-		return 150 * exp((500 - sumOfWeight) / 300);
+		const unsigned int sumOfWeight = this->GetSumOfWeight();
+		const unsigned int flySpeed = static_cast<unsigned int>(150 * exp((500 - sumOfWeight) / 300.0));
+		return flySpeed;
 	}
+
 	unsigned int Boatplane::GetSailSpeed()
 	{
-		unsigned int compareSpeedRhs = 20;
-		unsigned int compareSpeedLhs = 800 - 1.7 * this->GetSumOfWeight();
-		unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
-
+		const unsigned int compareSpeedRhs = 20;
+		const unsigned int compareSpeedLhs = static_cast<unsigned int>(800 - 1.7 * this->GetSumOfWeight());
+		const unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
 		return sailSpeed;
 	}
 }

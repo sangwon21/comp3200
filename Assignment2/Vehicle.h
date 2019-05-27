@@ -8,16 +8,17 @@ namespace assignment2
 	{
 	public:
 		Vehicle(unsigned int maxPassengersCount);
-		~Vehicle();
+		virtual ~Vehicle();
 
 		virtual unsigned int GetMaxSpeed() = 0;
 
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);
+		unsigned int GetSumOfWeight() const;
 		const Person* GetPassenger(unsigned int i) const;
 		unsigned int GetPassengersCount() const;
 		unsigned int GetMaxPassengersCount() const;
-	private:
+	protected:
 		const unsigned int MIN_PASSENGER_NUMBER = 1;
 		unsigned int mMaxPassengersCount;
 		unsigned int mSize;

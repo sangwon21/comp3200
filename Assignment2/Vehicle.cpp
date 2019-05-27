@@ -70,6 +70,17 @@ namespace assignment2
 		return true;
 	}
 
+	unsigned int Vehicle::GetSumOfWeight() const
+	{
+		unsigned int sumOfWeight = 0;
+		
+		for (unsigned int i = 0; i < mSize; i++)
+		{
+			sumOfWeight += mPassengers[i]->GetWeight();
+		}
+		return sumOfWeight;
+	}
+
 	unsigned int Vehicle::GetPassengersCount() const
 	{
 		return mSize;

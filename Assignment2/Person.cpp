@@ -4,7 +4,7 @@ namespace assignment2
 {
 	Person::Person(const char* name, unsigned int weight)
 		: mName(name),
-	      mWeight(weight)
+		  mWeight(weight)
 	{
 	}
 

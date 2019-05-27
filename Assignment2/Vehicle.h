@@ -18,7 +18,7 @@ namespace assignment2
 		bool RemovePassenger(unsigned int i);
 		void CalculateTravelDistance();
 		bool IsThere(const Person* person) const;
-		void MoveTo(Vehicle&rhs);
+		void MoveTo(Vehicle& rhs);
 		void IncreaseTravelCounts();
 
 		unsigned int GetSumOfWeight() const;

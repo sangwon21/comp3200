@@ -16,24 +16,24 @@ namespace assignment2
 
 	unsigned int UBoat::GetMaxSpeed()
 	{
-		const unsigned int compareSpeedLhs = GetDiveSpeed();
-		const unsigned int compareSpeedRhs = GetSailSpeed();
-		const unsigned int maxSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
+		unsigned int compareSpeedLhs = GetDiveSpeed();
+		unsigned int compareSpeedRhs = GetSailSpeed();
+		unsigned int maxSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
 		return maxSpeed;
 	}
 
 	unsigned int UBoat::GetDiveSpeed()
 	{
-		const unsigned int sumOfWeight = this->GetSumOfWeight();
-		const unsigned int diveSpeed = static_cast<unsigned int>(round(500 * log((sumOfWeight + 150.0) / 150.0) + 30));
+		unsigned int sumOfWeight = this->GetSumOfWeight();
+		unsigned int diveSpeed = static_cast<unsigned int>(round(500 * log((sumOfWeight + 150.0) / 150.0) + 30));
 		return diveSpeed;
 	}
 
 	unsigned int UBoat::GetSailSpeed()
 	{
-		const unsigned int compareSpeedLhs = 200;
-		const unsigned int compareSpeedRhs = static_cast<unsigned int>(round(550 - this->GetSumOfWeight() / 10.0));
-		const unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
+		unsigned int compareSpeedLhs = 200;
+		unsigned int compareSpeedRhs = static_cast<unsigned int>(round(550 - this->GetSumOfWeight() / 10.0));
+		unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
 		return sailSpeed;
 	}
 }

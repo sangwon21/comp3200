@@ -13,10 +13,10 @@ namespace assignment2
 	{
 		for (unsigned int i = 0; i < mSize; i++)
 		{
-			unsigned int CurrentCounts = mVehicles[i]->GetCurrentCounts();
+			unsigned int currentCounts = mVehicles[i]->GetCurrentCounts();
 			unsigned int travelLimits = mVehicles[i]->GetTravelLimits();
 
-			if (CurrentCounts < travelLimits)
+			if (currentCounts < travelLimits)
 			{
 				mVehicles[i]->CalculateTravelDistance();
 			}

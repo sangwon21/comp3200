@@ -20,9 +20,9 @@ namespace assignment2
 
 	unsigned int Motorcycle::GetDriveSpeed()
 	{
-		const unsigned int sumOfWeight = this->GetSumOfWeight();
-		const unsigned int compareSpeedLhs = static_cast<unsigned int>(round(400.0 + 2.0 * sumOfWeight - pow((sumOfWeight / 15), 3.0)));
-		const unsigned int driveSpeed = compareSpeedLhs > 0 ? compareSpeedLhs : 0;
+		unsigned int sumOfWeight = this->GetSumOfWeight();
+		unsigned int compareSpeedLhs = static_cast<unsigned int>(round(400.0 + 2.0 * sumOfWeight - pow((sumOfWeight / 15), 3.0)));
+		unsigned int driveSpeed = compareSpeedLhs > 0 ? compareSpeedLhs : 0;
 
 		return driveSpeed;
 	}

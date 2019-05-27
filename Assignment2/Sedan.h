@@ -1,10 +1,13 @@
 #pragma once
 
+#include "Vehicle.h"
+#include "IDrivable.h"
+
 namespace assignment2
 {
 	class Trailer;
 
-	class Sedan
+	class Sedan : public Vehicle, public IDrivable
 	{
 	public:
 		Sedan();
@@ -13,5 +16,9 @@ namespace assignment2
 		bool AddTrailer(const Trailer* trailer);
 		bool RemoveTrailer();
 
+		unsigned int GetMaxSpeed();
+		unsigned int GetDriveSpeed();
+	private:
+		const Trailer* mTrailer;
 	};
 }

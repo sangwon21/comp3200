@@ -91,6 +91,11 @@ namespace assignment2
 		return mMaxPassengersCount;
 	}
 
+	void Vehicle::IncreaseTravelCounts()
+	{
+		mTravelCounts++;
+	}
+
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{
 		if (i > mSize - 1)

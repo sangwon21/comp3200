@@ -20,9 +20,9 @@ namespace assignment2
 
 	unsigned int Boat::GetSailSpeed()
 	{
-		unsigned int compareNumber = 20;
-		unsigned int sumOfWeight = this->GetSumOfWeight();
-		unsigned int sailSpeed = sumOfWeight > compareNumber ? sumOfWeight : compareNumber;
+		unsigned int compareSpeedRhs = 20;
+		unsigned int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();
+		unsigned int sailSpeed = compareSpeedLhs > compareNumberRhs ? compareSpeedLhs : compareNumberRhs;
 		
 		return sailSpeed;
 	}

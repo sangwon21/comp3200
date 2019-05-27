@@ -48,6 +48,10 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
+		for (unsigned int i = 0; i < mSize; i++)
+		{
+			delete mPoints[i];
+		}
 		delete[] mPoints;
 	}
 

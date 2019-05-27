@@ -11,6 +11,9 @@ namespace assignment2
 		virtual ~Vehicle();
 
 		virtual unsigned int GetMaxSpeed() = 0;
+		virtual unsigned int GetTravelCounts() const = 0;
+		virtual unsigned int SetTravelCounts() = 0;
+		virtual unsigned int GetTravelLimits() const = 0;
 
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);
@@ -22,6 +25,8 @@ namespace assignment2
 		const unsigned int MIN_PASSENGER_NUMBER = 1;
 		unsigned int mMaxPassengersCount;
 		unsigned int mSize;
+		unsigned int mTravelCounts;
+		unsigned int mTravelLimits;
 		const Person** mPassengers;
 	};
 }

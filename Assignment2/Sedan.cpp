@@ -60,27 +60,27 @@ namespace assignment2
 		}
 		unsigned int driveSpeed = 0;
 
-		if (sumOfWeight <= 80)
+		if (sumOfWeight > 350)
 		{
-			driveSpeed = 480;
-		}
-		else if (sumOfWeight > 80)
-		{
-			driveSpeed = 458;
-		}
-		else if (sumOfWeight > 160)
-		{
-			driveSpeed = 400;
+			driveSpeed = 300;
 		}
 		else if (sumOfWeight > 260)
 		{
 			driveSpeed = 380;
 		}
-		else if (sumOfWeight > 350)
+		else if (sumOfWeight > 160)
 		{
-			driveSpeed = 300;
+			driveSpeed = 400;
 		}
-
+		else if (sumOfWeight > 80)
+		{
+			driveSpeed = 458;
+		}
+		else if (sumOfWeight <= 80)
+		{
+			driveSpeed = 480;
+		}
+		
 		return driveSpeed;
 	}
 }

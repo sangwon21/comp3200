@@ -22,7 +22,7 @@ namespace assignment2
 	{
 		unsigned int compareSpeedRhs = 20;
 		unsigned int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();
-		unsigned int sailSpeed = compareSpeedLhs > compareNumberRhs ? compareSpeedLhs : compareNumberRhs;
+		unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
 		
 		return sailSpeed;
 	}

@@ -91,6 +91,9 @@ namespace lab4
 			return false;
 		}
 
+		delete mPoints[i];
+		mPoints[i] = nullptr;
+
 		for (unsigned int j = i; j < mSize; j++)
 		{
 			mPoints[j] = mPoints[j + 1];

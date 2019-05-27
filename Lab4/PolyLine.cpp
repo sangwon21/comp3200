@@ -20,7 +20,7 @@ namespace lab4
 		mPoints = new const Point * [MAX_POINT_NUMBER];
 		for (unsigned int i = 0; i < other.mSize; i++)
 		{
-			mPoints[i] = other.mPoints[i];
+			mPoints[i] = new const Point(*(other.mPoints[i]));
 		}
 	}
 
@@ -28,9 +28,17 @@ namespace lab4
 	{
 		if (this != &rhs)
 		{
+			delete[] mPoints;
+
+			mPoints = new const Point * [MAX_POINT_NUMBER];
+			for (unsigned int i = 0; i < MAX_POINT_NUMBER; i++)
+			{
+				mPoints[i] = nullptr;
+			}
+
 			for (unsigned int i = 0; i < rhs.mSize; i++)
 			{
-				mPoints[i] = rhs.mPoints[i];
+				mPoints[i] = new const Point(*(rhs.mPoints[i]));
 			}
 
 			mSize = rhs.mSize;
@@ -57,7 +65,7 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		if (mSize > MAX_POINT_NUMBER)
+		if (mSize > MAX_POINT_NUMBER || point == nullptr)
 		{
 			return false;
 		}
@@ -86,6 +94,10 @@ namespace lab4
 
 		for (unsigned int j = mSize; j < MAX_POINT_NUMBER; j++)
 		{
+			if (mPoints[j] != nullptr)
+			{
+				delete mPoints[j];
+			}
 			mPoints[j] = nullptr;
 		}
 
@@ -142,7 +154,7 @@ namespace lab4
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		if (i >= MAX_POINT_NUMBER || i >= mSize)
+		if (i >= mSize)
 		{
 			return nullptr;
 		}

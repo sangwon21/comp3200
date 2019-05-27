@@ -3,6 +3,8 @@
 namespace lab4
 {
 	Point::Point(float x, float y)
+		: mX(x),
+		  mY(y)
 	{
 	}
 
@@ -12,31 +14,36 @@ namespace lab4
 
 	Point Point::operator+(const Point& other) const
 	{
-		return Point(0.f, 0.f);
+		Point result(mX + other.mX, mY + other.mY);
+		return result;
 	}
 
 	Point Point::operator-(const Point& other) const
 	{
-		return Point(0.f, 0.f);
+		Point result(mX - other.mX, mY - other.mY);
+		return result;
 	}
 
 	float Point::Dot(const Point& other) const
 	{
-		return 0.0f;
+		float result = 0.0f;
+		result = (mX * other.mX) + (mY * other.mY);
+		return result;
 	}
 
 	Point Point::operator*(float operand) const
 	{
-		return Point(0.f, 0.f);
+		Point result(mX * operand, mY * operand);
+		return result;
 	}
 
 	float Point::GetX() const
 	{
-		return 0.0f;
+		return mX;
 	}
 
 	float Point::GetY() const
 	{
-		return 0.0f;
+		return mY;
 	}
 }

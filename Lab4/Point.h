@@ -15,5 +15,8 @@ namespace lab4
 
 		float GetX() const;
 		float GetY() const;
+	private:
+		float mX;
+		float mY;
 	};
 }

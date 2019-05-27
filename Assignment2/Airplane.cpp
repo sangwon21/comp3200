@@ -8,7 +8,7 @@ namespace assignment2
 	Airplane::Airplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
-		
+
 	}
 
 	Airplane::~Airplane()
@@ -27,18 +27,19 @@ namespace assignment2
 	unsigned int Airplane::GetFlySpeed()
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();
-		return 200 * exp((-sumOfWeight + 800) / 500);
+		return 200 * exp((800 - sumOfWeight) / 500);
 	}
 
 	unsigned int Airplane::GetDriveSpeed()
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();
-		return 4 * exp((-sumOfWeight + 400) / 70);
+		return 4 * exp((400 - sumOfWeight) / 70);
 	}
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		Boatplane bp(0);
+		unsigned int passengerCounts = boat.GetPassengersCount() + this->GetPassengersCount();
+		Boatplane bp(passengerCounts);
 		return bp;
 	}
 }

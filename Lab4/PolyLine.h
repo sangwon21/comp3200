@@ -9,6 +9,7 @@ namespace lab4
 	public:
 		PolyLine();
 		PolyLine(const PolyLine& other);
+		PolyLine& operator=(const PolyLine& rhs);
 		~PolyLine();
 
 		bool AddPoint(float x, float y);
@@ -17,5 +18,10 @@ namespace lab4
 		bool TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const;
 
 		const Point* operator[](unsigned int i) const;
+	private:
+		const unsigned int MAX_POINT_NUMBER = 10;
+		const unsigned int MIN_POINT_NUMBER = 1;
+		const Point* *mPoints;
+		unsigned int mSize = 0;
 	};
 }

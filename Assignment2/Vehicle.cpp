@@ -30,8 +30,9 @@ namespace assignment2
 
 		for (unsigned int i = 0; i < mSize; i++)
 		{
+			const Person* person = new Person(rhs.mPassengers[i]->GetName().c_str(), rhs.mPassengers[i]->GetWeight());
 			mPassengers[i] = rhs.mPassengers[i];
-			rhs.mPassengers[i] = nullptr;
+			rhs.mPassengers[i] = person;
 		}
 
 		for (unsigned int i = mSize; i < mMaxPassengersCount; i++)
@@ -65,8 +66,9 @@ namespace assignment2
 
 			for (unsigned int i = 0; i < mSize; i++)
 			{
+				const Person* person = new Person(rhs.mPassengers[i]->GetName().c_str(), rhs.mPassengers[i]->GetWeight());
 				mPassengers[i] = rhs.mPassengers[i];
-				rhs.mPassengers[i] = nullptr;
+				rhs.mPassengers[i] = person;
 			}
 
 			for (unsigned int i = mSize; i < mMaxPassengersCount; i++)

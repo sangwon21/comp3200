@@ -18,10 +18,10 @@ namespace assignment2
 
 	unsigned int Airplane::GetMaxSpeed()
 	{
-		const unsigned int flySpeed = GetFlySpeed();
-		const unsigned int driveSpeed = GetDriveSpeed();
+		unsigned int flySpeed = GetFlySpeed();
+		unsigned int driveSpeed = GetDriveSpeed();
 
-		const unsigned int maxSpeed = flySpeed > driveSpeed ? flySpeed : driveSpeed;
+		unsigned int maxSpeed = flySpeed > driveSpeed ? flySpeed : driveSpeed;
 		return maxSpeed;
 	}
 

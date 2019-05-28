@@ -30,7 +30,7 @@ namespace assignment2
 
 		for (unsigned int i = 0; i < mSize; i++)
 		{
-			mPassengers[i] = static_cast<const Person*>(rhs.mPassengers[i]);
+			mPassengers[i] = rhs.mPassengers[i];
 			rhs.mPassengers[i] = nullptr;
 		}
 
@@ -38,8 +38,6 @@ namespace assignment2
 		{
 			mPassengers[i] = nullptr;
 		}
-
-		delete[] rhs.mPassengers;
 	}
 
 	Vehicle& Vehicle::operator=(const Vehicle& rhs)
@@ -77,8 +75,6 @@ namespace assignment2
 			}
 		}
 
-		delete[] rhs.mPassengers;
-
 		return *this;
 	}
 
@@ -106,7 +102,6 @@ namespace assignment2
 		{
 			return false;
 		}
-		
 
 		mPassengers[mSize] = person;
 		mSize++;

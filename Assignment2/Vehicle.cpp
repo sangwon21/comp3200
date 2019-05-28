@@ -38,6 +38,8 @@ namespace assignment2
 		{
 			mPassengers[i] = nullptr;
 		}
+
+		delete[] rhs.mPassengers;
 	}
 
 	Vehicle& Vehicle::operator=(const Vehicle& rhs)
@@ -74,6 +76,8 @@ namespace assignment2
 				mPassengers[i] = nullptr;
 			}
 		}
+
+		delete[] rhs.mPassengers;
 
 		return *this;
 	}

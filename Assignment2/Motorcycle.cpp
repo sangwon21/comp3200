@@ -21,7 +21,7 @@ namespace assignment2
 	unsigned int Motorcycle::GetDriveSpeed()
 	{
 		int sumOfWeight = this->GetSumOfWeight();
-		int compareSpeedLhs = round(400.0 + 2.0 * sumOfWeight - pow((sumOfWeight / 15.0), 3.0));
+		int compareSpeedLhs = static_cast<int>(round(400.0 + 2.0 * sumOfWeight - pow((sumOfWeight / 15.0), 3.0)));
 
 		if (compareSpeedLhs < 0)
 		{

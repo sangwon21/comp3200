@@ -33,7 +33,7 @@ namespace assignment2
 	unsigned int Boatplane::GetSailSpeed()
 	{
 		int compareSpeedRhs = 20;
-		int compareSpeedLhs = round(800 - 1.7 * this->GetSumOfWeight());
+		int compareSpeedLhs = static_cast<int>(round(800 - 1.7 * this->GetSumOfWeight()));
 
 		if (compareSpeedLhs < 20)
 		{

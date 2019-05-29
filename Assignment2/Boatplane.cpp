@@ -19,7 +19,7 @@ namespace assignment2
 		unsigned int flySpeed = GetFlySpeed();
 		unsigned int sailSpeed = GetSailSpeed();
 
-		unsigned maxSpeed = flySpeed > sailSpeed ? flySpeed : sailSpeed;
+		unsigned int maxSpeed = flySpeed > sailSpeed ? flySpeed : sailSpeed;
 		return maxSpeed;
 	}
 
@@ -35,7 +35,7 @@ namespace assignment2
 		int compareSpeedRhs = 20;
 		int compareSpeedLhs = static_cast<int>(round(800 - 1.7 * this->GetSumOfWeight()));
 
-		if (compareSpeedLhs < 20)
+		if (compareSpeedLhs <= compareSpeedRhs)
 		{
 			return static_cast<unsigned int>(compareSpeedRhs);
 		}

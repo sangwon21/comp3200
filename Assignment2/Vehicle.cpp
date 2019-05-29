@@ -45,19 +45,19 @@ namespace assignment2
 	{
 		if (&rhs != this)
 		{
-			mMaxPassengersCount = rhs.mMaxPassengersCount;
-			mSize = rhs.mSize;
-			mCurrentCounts = rhs.mCurrentCounts;
-			mTravelLimits = rhs.mTravelLimits;
-			mTravelDistance = rhs.mTravelDistance;
-			mTotalLimits = rhs.mTotalLimits;
-
 			for (unsigned int i = 0; i < mMaxPassengersCount; i++)
 			{
 				delete mPassengers[i];
 			}
 
 			delete[] mPassengers;
+
+			mMaxPassengersCount = rhs.mMaxPassengersCount;
+			mSize = rhs.mSize;
+			mCurrentCounts = rhs.mCurrentCounts;
+			mTravelLimits = rhs.mTravelLimits;
+			mTravelDistance = rhs.mTravelDistance;
+			mTotalLimits = rhs.mTotalLimits;
 
 			mPassengers = new const Person * [mMaxPassengersCount];
 

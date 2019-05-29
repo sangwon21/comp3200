@@ -104,6 +104,8 @@ int main()
 	assert(sedanTest.AddTrailer(t2));
 	assert(sedanTest.RemoveTrailer());
 
+	Sedan s(sedanTest);
+
 	DeusExMachina* d = DeusExMachina::GetInstance();
 	Vehicle* demAirplain = new Airplane(MAX_CAPACITY);
 	Vehicle* demBoat = new Airplane(MAX_CAPACITY);
@@ -137,7 +139,6 @@ int main()
 		d->Travel();
 	}
 
-	string s = "n";
 	cin.get();
 	return 0;
 }

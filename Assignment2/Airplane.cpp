@@ -25,14 +25,14 @@ namespace assignment2
 		return maxSpeed;
 	}
 
-	unsigned int Airplane::GetFlySpeed()
+	unsigned int Airplane::GetFlySpeed() const
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();
 		unsigned int flySpeed = static_cast<unsigned int>(round(200 * exp((800 - sumOfWeight) / 500.0)));
 		return flySpeed;
 	}
 
-	unsigned int Airplane::GetDriveSpeed()
+	unsigned int Airplane::GetDriveSpeed() const
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();
 		unsigned int driveSpeed = static_cast<unsigned int>(round(4 * exp((400 - sumOfWeight) / 70.0)));

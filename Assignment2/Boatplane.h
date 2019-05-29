@@ -13,8 +13,8 @@ namespace assignment2
 		~Boatplane();
 
 		unsigned int GetMaxSpeed();
-		unsigned int GetFlySpeed();
-		unsigned int GetSailSpeed();
+		unsigned int GetFlySpeed() const;
+		unsigned int GetSailSpeed() const;
 
 	};
 }

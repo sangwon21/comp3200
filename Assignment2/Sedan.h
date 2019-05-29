@@ -17,7 +17,7 @@ namespace assignment2
 		bool RemoveTrailer();
 
 		unsigned int GetMaxSpeed();
-		unsigned int GetDriveSpeed();
+		unsigned int GetDriveSpeed() const;
 	private:
 		const Trailer* mTrailer;
 	};

@@ -51,7 +51,7 @@ namespace assignment2
 		return GetDriveSpeed();
 	}
 
-	unsigned int Sedan::GetDriveSpeed()
+	unsigned int Sedan::GetDriveSpeed() const
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();
 		if (mTrailer != nullptr)

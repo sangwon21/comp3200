@@ -18,7 +18,7 @@ namespace assignment2
 		return GetDriveSpeed();
 	}
 
-	unsigned int Motorcycle::GetDriveSpeed()
+	unsigned int Motorcycle::GetDriveSpeed() const
 	{
 		int sumOfWeight = this->GetSumOfWeight();
 		int compareSpeedLhs = static_cast<int>(round(400.0 + 2.0 * sumOfWeight - pow((sumOfWeight / 15.0), 3.0)));

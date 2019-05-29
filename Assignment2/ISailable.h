@@ -5,6 +5,6 @@ namespace assignment2
 	class ISailable
 	{
 	public:
-		virtual unsigned int GetSailSpeed() = 0;
+		virtual unsigned int GetSailSpeed() const = 0;
 	};
 }

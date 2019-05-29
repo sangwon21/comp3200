@@ -22,14 +22,14 @@ namespace assignment2
 		return maxSpeed;
 	}
 
-	unsigned int UBoat::GetDiveSpeed()
+	unsigned int UBoat::GetDiveSpeed() const
 	{
 		unsigned int sumOfWeight = this->GetSumOfWeight();
 		unsigned int diveSpeed = static_cast<unsigned int>(round(500 * log((sumOfWeight + 150.0) / 150.0) + 30));
 		return diveSpeed;
 	}
 
-	unsigned int UBoat::GetSailSpeed()
+	unsigned int UBoat::GetSailSpeed() const
 	{
 		unsigned int compareSpeedLhs = 200;
 		unsigned int compareSpeedRhs = static_cast<unsigned int>(round(550 - this->GetSumOfWeight() / 10.0));

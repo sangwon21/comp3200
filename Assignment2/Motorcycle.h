@@ -12,7 +12,7 @@ namespace assignment2
 		~Motorcycle();
 
 		unsigned int GetMaxSpeed();
-		unsigned int GetDriveSpeed();
+		unsigned int GetDriveSpeed() const;
 
 	};
 }

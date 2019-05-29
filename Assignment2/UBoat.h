@@ -13,7 +13,7 @@ namespace assignment2
 		~UBoat();
 
 		unsigned int GetMaxSpeed();
-		unsigned int GetDiveSpeed();
-		unsigned int GetSailSpeed();
+		unsigned int GetDiveSpeed() const;
+		unsigned int GetSailSpeed() const;
 	};
 }

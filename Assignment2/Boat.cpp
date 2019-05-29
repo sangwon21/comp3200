@@ -20,7 +20,7 @@ namespace assignment2
 		return GetSailSpeed();
 	}
 
-	unsigned int Boat::GetSailSpeed()
+	unsigned int Boat::GetSailSpeed() const
 	{
 		int compareSpeedRhs = 20;
 		int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();

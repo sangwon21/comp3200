@@ -16,8 +16,8 @@ namespace assignment2
 		~Airplane();
 
 		unsigned int GetMaxSpeed();
-		unsigned int GetFlySpeed();
-		unsigned int GetDriveSpeed();
+		unsigned int GetFlySpeed() const;
+		unsigned int GetDriveSpeed() const;
 		Boatplane operator+(Boat& boat);
 	};
 }

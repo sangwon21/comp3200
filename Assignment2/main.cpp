@@ -137,6 +137,7 @@ int main()
 		d->Travel();
 	}
 
+	string s = "n";
 	cin.get();
 	return 0;
 }

@@ -22,11 +22,17 @@ namespace assignment2
 
 	unsigned int Boat::GetSailSpeed()
 	{
-		unsigned int compareSpeedRhs = 20;
-		unsigned int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();
-		unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
-		
-		return sailSpeed;
+		int compareSpeedRhs = 20;
+		int compareSpeedLhs = 800 - 10 * this->GetSumOfWeight();
+
+		if (compareSpeedLhs < compareSpeedRhs)
+		{
+			return static_cast<unsigned int>(compareSpeedRhs);
+		}
+		else
+		{
+			return static_cast<unsigned int>(compareSpeedLhs);
+		}
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)

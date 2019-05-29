@@ -32,9 +32,16 @@ namespace assignment2
 
 	unsigned int Boatplane::GetSailSpeed()
 	{
-		unsigned int compareSpeedRhs = 20;
-		unsigned int compareSpeedLhs = static_cast<unsigned int>(round(800 - 1.7 * this->GetSumOfWeight()));
-		unsigned int sailSpeed = compareSpeedLhs > compareSpeedRhs ? compareSpeedLhs : compareSpeedRhs;
-		return sailSpeed;
+		int compareSpeedRhs = 20;
+		int compareSpeedLhs = round(800 - 1.7 * this->GetSumOfWeight());
+
+		if (compareSpeedLhs < 20)
+		{
+			return static_cast<unsigned int>(compareSpeedRhs);
+		}
+		else
+		{
+			return static_cast<unsigned int>(compareSpeedLhs);
+		}
 	}
 }

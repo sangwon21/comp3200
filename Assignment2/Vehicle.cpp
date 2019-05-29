@@ -54,10 +54,7 @@ namespace assignment2
 
 			for (unsigned int i = 0; i < mMaxPassengersCount; i++)
 			{
-				if (mPassengers != nullptr)
-				{
-					delete mPassengers[i];
-				}
+				delete mPassengers[i];
 			}
 
 			delete[] mPassengers;
@@ -84,10 +81,7 @@ namespace assignment2
 	{
 		for (unsigned int i = 0; i < mMaxPassengersCount; i++)
 		{
-			if (mPassengers != nullptr)
-			{
-				delete mPassengers[i];
-			}
+			delete mPassengers[i];
 		}
 
 		delete[] mPassengers;

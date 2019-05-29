@@ -14,7 +14,7 @@ namespace assignment2
 	{
 	}
 
-	unsigned int UBoat::GetMaxSpeed()
+	unsigned int UBoat::GetMaxSpeed() const
 	{
 		unsigned int compareSpeedLhs = GetDiveSpeed();
 		unsigned int compareSpeedRhs = GetSailSpeed();

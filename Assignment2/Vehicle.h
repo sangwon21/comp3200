@@ -12,7 +12,7 @@ namespace assignment2
 		Vehicle& operator = (const Vehicle& rhs);
 		virtual ~Vehicle();
 
-		virtual unsigned int GetMaxSpeed() = 0;
+		virtual unsigned int GetMaxSpeed() const = 0;
 
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);

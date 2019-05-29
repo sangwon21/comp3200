@@ -13,7 +13,7 @@ namespace assignment2
 	{
 	}
 
-	unsigned int Motorcycle::GetMaxSpeed()
+	unsigned int Motorcycle::GetMaxSpeed() const
 	{
 		return GetDriveSpeed();
 	}

@@ -8,7 +8,7 @@ namespace assignment2
 	{
 	public:
 		Vehicle(unsigned int maxPassengersCount);
-		Vehicle(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size,const Person** people2, unsigned int people2Size);
+		Vehicle(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size, const Person** people2, unsigned int people2Size);
 		Vehicle(const Vehicle& rhs);
 		Vehicle& operator = (const Vehicle& rhs);
 		virtual ~Vehicle();
@@ -23,7 +23,6 @@ namespace assignment2
 
 		unsigned int GetSumOfWeight() const;
 		const Person* GetPassenger(unsigned int i) const;
-		void SetPassenger(unsigned int index, const Person* person);
 		unsigned int GetPassengersCount() const;
 		void SetPassengersCount(unsigned int count);
 		const Person** GetPassengers();

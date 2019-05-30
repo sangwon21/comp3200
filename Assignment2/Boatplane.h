@@ -19,8 +19,5 @@ namespace assignment2
 		unsigned int GetMaxSpeed() const;
 		unsigned int GetFlySpeed() const;
 		unsigned int GetSailSpeed() const;
-
-		Boatplane MoveTo(Boat& boat);
-		Boatplane MoveTo(Airplane& airplane);
 	};
 }

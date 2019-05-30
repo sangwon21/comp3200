@@ -18,10 +18,10 @@ namespace assignment2
 		}
 	}
 
-	Vehicle::Vehicle(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size ,const Person** people2, unsigned int people2Size)
+	Vehicle::Vehicle(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size, const Person** people2, unsigned int people2Size)
 		: mMaxPassengersCount(maxPassengersCount),
-		  mCurrentCounts(0),
 		  mSize(0),
+		  mCurrentCounts(0),
 		  mTravelLimits(0),
 		  mTravelDistance(0),
 		  mTotalLimits(0)
@@ -204,7 +204,7 @@ namespace assignment2
 		mSize = count;
 	}
 
-	const Person** Vehicle::GetPassengers() 
+	const Person** Vehicle::GetPassengers()
 	{
 		return mPassengers;
 	}
@@ -237,9 +237,5 @@ namespace assignment2
 		}
 
 		return mPassengers[i];
-	}
-	void Vehicle::SetPassenger(unsigned int index, const Person* person)
-	{
-		mPassengers[index] = person;
 	}
 }

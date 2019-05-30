@@ -8,7 +8,7 @@ namespace assignment2
 	{
 	public:
 		Vehicle(unsigned int maxPassengersCount);
-		Vehicle(unsigned int maxPassengersCount, const Person** people1, const Person** people2);
+		Vehicle(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size,const Person** people2, unsigned int people2Size);
 		Vehicle(const Vehicle& rhs);
 		Vehicle& operator = (const Vehicle& rhs);
 		virtual ~Vehicle();

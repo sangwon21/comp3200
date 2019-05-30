@@ -12,8 +12,8 @@ namespace assignment2
 		this->mTotalLimits = 4;
 	}
 
-	Boatplane::Boatplane(unsigned int maxPassengersCount, const Person** people1, const Person** people2)
-		: Vehicle(maxPassengersCount, people1, people2)
+	Boatplane::Boatplane(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size, const Person** people2, unsigned int people2Size)
+		: Vehicle(maxPassengersCount, people1, people1Size, people2, people2Size)
 	{
 		this->mTravelLimits = 1;
 		this->mTotalLimits = 4;

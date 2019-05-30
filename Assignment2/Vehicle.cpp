@@ -18,7 +18,7 @@ namespace assignment2
 		}
 	}
 
-	Vehicle::Vehicle(unsigned int maxPassengersCount, const Person** people1, const Person** people2)
+	Vehicle::Vehicle(unsigned int maxPassengersCount, const Person** people1, unsigned int people1Size ,const Person** people2, unsigned int people2Size)
 		: mMaxPassengersCount(maxPassengersCount),
 		  mCurrentCounts(0),
 		  mSize(0),
@@ -28,13 +28,13 @@ namespace assignment2
 	{
 		mPassengers = new const Person * [mMaxPassengersCount];
 
-		for (unsigned int i = 0; people1[i] != nullptr; i++)
+		for (unsigned int i = 0; i < people1Size; i++)
 		{
 			AddPassenger(people1[i]);
 			people1[i] = nullptr;
 		}
 
-		for (unsigned int i = 0; people2[i] != nullptr; i++)
+		for (unsigned int i = 0; i < people2Size; i++)
 		{
 			AddPassenger(people2[i]);
 			people2[i] = nullptr;

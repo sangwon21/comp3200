@@ -20,8 +20,8 @@ namespace assignment2
 
 	Vehicle::Vehicle(unsigned int maxPassengersCount, const Person** people1, const Person** people2)
 		: mMaxPassengersCount(maxPassengersCount),
-     	  mSize(0),
 		  mCurrentCounts(0),
+		  mSize(0),
 		  mTravelLimits(0),
 		  mTravelDistance(0),
 		  mTotalLimits(0)

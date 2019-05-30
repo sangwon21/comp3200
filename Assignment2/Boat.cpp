@@ -38,9 +38,6 @@ namespace assignment2
 	Boatplane Boat::operator+(Airplane& plane)
 	{
 		const unsigned int maxPassengersCount = plane.GetMaxPassengersCount() + this->GetMaxPassengersCount();
-		Boatplane bp(maxPassengersCount);
-		bp.MoveTo(plane);
-		bp.MoveTo(*this);
-		return bp;
+		return Boatplane(maxPassengersCount);
 	}
 }

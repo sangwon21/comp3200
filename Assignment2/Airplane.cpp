@@ -1,6 +1,5 @@
 #include "Airplane.h"
 #include "Boat.h"
-#include "Boatplane.h"
 #include <cmath>
 
 namespace assignment2
@@ -42,9 +41,8 @@ namespace assignment2
 	Boatplane Airplane::operator+(Boat& boat)
 	{
 		unsigned int maxPassengersCount = boat.GetMaxPassengersCount() + this->GetMaxPassengersCount();
-		Boatplane bp(maxPassengersCount);
-		bp.MoveTo(*this);
-		bp.MoveTo(boat);
-		return bp;
+		boat.SetPassengersCount(0);
+		this->SetPassengersCount(0);
+		return Boatplane(maxPassengersCount, this->GetPassengers(), boat.GetPassengers());
 	}
 }

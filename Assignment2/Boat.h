@@ -13,9 +13,9 @@ namespace assignment2
 	public:
 		Boat(unsigned int maxPassengersCount);
 		~Boat();
-	
+
 		unsigned int GetMaxSpeed() const;
 		unsigned int GetSailSpeed() const;
-		Boatplane operator+(Airplane& plane);
+		Boatplane operator+ (Airplane& plane);
 	};
 }

@@ -18,6 +18,34 @@ namespace assignment2
 		}
 	}
 
+	Vehicle::Vehicle(unsigned int maxPassengersCount, const Person** people1, const Person** people2)
+		: mMaxPassengersCount(maxPassengersCount),
+     	  mSize(0),
+		  mCurrentCounts(0),
+		  mTravelLimits(0),
+		  mTravelDistance(0),
+		  mTotalLimits(0)
+	{
+		mPassengers = new const Person * [mMaxPassengersCount];
+
+		for (unsigned int i = 0; people1[i] != nullptr; i++)
+		{
+			AddPassenger(people1[i]);
+			people1[i] = nullptr;
+		}
+
+		for (unsigned int i = 0; people2[i] != nullptr; i++)
+		{
+			AddPassenger(people2[i]);
+			people2[i] = nullptr;
+		}
+
+		for (unsigned int i = mSize; i < mMaxPassengersCount; i++)
+		{
+			mPassengers[i] = nullptr;
+		}
+	}
+
 	Vehicle::Vehicle(const Vehicle& rhs)
 		: mMaxPassengersCount(rhs.mMaxPassengersCount),
 		  mSize(rhs.mSize),
@@ -30,9 +58,7 @@ namespace assignment2
 
 		for (unsigned int i = 0; i < mSize; i++)
 		{
-			const Person* person = new Person(rhs.mPassengers[i]->GetName().c_str(), rhs.mPassengers[i]->GetWeight());
-			mPassengers[i] = rhs.mPassengers[i];
-			rhs.mPassengers[i] = person;
+			mPassengers[i] = new Person(rhs.mPassengers[i]->GetName().c_str(), rhs.mPassengers[i]->GetWeight());
 		}
 
 		for (unsigned int i = mSize; i < mMaxPassengersCount; i++)
@@ -63,9 +89,7 @@ namespace assignment2
 
 			for (unsigned int i = 0; i < mSize; i++)
 			{
-				const Person* person = new Person(rhs.mPassengers[i]->GetName().c_str(), rhs.mPassengers[i]->GetWeight());
-				mPassengers[i] = rhs.mPassengers[i];
-				rhs.mPassengers[i] = person;
+				mPassengers[i] = new Person(rhs.mPassengers[i]->GetName().c_str(), rhs.mPassengers[i]->GetWeight());
 			}
 
 			for (unsigned int i = mSize; i < mMaxPassengersCount; i++)
@@ -149,17 +173,6 @@ namespace assignment2
 		return false;
 	}
 
-	void Vehicle::MoveTo(Vehicle& rhs)
-	{
-		for (unsigned int i = mSize; i < mSize + rhs.GetPassengersCount(); i++)
-		{
-			mPassengers[i] = rhs.mPassengers[i - mSize];
-			rhs.mPassengers[i - mSize] = nullptr;
-		}
-		mSize += rhs.mSize;
-		rhs.mSize = 0;
-	}
-
 	void Vehicle::IncreaseTravelCounts()
 	{
 		mCurrentCounts++;
@@ -184,6 +197,16 @@ namespace assignment2
 	unsigned int Vehicle::GetPassengersCount() const
 	{
 		return mSize;
+	}
+
+	void Vehicle::SetPassengersCount(unsigned int count)
+	{
+		mSize = count;
+	}
+
+	const Person** Vehicle::GetPassengers() 
+	{
+		return mPassengers;
 	}
 
 	unsigned int Vehicle::GetMaxPassengersCount() const
@@ -214,5 +237,9 @@ namespace assignment2
 		}
 
 		return mPassengers[i];
+	}
+	void Vehicle::SetPassenger(unsigned int index, const Person* person)
+	{
+		mPassengers[index] = person;
 	}
 }

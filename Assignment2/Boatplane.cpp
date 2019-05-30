@@ -2,7 +2,7 @@
 #include <cmath>
 #include "Boat.h"
 #include "Airplane.h"
-#include <iostream>
+
 namespace assignment2
 {
 	Boatplane::Boatplane(unsigned int maxPassengersCount)

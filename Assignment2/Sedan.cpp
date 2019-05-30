@@ -11,6 +11,41 @@ namespace assignment2
 		this->mTotalLimits = 6;
 	}
 
+	Sedan::Sedan(const Sedan& rhs)
+		: Vehicle(rhs),
+		  mTrailer(nullptr)
+	{
+		this->mTravelLimits = 5;
+		this->mTotalLimits = 6;
+		if (rhs.mTrailer != nullptr)
+		{
+			this->mTravelLimits = 5;
+			this->mTotalLimits = 7;
+			mTrailer = new Trailer(rhs.mTrailer->GetWeight());
+		}
+	}
+
+	Sedan& Sedan::operator=(const Sedan& rhs)
+	{
+		if (this != &rhs)
+		{
+			Vehicle::operator= (rhs);
+
+			delete mTrailer;
+			mTrailer = nullptr;
+
+			this->mTravelLimits = 5;
+			this->mTotalLimits = 6;
+			if (rhs.mTrailer != nullptr)
+			{
+				this->mTravelLimits = 5;
+				this->mTotalLimits = 7;
+				mTrailer = new Trailer(rhs.mTrailer->GetWeight());
+			}
+		}
+		return *this;
+	}
+
 	Sedan::~Sedan()
 	{
 		delete mTrailer;
@@ -80,7 +115,7 @@ namespace assignment2
 		{
 			driveSpeed = 480;
 		}
-		
+
 		return driveSpeed;
 	}
 }

@@ -55,6 +55,18 @@ namespace lab5
 
 	unsigned int Lawn::GetMinimumSodRollsCount() const
 	{
-		return 0;
+		unsigned int area = this->GetArea();
+
+		double rollsCount = area / 0.3;
+		rollsCount = rollsCount * 10 + 0.5;
+		
+		unsigned int intValue = static_cast<unsigned int>(rollsCount);
+
+		if (static_cast<double>(intValue) == rollsCount)
+		{
+			return intValue;
+		}
+
+		return intValue + 1;
 	}
 }

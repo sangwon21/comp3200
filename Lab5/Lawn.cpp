@@ -29,7 +29,7 @@ namespace lab5
 	{
 		unsigned int area = this->GetArea();
 
-		double price = 0.0;
+		double price = static_cast<double>(area);
 		switch (grassType)
 		{
 		case eGrassType::BAHIA:
@@ -49,7 +49,8 @@ namespace lab5
 			break;
 		}
 
-		price = price * 10 + 0.5;
+		price = price * 10 + 5;
+		price /= 10;
 		unsigned int intValue = static_cast<unsigned int>(price);
 
 		return intValue;
@@ -60,7 +61,6 @@ namespace lab5
 		unsigned int area = this->GetArea();
 
 		double rollsCount = area / 0.3;
-		rollsCount = rollsCount * 10 + 0.5;
 		
 		unsigned int intValue = static_cast<unsigned int>(rollsCount);
 

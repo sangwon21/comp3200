@@ -13,13 +13,12 @@ unsigned int lab5::RectangleLawn::GetArea() const
 {
 	double area = mWidth * mHeight;
 
+	area = area * 10 + 5;
+	area /= 10;
+
 	unsigned int intValue = static_cast<unsigned int>(area);
 
-	if (static_cast<double>(intValue) == area)
-	{
-		return intValue;
-	}
-	return intValue + 1;
+	return intValue;
 }
 
 unsigned int lab5::RectangleLawn::GetMinimumFencesCount() const

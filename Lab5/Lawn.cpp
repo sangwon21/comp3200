@@ -4,6 +4,8 @@
 namespace lab5
 {
 	Lawn::Lawn()
+		: mWidth(0.0),
+		  mHeight(0.0)
 	{
 	}
 

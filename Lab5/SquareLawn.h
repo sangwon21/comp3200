@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Lawn.h"
+#include "RectangleLawn.h"
 #include "IFenceable.h"
 
 namespace lab5
 {
-	class SquareLawn : public Lawn, public IFenceable
+	class SquareLawn : public RectangleLawn, public IFenceable
 	{
 	public:
 		SquareLawn(double width);

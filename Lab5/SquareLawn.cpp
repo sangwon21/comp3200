@@ -1,7 +1,7 @@
 #include "SquareLawn.h"
 
 lab5::SquareLawn::SquareLawn(double width)
-	: Lawn(width)
+	: RectangleLawn(width, width)
 {
 }
 

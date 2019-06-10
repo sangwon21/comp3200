@@ -34,7 +34,20 @@ namespace lab6
 
 	int Max(const std::vector<int>& v)
 	{
-		return 0;
+		if (v.size() == 0)
+		{
+			return INT_MAX;
+		}
+		int max = v[0];
+
+		for (unsigned int i = 1; i < v.size(); i++)
+		{
+			if (v[i] > max)
+			{
+				max = v[i];
+			}
+		}
+		return max;
 	}
 
 	float Average(const std::vector<int>& v)

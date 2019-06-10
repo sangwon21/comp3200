@@ -59,7 +59,32 @@ namespace lab6
 
 	int NumberWithMaxOccurrence(const std::vector<int>& v)
 	{
-		return 0;
+		SortDescending(v);
+
+		int count = 0;
+		int prev = v[0];
+		int maxOccurrence = 0;
+		int maxOccurrenceNumber = 0;
+
+		for (int i = 1; i < v.size(); i++)
+		{
+			if (prev != v[i])
+			{
+				if (count > maxOccurrence)
+				{
+					maxOccurrence = count;
+					maxOccurrenceNumber = prev;
+				}
+				count = 0;
+				prev = v[i];
+			}
+			else
+			{
+				count++;
+			}
+		}
+
+		return maxOccurrenceNumber;
 	}
 
 	void SortDescending(std::vector<int>& v)

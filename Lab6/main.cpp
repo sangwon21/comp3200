@@ -1,10 +1,15 @@
 #include <cassert>
 #include "Lab6.h"
+#include <iostream>
 
 int main()
 {
 	std::vector<int> v;
 	v.push_back(4);
+	v.push_back(3);
+	v.push_back(3);
+	v.push_back(3);
+	v.push_back(3);
 	v.push_back(3);
 	v.push_back(4);
 	v.push_back(12);
@@ -18,11 +23,8 @@ int main()
 	int numWithMaxOccurence = lab6::NumberWithMaxOccurrence(v);
 	lab6::SortDescending(v);
 
-	assert(sum == 41);
-	assert(max == 12);
-	assert(min == 3);
-	assert(average == 6.83333349f);
-	assert(numWithMaxOccurence == 4);
+	std::cout << sum << std::endl;
+	assert(numWithMaxOccurence == 3);
 
 	for (int i = 0; i < (int)v.size() - 1; ++i)
 	{

@@ -18,7 +18,7 @@ namespace lab6
 	{
 		if (v.size() == 0)
 		{
-			return INT_MIN;
+			return INT_MAX;
 		}
 		int min = v[0];
 
@@ -36,7 +36,7 @@ namespace lab6
 	{
 		if (v.size() == 0)
 		{
-			return INT_MAX;
+			return INT_MIN;
 		}
 		int max = v[0];
 
@@ -52,8 +52,12 @@ namespace lab6
 
 	float Average(const std::vector<int>& v)
 	{
+		if (v.size() == 0)
+		{
+			return 0.0f;
+		}
 		float sum = static_cast<float>(Sum(v));
-		
+
 		return sum / v.size();
 	}
 
@@ -88,7 +92,14 @@ namespace lab6
 				count++;
 			}
 		}
-
+		if (prev == newV[newV.size() - 1])
+		{
+			if (count > maxOccurrence)
+			{
+				maxOccurrence = count;
+				maxOccurrenceNumber = newV[newV.size() - 1];
+			}
+		}
 		return maxOccurrenceNumber;
 	}
 

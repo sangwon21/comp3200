@@ -52,7 +52,9 @@ namespace lab6
 
 	float Average(const std::vector<int>& v)
 	{
-		return 0.0f;
+		float sum = static_cast<float>(Sum(v));
+		
+		return sum / v.size();
 	}
 
 	int NumberWithMaxOccurrence(const std::vector<int>& v)

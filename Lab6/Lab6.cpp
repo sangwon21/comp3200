@@ -4,7 +4,13 @@ namespace lab6
 {
 	int Sum(const std::vector<int>& v)
 	{
-		return 0;
+		int sum = 0;
+		for (unsigned int i = 0; i < v.size(); i++)
+		{
+			sum += v[i];
+		}
+
+		return sum;
 	}
 
 	int Min(const std::vector<int>& v)

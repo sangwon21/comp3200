@@ -1,4 +1,5 @@
 #include "Lab6.h"
+#include <cmath>
 
 namespace lab6
 {
@@ -15,7 +16,20 @@ namespace lab6
 
 	int Min(const std::vector<int>& v)
 	{
-		return 0;
+		if (v.size() == 0)
+		{
+			return INT_MIN;
+		}
+		int min = v[0];
+
+		for (unsigned int i = 1; i < v.size(); i++)
+		{
+			if (v[i] < min)
+			{
+				min = v[i];
+			}
+		}
+		return min;
 	}
 
 	int Max(const std::vector<int>& v)

@@ -89,7 +89,20 @@ namespace lab6
 
 	void SortDescending(std::vector<int>& v)
 	{
-
+		for (int i = 0; i < v.size() - 1; i++)
+		{
+			int tmp = i;
+			for (int j = i + 1; j < v.size() - 1; j++)
+			{
+				if (v[tmp] < v[j])
+				{
+					tmp = j;
+				}
+			}
+			int swap = v[i];
+			v[i] = v[tmp];
+			v[tmp] = swap;
+		}
 	}
 
 }

@@ -45,3 +45,21 @@ inline void SmartStack<T>::Push(T number)
 	sum += number;
 	squaredSum += number * number;
 }
+
+template<typename T>
+inline T SmartStack<T>::Pop()
+{
+	T top = smartStack.top();
+	smartStack.pop();
+	count--;
+	sum -= top;
+	squaredSum -= top * top;
+	return top;
+}
+
+template<typename T>
+inline T SmartStack<T>::Peek()
+{
+	return smartStack.top();
+}
+

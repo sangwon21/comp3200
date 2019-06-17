@@ -1,4 +1,5 @@
 #include <stack>
+#include <limits>
 
 template<typename T>
 class SmartStack
@@ -25,3 +26,22 @@ private:
 	T squaredSum;
 	unsigned int count;
 };
+
+template<typename T>
+inline SmartStack<T>::SmartStack()
+	: count(0),
+	  max(std::numeric_limits<T>::max()),
+	  min(std::numeric_limits<T>::min()),
+	  sum(static_cast<T>(0)),
+	  squaredSum(static_cast<T>(0))
+{
+}
+
+template<typename T>
+inline void SmartStack<T>::Push(T number)
+{
+	smartStack.push(number);
+	count++;
+	sum += number;
+	squaredSum += number * number;
+}

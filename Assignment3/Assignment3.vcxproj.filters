@@ -23,5 +23,8 @@
     <ClInclude Include="SmartStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SmartQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

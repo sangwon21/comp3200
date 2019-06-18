@@ -3,7 +3,6 @@
 #include <stack>
 #include <limits>
 #include <cmath>
-#include <iostream>
 
 template<typename T>
 class SmartStack
@@ -21,6 +20,8 @@ public:
 	double GetVariance();
 	double GetStandardDeviation();
 	unsigned int GetCount();
+
+	bool IsEmpty();
 private:
 	std::stack<T> smartStack;
 	std::stack<T> maxStack;
@@ -185,5 +186,11 @@ template<typename T>
 inline unsigned int SmartStack<T>::GetCount()
 {
 	return count;
+}
+
+template<typename T>
+inline bool SmartStack<T>::IsEmpty()
+{
+	return count == static_cast<unsigned int>(0);
 }
 

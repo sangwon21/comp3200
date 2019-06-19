@@ -34,9 +34,9 @@ namespace assignment3
 
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
-		: mCount(0),
-		  mMax(std::numeric_limits<T>::min()),
-		  mMin(std::numeric_limits<T>::max())
+		: mCount(0)
+		, mMax(std::numeric_limits<T>::min())
+		, mMin(std::numeric_limits<T>::max())
 	{
 	}
 

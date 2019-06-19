@@ -38,25 +38,25 @@ namespace assignment3
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack(unsigned int maxStackSize)
-		: mMax(std::numeric_limits<T>::min()),
-		  mMin(std::numeric_limits<T>::max()),
-		  mSum(static_cast<T>(0)),
-		  mLastStackPointer(nullptr),
-		  mMaxStackSize(maxStackSize),
-		  mCount(static_cast<unsigned int>(0)),
-		  mStackCount(static_cast<unsigned int>(0))
+		: mMax(std::numeric_limits<T>::min())
+		, mMin(std::numeric_limits<T>::max())
+		, mSum(static_cast<T>(0))
+		, mLastStackPointer(nullptr)
+		, mMaxStackSize(maxStackSize)
+		, mCount(static_cast<unsigned int>(0))
+		, mStackCount(static_cast<unsigned int>(0))
 	{
 	}
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack(const QueueStack<T>& rhs)
-		: mMax(rhs.mMax),
-		  mMin(rhs.mMin),
-		  mSum(rhs.mSum),
-		  mMaxStackSize(rhs.mMaxStackSize),
-		  mLastStackPointer(nullptr),
-		  mCount(rhs.mCount),
-		  mStackCount(rhs.mStackCount)
+		: mMax(rhs.mMax)
+		, mMin(rhs.mMin)
+		, mSum(rhs.mSum)
+		, mMaxStackSize(rhs.mMaxStackSize)
+		, mLastStackPointer(nullptr)
+		, mCount(rhs.mCount)
+		, mStackCount(rhs.mStackCount)
 	{
 		std::queue<SmartStack<T>*> tmpQueue(rhs.mQueueStack);
 		for (unsigned int i = 0; i < mStackCount; i++)

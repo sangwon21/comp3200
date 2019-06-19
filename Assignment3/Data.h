@@ -19,17 +19,17 @@ private:
 
 template<typename T>
 inline Data<T>::Data(T value)
-	: mValue(value),
-	  mSum(value),
-	  mSquaredSum(value* value)
+	: mValue(value)
+	, mSum(value)
+	, mSquaredSum(value* value)
 {
 }
 
 template<typename T>
 inline Data<T>::Data(T value, T sum, T squaredSum)
-	: mValue(value),
-	mSum(sum),
-	mSquaredSum(squaredSum)
+	: mValue(value)
+	, mSum(sum)
+	, mSquaredSum(squaredSum)
 {
 }
 
@@ -49,11 +49,11 @@ inline T Data<T>::GetValue()
 template<typename T>
 inline T Data<T>::GetSum()
 {
-	return static_cast<T>(static_cast<double>(mSum));
+	return mSum;
 }
 
 template<typename T>
 inline T Data<T>::GetSquaredSum()
 {
-	return static_cast<T>(static_cast<double>(mSquaredSum));
+	return mSquaredSum;
 }

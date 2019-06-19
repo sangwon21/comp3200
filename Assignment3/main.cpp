@@ -19,10 +19,12 @@ int main()
 	float d = static_cast<float>(static_cast<double>(9.2f) + static_cast<double>(-12.4f) + static_cast<double>(1.1f) + static_cast<double>(-5.9f)
 		+ static_cast<double>(1.1f) + static_cast<double>(10.2f) + static_cast<double>(3.32f) + static_cast<double>(4.6f) +
 		static_cast<double>(1.2f) + static_cast<double>(3.4f));
-	float b = static_cast<float>(static_cast<double>(3.4f + 1.2f + 4.6f + 3.32f + 10.2f + 1.1f + -5.9f + 1.1f + -12.4f + 9.2f));
-	float c = static_cast<float>(static_cast<double>(9.2f + -12.4f + 1.1f + -5.9f + 1.1f + 10.2f + 3.32f + 4.6f + 1.2f + 3.4f));
+	float b = 3.4f + 1.2f + 4.6f + 3.32f + 10.2f + 1.1f + -5.9f + 1.1f + -12.4f + 9.2f;
+	float c = 9.2f - 12.4f + 1.1f - 5.9f + 1.1f + 10.2f + 3.32f + 4.6f + 1.2f + 3.4f;
 	SmartStack<float> ss;
 	
+	float er = 1.1f + 2.6f + 3.7f;
+	float qwe = 2.6f + 1.1f - 1.1f;
 	ss.Push(3.4f);
 	ss.Push(1.2f);
 	ss.Push(4.6f);
@@ -40,6 +42,7 @@ int main()
 	assert(ss.GetMin() == -12.4f);
 	cout << ss.GetSum() << endl;
 	assert(ss.GetSum() == 15.8200026f);
+	double av = ss.GetAverage();
 	assert(ss.GetAverage() == 1.582);
 	assert(ss.GetVariance() == 39.983);
 	assert(ss.GetStandardDeviation() == 6.323);

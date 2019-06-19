@@ -50,50 +50,53 @@ namespace assignment3
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack(const QueueStack<T>& rhs)
-		: mMax(rhs.max),
-		mMin(rhs.min),
+		: mMax(rhs.mMax),
+		mMin(rhs.mMin),
 		mSum(rhs.mSum),
 		mMaxStackSize(rhs.mMaxStackSize),
 		mLastStackPointer(nullptr),
 		mCount(rhs.mCount),
 		mStackCount(rhs.mStackCount)
 	{
-		for (int i = 0; i < mStackCount; i++)
+		std::queue<SmartStack<T>*> tmpQueue(rhs.mQueueStack);
+		for (unsigned int i = 0; i < mStackCount; i++)
 		{
-			SmartStack<T>* stackPointer = rhs.mQueueStack.front();
-			rhs.mQueueStack.pop();
-			SmartStack<T>* newStackPointer = new SmartStack<T>(stackPointer);
+			SmartStack<T>* stackPointer = tmpQueue.front();
+			tmpQueue.pop();
 			if (i == mStackCount - 1)
 			{
-				mLastStackPointer = newStackPointer;
+				mLastStackPointer = stackPointer;
 			}
-			rhs.mQueueStack.push(stackPointer);
-			mQueueStack.push(newStackPointer);
+			mQueueStack.push(stackPointer);
 		}
 	}
 
 	template<typename T>
 	inline QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& rhs)
 	{
-		mMax = rhs.max;
-		mMin = rhs.min;
-		mSum = rhs.mSum;
-		mMaxStackSize = rhs.mMaxStackSize;
-		mCount = rhs.mCount;
-		mStackCount = rhs.mStackCount;
-
-		for (unsigned int i = 0; i < mStackCount; i++)
+		if (&rhs != this)
 		{
-			SmartStack<T>* stackPointer = rhs.mQueueStack.front();
-			rhs.mQueueStack.pop();
-			SmartStack<T>* newStackPointer = new SmartStack<T>(stackPointer);
-			if (i == mStackCount - 1)
+			mMax = rhs.mMax;
+			mMin = rhs.mMin;
+			mSum = rhs.mSum;
+			mMaxStackSize = rhs.mMaxStackSize;
+			mCount = rhs.mCount;
+			mStackCount = rhs.mStackCount;
+
+			std::queue<SmartStack<T>*> tmpQueue(rhs.mQueueStack);
+			for (unsigned int i = 0; i < mStackCount; i++)
 			{
-				mLastStackPointer = newStackPointer;
+				SmartStack<T>* stackPointer = tmpQueue.front();
+				tmpQueue.pop();
+				if (i == mStackCount - 1)
+				{
+					mLastStackPointer = stackPointer;
+				}
+				mQueueStack.push(stackPointer);
 			}
-			rhs.mQueueStack.push(stackPointer);
-			mQueueStack.push(newStackPointer);
 		}
+
+		return *this;
 	}
 
 	template<typename T>

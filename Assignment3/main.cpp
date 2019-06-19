@@ -6,7 +6,7 @@
 #include <limits.h>
 
 using namespace std;
-
+using namespace assignment3;
 
 int main() 
 {
@@ -64,6 +64,10 @@ int main()
 	cout << qs.GetSum() << endl;
 	cout << qs.GetCount() << endl;
 	cout << qs.GetStackCount() << endl;
+
+	QueueStack<int> qw(qs);
+	QueueStack<int> qz(3);
+	qs = qw;
 	cin.get();
 	return 0;
 }

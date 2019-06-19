@@ -136,7 +136,7 @@ namespace assignment3
 	template<typename T>
 	inline double SmartQueue<T>::GetVariance()
 	{
-		double average = GetAverage();
+		double average = static_cast<double>(mSum / mCount);
 		double squaredMean = average * average;
 
 		double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
@@ -148,7 +148,7 @@ namespace assignment3
 	template<typename T>
 	inline double SmartQueue<T>::GetStandardDeviation()
 	{
-		double average = GetAverage();
+		double average = static_cast<double>(mSum / mCount);
 		double squaredMean = average * average;
 
 		double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;

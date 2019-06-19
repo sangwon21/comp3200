@@ -52,7 +52,7 @@ namespace assignment3
 			mMin = number;
 			mMaxStack.push(number);
 			mMinStack.push(number);
-			mSmartStack.push(Data{ number, number, number * number });
+			mSmartStack.push(Data<T>( number, number, number * number ));
 		}
 		else
 		{

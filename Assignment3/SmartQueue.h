@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <cmath>
+#include <queue>
 #include "SmartStack.h"
 
 namespace assignment3
@@ -26,6 +27,8 @@ namespace assignment3
 	private:
 		SmartStack<T> mFront;
 		SmartStack<T> mBack;
+		std::queue<T> mSumQueue;
+		T mSum;
 		T mMax;
 		T mMin;
 		unsigned int mCount;
@@ -34,6 +37,7 @@ namespace assignment3
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
 		: mCount(0),
+		  mSum(static_cast<T>(0)),
 		  mMax(std::numeric_limits<T>::min()),
 		  mMin(std::numeric_limits<T>::max())
 	{
@@ -43,6 +47,7 @@ namespace assignment3
 	inline void SmartQueue<T>::Enqueue(T number)
 	{
 		mBack.Push(number);
+		mSumQueue.push(number);
 		mCount++;
 	}
 
@@ -56,6 +61,15 @@ namespace assignment3
 			{
 				T top = mBack.Pop();
 				mFront.Push(top);
+			}
+			unsigned int size = mSumQueue.size();
+			mSum = static_cast<T>(0);
+			for (unsigned int i = 0; i < size - 1; i++)
+			{
+				T number = mSumQueue.front();
+				mSum += number;
+				mSumQueue.pop();
+				mSumQueue.push(number);
 			}
 		}
 
@@ -71,6 +85,15 @@ namespace assignment3
 			{
 				T top = mBack.Pop();
 				mFront.Push(top);
+			}
+			unsigned int size = mSumQueue.size();
+			mSum = static_cast<T>(0);
+			for (unsigned int i = 0; i < size - 1; i++)
+			{
+				T number = mSumQueue.front();
+				mSum += number;
+				mSumQueue.pop();
+				mSumQueue.push(number);
 			}
 		}
 
@@ -113,7 +136,7 @@ namespace assignment3
 	template<typename T>
 	inline double SmartQueue<T>::GetAverage()
 	{
-		T sum = mFront.GetSum() + mBack.GetSum();
+		T sum = mFront.GetSum() + mSum;
 		double average = static_cast<double>(sum / mCount);
 		average = average * 1000 + 0.5;
 		unsigned int intValue = static_cast<unsigned int>(average);

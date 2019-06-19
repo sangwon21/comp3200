@@ -36,10 +36,10 @@ namespace assignment3
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
 		: mCount(0),
-		mMax(std::numeric_limits<T>::min()),
-		mMin(std::numeric_limits<T>::max()),
-		mSum(static_cast<T>(0)),
-		mSquaredSum(static_cast<T>(0))
+		  mMax(std::numeric_limits<T>::min()),
+		  mMin(std::numeric_limits<T>::max()),
+		  mSum(static_cast<T>(0)),
+		  mSquaredSum(static_cast<T>(0))
 	{
 	}
 

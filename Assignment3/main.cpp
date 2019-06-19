@@ -49,10 +49,10 @@ int main()
 	int peeked = qs.Peek();
 	cout << peeked << endl;
 	int dequeued = qs.Dequeue();
-	dequeued = qs.Dequeue();
-	dequeued = qs.Dequeue();
-	dequeued = qs.Dequeue();
-	dequeued = qs.Dequeue();
+	//dequeued = qs.Dequeue();
+//	dequeued = qs.Dequeue();
+	//dequeued = qs.Dequeue();
+	//dequeued = qs.Dequeue();
 	cout << dequeued << endl;
 	int max1 = qs.GetMax();
 	cout << max1 << endl;

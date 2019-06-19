@@ -39,35 +39,36 @@ namespace assignment3
 	template<typename T>
 	inline QueueStack<T>::QueueStack(unsigned int maxStackSize)
 		: mMax(std::numeric_limits<T>::min()),
-		mMin(std::numeric_limits<T>::max()),
-		mSum(static_cast<T>(0)),
-		mLastStackPointer(nullptr),
-		mMaxStackSize(maxStackSize),
-		mCount(static_cast<unsigned int>(0)),
-		mStackCount(static_cast<unsigned int>(0))
+		  mMin(std::numeric_limits<T>::max()),
+		  mSum(static_cast<T>(0)),
+		  mLastStackPointer(nullptr),
+		  mMaxStackSize(maxStackSize),
+		  mCount(static_cast<unsigned int>(0)),
+		  mStackCount(static_cast<unsigned int>(0))
 	{
 	}
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack(const QueueStack<T>& rhs)
 		: mMax(rhs.mMax),
-		mMin(rhs.mMin),
-		mSum(rhs.mSum),
-		mMaxStackSize(rhs.mMaxStackSize),
-		mLastStackPointer(nullptr),
-		mCount(rhs.mCount),
-		mStackCount(rhs.mStackCount)
+		  mMin(rhs.mMin),
+		  mSum(rhs.mSum),
+		  mMaxStackSize(rhs.mMaxStackSize),
+		  mLastStackPointer(nullptr),
+		  mCount(rhs.mCount),
+		  mStackCount(rhs.mStackCount)
 	{
 		std::queue<SmartStack<T>*> tmpQueue(rhs.mQueueStack);
 		for (unsigned int i = 0; i < mStackCount; i++)
 		{
 			SmartStack<T>* stackPointer = tmpQueue.front();
+			SmartStack<T>* newStackPointer = new SmartStack<T>(*stackPointer);
 			tmpQueue.pop();
 			if (i == mStackCount - 1)
 			{
-				mLastStackPointer = stackPointer;
+				mLastStackPointer = newStackPointer;
 			}
-			mQueueStack.push(stackPointer);
+			mQueueStack.push(newStackPointer);
 		}
 	}
 
@@ -87,12 +88,13 @@ namespace assignment3
 			for (unsigned int i = 0; i < mStackCount; i++)
 			{
 				SmartStack<T>* stackPointer = tmpQueue.front();
+				SmartStack<T>* newStackPointer = new SmartStack<T>(*stackPointer);
 				tmpQueue.pop();
 				if (i == mStackCount - 1)
 				{
-					mLastStackPointer = stackPointer;
+					mLastStackPointer = newStackPointer;
 				}
-				mQueueStack.push(stackPointer);
+				mQueueStack.push(newStackPointer);
 			}
 		}
 

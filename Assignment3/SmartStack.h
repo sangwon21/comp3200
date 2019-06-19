@@ -95,13 +95,6 @@ inline T SmartStack<T>::Pop()
 		mMax = std::numeric_limits<T>::min();
 		mMin = std::numeric_limits<T>::max();
 	}
-	else if (mCount == 2)
-	{
-		mMaxStack.pop();
-		mMinStack.pop();
-		mMax = mMaxStack.top();
-		mMin = mMinStack.top();
-	}
 	else if (top == mMax)
 	{
 		mMaxStack.pop();

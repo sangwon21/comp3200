@@ -23,92 +23,99 @@ public:
 
 	bool IsEmpty();
 private:
-	std::stack<T> smartStack;
-	std::stack<T> maxStack;
-	std::stack<T> minStack;
-	T max;
-	T min;
-	T sum;
-	T squaredSum;
-	unsigned int count;
+	std::stack<T> mSmartStack;
+	std::stack<T> mMaxStack;
+	std::stack<T> mMinStack;
+	T mMax;
+	T mMin;
+	T mSum;
+	T mSquaredSum;
+	unsigned int mCount;
 };
 
 template<typename T>
 inline SmartStack<T>::SmartStack()
-	: count(0),
-	max(std::numeric_limits<T>::min()),
-	min(std::numeric_limits<T>::max()),
-	sum(static_cast<T>(0)),
-	squaredSum(static_cast<T>(0))
+	: mCount(0),
+	mMax(std::numeric_limits<T>::min()),
+	mMin(std::numeric_limits<T>::max()),
+	mSum(static_cast<T>(0)),
+	mSquaredSum(static_cast<T>(0))
 {
 }
 
 template<typename T>
 inline void SmartStack<T>::Push(T number)
 {
-	if (count == 0)
+	if (mCount == 0)
 	{
-		max = number;
-		min = number;
-		maxStack.push(number);
-		minStack.push(number);
-		smartStack.push(number);
+		mMax = number;
+		mMin = number;
+		mMaxStack.push(number);
+		mMinStack.push(number);
+		mSmartStack.push(number);
 	}
 	else
 	{
-		if (number > max)
+		if (number > mMax)
 		{
-			max = number;
-			maxStack.push(number);
+			mMax = number;
+			mMaxStack.push(number);
 		}
-		else if (number == max)
+		else if (number == mMax)
 		{
-			maxStack.push(number);
+			mMaxStack.push(number);
 		}
-		else if (number < min)
+		else if (number < mMin)
 		{
-			min = number;
-			minStack.push(number);
+			mMin = number;
+			mMinStack.push(number);
 		}
-		else if (number == min)
+		else if (number == mMin)
 		{
-			minStack.push(number);
+			mMinStack.push(number);
 		}
-		smartStack.push(number);
+		mSmartStack.push(number);
 	}
 
-	count++;
-	sum += number;
-	squaredSum += number * number;
+	mCount++;
+	mSum += number;
+	mSquaredSum += number * number;
 }
 
 template<typename T>
 inline T SmartStack<T>::Pop()
 {
-	T top = smartStack.top();
-	smartStack.pop();
+	T top = mSmartStack.top();
+	mSmartStack.pop();
 
-	if (count == 1)
+	if (mCount == 1)
 	{
-		maxStack.pop();
-		minStack.pop();
-		max = std::numeric_limits<T>::min();
-		min = std::numeric_limits<T>::max();
+		mMaxStack.pop();
+		mMinStack.pop();
+		mMax = std::numeric_limits<T>::min();
+		mMin = std::numeric_limits<T>::max();
 	}
-	else if (top == max)
+	else if (mCount == 2)
 	{
-		maxStack.pop();
-		max = maxStack.top();
+		mMaxStack.pop();
+		mMinStack.pop();
+		mMax = mMaxStack.top();
+		mMin = mMinStack.top();
 	}
-	else if (top == min)
+	else if (top == mMax)
 	{
-		minStack.pop();
-		min = minStack.top();
+		mMaxStack.pop();
+		mMax = mMaxStack.top();
+	}
+	else if (top == mMin)
+	{
+		mMinStack.pop();
+		mMin = mMinStack.top();
 	}
 
-	count--;
-	sum -= top;
-	squaredSum -= top * top;
+	mCount--;
+	mSum -= top;
+	mSquaredSum -= top * top;
 
 	return top;
 }
@@ -116,33 +123,33 @@ inline T SmartStack<T>::Pop()
 template<typename T>
 inline T SmartStack<T>::Peek()
 {
-	return smartStack.top();
+	return mSmartStack.top();
 }
 
 template<typename T>
 inline T SmartStack<T>::GetMax()
 {
-	if (count == 0)
+	if (mCount == 0)
 	{
 		return std::numeric_limits<T>::min();
 	}
-	return max;
+	return mMax;
 }
 
 template<typename T>
 inline T SmartStack<T>::GetMin()
 {
-	if (count == 0)
+	if (mCount == 0)
 	{
 		return std::numeric_limits<T>::max();
 	}
-	return min;
+	return mMin;
 }
 
 template<typename T>
 inline double SmartStack<T>::GetAverage()
 {
-	double average = static_cast<double>(sum / count);
+	double average = static_cast<double>(mSum / mCount);
 	average = average * 1000 + 0.5;
 	unsigned int intValue = static_cast<unsigned int>(average);
 
@@ -152,7 +159,7 @@ inline double SmartStack<T>::GetAverage()
 template<typename T>
 inline T SmartStack<T>::GetSum()
 {
-	return sum;
+	return mSum;
 }
 
 template<typename T>
@@ -161,7 +168,7 @@ inline double SmartStack<T>::GetVariance()
 	double average = GetAverage();
 	double squaredMean = average * average;
 
-	double variance = static_cast<double>(squaredSum / static_cast<double>(count)) - squaredMean;
+	double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
 	variance = variance * 1000 + 0.5;
 	unsigned int intValue = static_cast<unsigned int>(variance);
 	return static_cast<double>(intValue) / 1000.0;
@@ -173,7 +180,7 @@ inline double SmartStack<T>::GetStandardDeviation()
 	double average = GetAverage();
 	double squaredMean = average * average;
 
-	double variance = static_cast<double>(squaredSum / static_cast<double>(count)) - squaredMean;
+	double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
 
 	double standardDeviation = sqrt(variance);
 	standardDeviation = standardDeviation * 1000 + 0.5;
@@ -185,12 +192,12 @@ inline double SmartStack<T>::GetStandardDeviation()
 template<typename T>
 inline unsigned int SmartStack<T>::GetCount()
 {
-	return count;
+	return mCount;
 }
 
 template<typename T>
 inline bool SmartStack<T>::IsEmpty()
 {
-	return count == static_cast<unsigned int>(0);
+	return mCount == static_cast<unsigned int>(0);
 }
 

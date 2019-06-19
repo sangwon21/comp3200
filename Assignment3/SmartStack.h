@@ -25,6 +25,7 @@ namespace assignment3
 		unsigned int GetCount();
 
 		bool IsEmpty();
+		T GetSquaredSum();
 	private:
 		std::stack<Data<T>> mSmartStack;
 		std::stack<T> mMaxStack;
@@ -193,5 +194,15 @@ namespace assignment3
 	inline bool SmartStack<T>::IsEmpty()
 	{
 		return mCount == static_cast<unsigned int>(0);
+	}
+
+	template<typename T>
+	inline T SmartStack<T>::GetSquaredSum()
+	{
+		if (mCount == static_cast<unsigned int>(0))
+		{
+			return static_cast<unsigned int>(0);
+		}
+		return mSmartStack.top().GetSquaredSum();
 	}
 }

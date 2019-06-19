@@ -10,7 +10,7 @@ namespace assignment3
 	class SmartQueue
 	{
 	public:
-		SmartQueue();
+		SmartQueue<T>();
 
 		void Enqueue(T number);
 		T Peek();
@@ -28,8 +28,6 @@ namespace assignment3
 		SmartStack<T> mBack;
 		T mMax;
 		T mMin;
-		T mSum;
-		T mSquaredSum;
 		unsigned int mCount;
 	};
 
@@ -37,9 +35,7 @@ namespace assignment3
 	inline SmartQueue<T>::SmartQueue()
 		: mCount(0),
 		  mMax(std::numeric_limits<T>::min()),
-		  mMin(std::numeric_limits<T>::max()),
-		  mSum(static_cast<T>(0)),
-		  mSquaredSum(static_cast<T>(0))
+		  mMin(std::numeric_limits<T>::max())
 	{
 	}
 
@@ -48,13 +44,12 @@ namespace assignment3
 	{
 		mBack.Push(number);
 		mCount++;
-		mSum += number;
-		mSquaredSum += number * number;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Peek()
 	{
+
 		if (mFront.IsEmpty() == true)
 		{
 			while (mBack.IsEmpty() != true)
@@ -78,11 +73,9 @@ namespace assignment3
 				mFront.Push(top);
 			}
 		}
-		T number = mFront.Pop();
 
+		T number = mFront.Pop();
 		mCount--;
-		mSum -= number;
-		mSquaredSum -= number * number;
 
 		return number;
 	}
@@ -120,7 +113,8 @@ namespace assignment3
 	template<typename T>
 	inline double SmartQueue<T>::GetAverage()
 	{
-		double average = static_cast<double>(mSum / mCount);
+		T sum = mFront.GetSum() + mBack.GetSum();
+		double average = static_cast<double>(sum / mCount);
 		average = average * 1000 + 0.5;
 		unsigned int intValue = static_cast<unsigned int>(average);
 
@@ -130,16 +124,18 @@ namespace assignment3
 	template<typename T>
 	inline T SmartQueue<T>::GetSum()
 	{
-		return mSum;
+		return mFront.GetSum() + mBack.GetSum();
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetVariance()
 	{
-		double average = static_cast<double>(mSum / mCount);
+		T sum = mFront.GetSum() + mBack.GetSum();
+		double average = static_cast<double>(sum / mCount);
 		double squaredMean = average * average;
 
-		double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
+		T squaredSum = mFront.GetSquaredSum() + mBack.GetSquaredSum();
+		double variance = static_cast<double>(squaredSum / static_cast<double>(mCount)) - squaredMean;
 		variance = variance * 1000 + 0.5;
 		unsigned int intValue = static_cast<unsigned int>(variance);
 		return static_cast<double>(intValue) / 1000.0;
@@ -148,10 +144,12 @@ namespace assignment3
 	template<typename T>
 	inline double SmartQueue<T>::GetStandardDeviation()
 	{
-		double average = static_cast<double>(mSum / mCount);
+		T sum = mFront.GetSum() + mBack.GetSum();
+		double average = static_cast<double>(sum / mCount);
 		double squaredMean = average * average;
 
-		double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
+		T squaredSum = mFront.GetSquaredSum() + mBack.GetSquaredSum();
+		double variance = static_cast<double>(squaredSum / static_cast<double>(mCount)) - squaredMean;
 
 		double standardDeviation = sqrt(variance);
 		standardDeviation = standardDeviation * 1000 + 0.5;

@@ -10,6 +10,7 @@ class SmartQueue
 {
 public:
 	SmartQueue();
+	
 	void Enqueue(T number);
 	T Peek();
 	T Dequeue();
@@ -20,6 +21,7 @@ public:
 	double GetVariance();
 	double GetStandardDeviation();
 	unsigned int GetCount();
+
 private:
 	SmartStack<T> mFront;
 	SmartStack<T> mBack;
@@ -33,10 +35,10 @@ private:
 template<typename T>
 inline SmartQueue<T>::SmartQueue()
 	: mCount(0),
-	mMax(std::numeric_limits<T>::min()),
-	mMin(std::numeric_limits<T>::max()),
-	mSum(static_cast<T>(0)),
-	mSquaredSum(static_cast<T>(0))
+	  mMax(std::numeric_limits<T>::min()),
+	  mMin(std::numeric_limits<T>::max()),
+	  mSum(static_cast<T>(0)),
+	  mSquaredSum(static_cast<T>(0))
 {
 }
 

@@ -12,6 +12,7 @@ public:
 	QueueStack(const QueueStack<T>& rhs);
 	QueueStack<T>& operator=(const QueueStack<T>& rhs);
 	~QueueStack();
+	
 	void Enqueue(T number);
 	T Peek();
 	T Dequeue();
@@ -21,6 +22,7 @@ public:
 	T GetSum();
 	unsigned int GetCount();
 	unsigned int GetStackCount();
+
 private:
 	std::queue<SmartStack<T>*> mQueueStack;
 	T mMax;
@@ -35,24 +37,24 @@ private:
 template<typename T>
 inline QueueStack<T>::QueueStack(unsigned int maxStackSize)
 	: mMax(std::numeric_limits<T>::min()),
-	mMin(std::numeric_limits<T>::max()),
-	mSum(static_cast<T>(0)),
-	mLastStackPointer(nullptr),
-	mMaxStackSize(maxStackSize),
-	mCount(static_cast<unsigned int>(0)),
-	mStackCount(static_cast<unsigned int>(0))
+	  mMin(std::numeric_limits<T>::max()),
+	  mSum(static_cast<T>(0)),
+	  mLastStackPointer(nullptr),
+	  mMaxStackSize(maxStackSize),
+	  mCount(static_cast<unsigned int>(0)),
+	  mStackCount(static_cast<unsigned int>(0))
 {
 }
 
 template<typename T>
 inline QueueStack<T>::QueueStack(const QueueStack<T>& rhs)
-	:mMax(rhs.max),
-	mMin(rhs.min),
-	mSum(rhs.mSum),
-	mMaxStackSize(rhs.mMaxStackSize),
-	mLastStackPointer(nullptr),
-	mCount(rhs.mCount),
-	mStackCount(rhs.mStackCount)
+	: mMax(rhs.max),
+	  mMin(rhs.min),
+	  mSum(rhs.mSum),
+	  mMaxStackSize(rhs.mMaxStackSize),
+	  mLastStackPointer(nullptr),
+	  mCount(rhs.mCount),
+	  mStackCount(rhs.mStackCount)
 {
 	for (int i = 0; i < mStackCount; i++)
 	{

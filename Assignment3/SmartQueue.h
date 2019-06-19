@@ -21,65 +21,65 @@ public:
 	double GetStandardDeviation();
 	unsigned int GetCount();
 private:
-	SmartStack<T> front;
-	SmartStack<T> back;
-	T max;
-	T min;
-	T sum;
-	T squaredSum;
-	unsigned int count;
+	SmartStack<T> mFront;
+	SmartStack<T> mBack;
+	T mMax;
+	T mMin;
+	T mSum;
+	T mSquaredSum;
+	unsigned int mCount;
 };
 
 template<typename T>
 inline SmartQueue<T>::SmartQueue()
-	:count(0),
-	max(std::numeric_limits<T>::min()),
-	min(std::numeric_limits<T>::max()),
-	sum(static_cast<T>(0)),
-	squaredSum(static_cast<T>(0))
+	: mCount(0),
+	mMax(std::numeric_limits<T>::min()),
+	mMin(std::numeric_limits<T>::max()),
+	mSum(static_cast<T>(0)),
+	mSquaredSum(static_cast<T>(0))
 {
 }
 
 template<typename T>
 inline void SmartQueue<T>::Enqueue(T number)
 {
-	back.Push(number);
-	count++;
-	sum += number;
-	squaredSum += number * number;
+	mBack.Push(number);
+	mCount++;
+	mSum += number;
+	mSquaredSum += number * number;
 }
 
 template<typename T>
 inline T SmartQueue<T>::Peek()
 {
-	if (front.IsEmpty() == true)
+	if (mFront.IsEmpty() == true)
 	{
-		while (back.IsEmpty() != true)
+		while (mBack.IsEmpty() != true)
 		{
-			T top = back.Pop();
-			front.Push(top);
+			T top = mBack.Pop();
+			mFront.Push(top);
 		}
 	}
 
-	return front.Peek();
+	return mFront.Peek();
 }
 
 template<typename T>
 inline T SmartQueue<T>::Dequeue()
 {
-	if (front.IsEmpty() == true)
+	if (mFront.IsEmpty() == true)
 	{
-		while (back.IsEmpty() != true)
+		while (mBack.IsEmpty() != true)
 		{
-			T top = back.Pop();
-			front.Push(top);
+			T top = mBack.Pop();
+			mFront.Push(top);
 		}
 	}
-	T number = front.Pop();
+	T number = mFront.Pop();
 
-	count--;
-	sum -= number;
-	squaredSum -= number * number;
+	mCount--;
+	mSum -= number;
+	mSquaredSum -= number * number;
 
 	return number;
 }
@@ -87,27 +87,37 @@ inline T SmartQueue<T>::Dequeue()
 template<typename T>
 inline T SmartQueue<T>::GetMax()
 {
-	if (front.IsEmpty() != true)
+	if (mCount == 0)
 	{
-		return front.GetMax() > back.GetMax() ? front.GetMax() : back.GetMax();
+		return std::numeric_limits<T>::min();
 	}
-	return back.GetMax();
+
+	if (mFront.IsEmpty() != true)
+	{
+		return mFront.GetMax() > mBack.GetMax() ? mFront.GetMax() : mBack.GetMax();
+	}
+	return mBack.GetMax();
 }
 
 template<typename T>
 inline T SmartQueue<T>::GetMin()
 {
-	if (front.IsEmpty() != true)
+	if (mCount == 0)
 	{
-		return front.GetMin() < back.GetMin() ? front.GetMin() : back.GetMin();
+		return std::numeric_limits<T>::max();
 	}
-	return back.GetMin();
+
+	if (mFront.IsEmpty() != true)
+	{
+		return mFront.GetMin() < mBack.GetMin() ? mFront.GetMin() : mBack.GetMin();
+	}
+	return mBack.GetMin();
 }
 
 template<typename T>
 inline double SmartQueue<T>::GetAverage()
 {
-	double average = static_cast<double>(sum / count);
+	double average = static_cast<double>(mSum / mCount);
 	average = average * 1000 + 0.5;
 	unsigned int intValue = static_cast<unsigned int>(average);
 
@@ -117,7 +127,7 @@ inline double SmartQueue<T>::GetAverage()
 template<typename T>
 inline T SmartQueue<T>::GetSum()
 {
-	return sum;
+	return mSum;
 }
 
 template<typename T>
@@ -126,7 +136,7 @@ inline double SmartQueue<T>::GetVariance()
 	double average = GetAverage();
 	double squaredMean = average * average;
 
-	double variance = static_cast<double>(squaredSum / static_cast<double>(count)) - squaredMean;
+	double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
 	variance = variance * 1000 + 0.5;
 	unsigned int intValue = static_cast<unsigned int>(variance);
 	return static_cast<double>(intValue) / 1000.0;
@@ -138,7 +148,7 @@ inline double SmartQueue<T>::GetStandardDeviation()
 	double average = GetAverage();
 	double squaredMean = average * average;
 
-	double variance = static_cast<double>(squaredSum / static_cast<double>(count)) - squaredMean;
+	double variance = static_cast<double>(mSquaredSum / static_cast<double>(mCount)) - squaredMean;
 
 	double standardDeviation = sqrt(variance);
 	standardDeviation = standardDeviation * 1000 + 0.5;
@@ -150,5 +160,5 @@ inline double SmartQueue<T>::GetStandardDeviation()
 template<typename T>
 inline unsigned int SmartQueue<T>::GetCount()
 {
-	return count;
+	return mCount;
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <stack>
 #include <queue>
 #include <limits>
+#include "SmartStack.h"
 
 template <typename T>
 class QueueStack
@@ -22,11 +22,11 @@ public:
 	unsigned int GetCount();
 	unsigned int GetStackCount();
 private:
-	std::queue<std::stack<T>*> mQueueStack;
+	std::queue<SmartStack<T>*> mQueueStack;
 	T mMax;
 	T mMin;
 	T mSum;
-	std::stack<T>* mLastStackPointer;
+	SmartStack<T>* mLastStackPointer;
 	unsigned int mMaxStackSize;
 	unsigned int mCount;
 	unsigned int mStackCount;
@@ -56,9 +56,9 @@ inline QueueStack<T>::QueueStack(const QueueStack<T>& rhs)
 {
 	for (int i = 0; i < mStackCount; i++)
 	{
-		std::stack<T>* stackPointer = rhs.mQueueStack.front();
+		SmartStack<T>* stackPointer = rhs.mQueueStack.front();
 		rhs.mQueueStack.pop();
-		std::stack<T>* newStackPointer = new std::stack<T>(stackPointer);
+		SmartStack<T>* newStackPointer = new SmartStack<T>(stackPointer);
 		if (i == mStackCount - 1)
 		{
 			mLastStackPointer = newStackPointer;
@@ -80,9 +80,9 @@ inline QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& rhs)
 
 	for (unsigned int i = 0; i < mStackCount; i++)
 	{
-		std::stack<T>* stackPointer = rhs.mQueueStack.front();
+		SmartStack<T>* stackPointer = rhs.mQueueStack.front();
 		rhs.mQueueStack.pop();
-		std::stack<T>* newStackPointer = new std::stack<T>(stackPointer);
+		SmartStack<T>* newStackPointer = new SmartStack<T>(stackPointer);
 		if (i == mStackCount - 1)
 		{
 			mLastStackPointer = newStackPointer;
@@ -97,7 +97,7 @@ inline QueueStack<T>::~QueueStack()
 {
 	for (unsigned int i = 0; i < mStackCount; i++)
 	{
-		std::stack<T>* stackPointer = mQueueStack.front();
+		SmartStack<T>* stackPointer = mQueueStack.front();
 		mQueueStack.pop();
 		delete stackPointer;
 	}
@@ -106,16 +106,17 @@ inline QueueStack<T>::~QueueStack()
 template<typename T>
 inline void QueueStack<T>::Enqueue(T number)
 {
-	if (mCount % mStackCount)
+	if (mCount % mMaxStackSize == 0)
 	{
-		std::stack<T>* newStackPointer = new std::stack<T>;
-		newStackPointer->push(number);
+		SmartStack<T>* newStackPointer = new SmartStack<T>;
+		newStackPointer->Push(number);
 		mLastStackPointer = newStackPointer;
+		mQueueStack.push(newStackPointer);
 		mStackCount++;
 	}
 	else
 	{
-		mLastStackPointer->push(number);
+		mLastStackPointer->Push(number);
 	}
 
 	mCount++;
@@ -125,25 +126,29 @@ inline void QueueStack<T>::Enqueue(T number)
 template<typename T>
 inline T QueueStack<T>::Peek()
 {
-	return mQueueStack.front()->top();
+	return mQueueStack.front()->Peek();
 }
 
 template<typename T>
 inline T QueueStack<T>::Dequeue()
 {
-	T number = mQueueStack.front()->top();
+	T number = mQueueStack.front()->Peek();
 
-	if (mQueueStack.front()->size() == 1)
+	if (mQueueStack.front()->GetCount() == 1)
 	{
-		std::stack<T>* deletedStackPointer = mQueueStack.front();
-		mQueueStack.front()->pop();
+		SmartStack<T>* deletedStackPointer = mQueueStack.front();
+		mQueueStack.front()->Pop();
 		mQueueStack.pop();
 		delete deletedStackPointer;
+		mStackCount--;
 	}
 	else
 	{
-		mQueueStack.front()->pop();
+		mQueueStack.front()->Pop();
 	}
+
+	mCount--;
+	mSum -= number;
 
 	return number;
 }
@@ -153,19 +158,15 @@ inline T QueueStack<T>::GetMax()
 {
 	for (unsigned int i = 0; i < mStackCount; i++)
 	{
-		std::stack<T>* stackPointer = mQueueStack.front();
+		SmartStack<T>* stackPointer = mQueueStack.front();
 		mQueueStack.pop();
 
-		for (unsigned int j = 0; j < stackPointer->size(); i++)
+		T number = stackPointer->GetMax();
+		if (number > mMax)
 		{
-			T number = stackPointer->top();
-			stackPointer->pop();
-			if (number > mMax)
-			{
-				mMax = number;
-			}
-			stackPointer->push(number);
+			mMax = number;
 		}
+
 		mQueueStack.push(stackPointer);
 	}
 
@@ -177,19 +178,15 @@ inline T QueueStack<T>::GetMin()
 {
 	for (unsigned int i = 0; i < mStackCount; i++)
 	{
-		std::stack<T>* stackPointer = mQueueStack.front();
+		SmartStack<T>* stackPointer = mQueueStack.front();
 		mQueueStack.pop();
 
-		for (unsigned int j = 0; j < stackPointer->size(); i++)
+		T number = stackPointer->GetMin();
+		if (number < mMin)
 		{
-			T number = stackPointer->top();
-			stackPointer->pop();
-			if (number < mMin)
-			{
-				mMin = number;
-			}
-			stackPointer->push(number);
+			mMin = number;
 		}
+
 		mQueueStack.push(stackPointer);
 	}
 

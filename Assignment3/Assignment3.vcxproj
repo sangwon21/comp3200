@@ -73,6 +73,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="QueueStack.h" />
     <ClInclude Include="SmartQueue.h" />
     <ClInclude Include="SmartStack.h" />
   </ItemGroup>

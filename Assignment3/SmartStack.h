@@ -156,7 +156,7 @@ namespace assignment3
 		{
 			return static_cast<T>(0);
 		}
-		else if (abs(mSmartStack.top().GetSum()) < std::numeric_limits<T>::epsilon())
+		else if (static_cast<T>(std::abs(mSmartStack.top().GetSum())) < std::numeric_limits<T>::epsilon())
 		{
 			return static_cast<T>(0);
 		}

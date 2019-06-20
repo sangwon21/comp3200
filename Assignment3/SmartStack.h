@@ -28,25 +28,19 @@ namespace assignment3
 		T GetSquaredSum();
 	private:
 		std::stack<Data<T>> mSmartStack;
-		std::stack<T> mMaxStack;
-		std::stack<T> mMinStack;
-		T mMax;
-		T mMin;
 		unsigned int mCount;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
-		: mCount(0)
-		, mMax(std::numeric_limits<T>::min())
-		, mMin(std::numeric_limits<T>::max())
+		: mCount(static_cast<unsigned int>(0))
 	{
 	}
 
 	template<typename T>
 	inline void SmartStack<T>::Push(T number)
 	{
-		if (mCount == 0)
+		if (mCount == static_cast<unsigned int>(0))
 		{
 			mSmartStack.push(Data<T>(number));
 		}
@@ -79,7 +73,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetMax()
 	{
-		if (mCount == 0)
+		if (mCount == static_cast<unsigned int>(0))
 		{
 			return std::numeric_limits<T>::min();
 		}
@@ -89,7 +83,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetMin()
 	{
-		if (mCount == 0)
+		if (mCount == static_cast<unsigned int>(0))
 		{
 			return std::numeric_limits<T>::max();
 		}
@@ -121,10 +115,10 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetVariance()
 	{
-		double average = static_cast<double>(mSmartStack.top().GetSum()) / static_cast<double>(mCount);
+		double average = static_cast<double>(mSmartStack.top().GetSum()) / mCount;
 		double squaredMean = average * average;
 
-		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / static_cast<double>(mCount) - squaredMean;
+		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / mCount - squaredMean;
 
 		variance += 0.0005;
 		variance = variance * 1000;
@@ -137,10 +131,10 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetStandardDeviation()
 	{
-		double average = static_cast<double>(mSmartStack.top().GetSum()) / static_cast<double>(mCount);
+		double average = static_cast<double>(mSmartStack.top().GetSum()) / mCount;
 		double squaredMean = average * average;
 
-		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / static_cast<double>(mCount) - squaredMean;
+		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / mCount - squaredMean;
 
 		double standardDeviation = sqrt(variance);
 		standardDeviation += 0.0005;

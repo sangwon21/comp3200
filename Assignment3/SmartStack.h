@@ -2,7 +2,6 @@
 
 #include <stack>
 #include <limits>
-#include <cstdlib>
 #include <cmath>
 #include "Data.h"
 
@@ -157,9 +156,22 @@ namespace assignment3
 		{
 			return static_cast<T>(0);
 		}
-		else if (static_cast<double>(std::fabs(mSmartStack.top().GetSum())) < std::numeric_limits<double>::epsilon())
+		else if (std::fabs(mSmartStack.top().GetSum()) < std::numeric_limits<double>::epsilon())
 		{
 			return static_cast<T>(0);
+		}
+		else
+		{
+			double newSum = static_cast<double>(mSmartStack.top().GetSum());
+
+			newSum += 0.0005;
+			newSum = newSum * 1000;
+			long long newLongSum = static_cast<long long>(newSum);
+
+			if (newLongSum == 0L)
+			{
+				return static_cast<T>(0);
+			}
 		}
 		return mSmartStack.top().GetSum();
 	}

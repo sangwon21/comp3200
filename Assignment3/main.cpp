@@ -87,28 +87,30 @@ int main()
 	double test1 = static_cast<double>(intValue) / 1000.0;
 
 	SmartStack<double> ds;
-	ds.Push(3.4154);
+	ds.Push(3.45);
 	ds.Push(1.23);
-	ds.Push(-2.3875);
-	ds.Push(4.1229);
-	ds.Push(1.2381);
-	ds.Push(-12.242);
-	ds.Push(-3.4154);
+	ds.Push(-2.38);
+	ds.Push(4.12);
+	ds.Push(1.23);
+	ds.Push(-12.24);
+	ds.Push(-3.45);
 	ds.Push(-1.23);
-	ds.Push(2.3875);
-	ds.Push(-4.1229);
-	ds.Push(-1.2381);
-//	ds.Push(12.24845);
+	ds.Push(2.38);
+	ds.Push(-4.12);
+	ds.Push(12.24);
+	ds.Push(-1.23);
 
 	//assert(test1 == ds.GetAverage());
-	double curious = ds.GetAverage();
 	double curious1 = ds.GetSum();
+	double curious = ds.GetAverage();
 	cout << curious1 << endl;
 	cout << curious << endl;
 	double test5 = -12.242 / 11.0;
 	cout << -12.242 / 11.0 << endl;
+	double test10 = std::numeric_limits<double>::epsilon();
+	cout << (test10 < 0.0079999999999995630) << endl;
 
-	SmartStack<int> ai;
+	/*SmartStack<int> ai;
 	ai.Push(1);
 	ai.Push(2);
 	ai.Push(3);
@@ -118,7 +120,7 @@ int main()
 	ai.Push(-3);
 	ai.Push(-1);
 	ai.Push(1);
-	cout << ai.GetSum() << endl;
+	cout << ai.GetSum() << endl;*/
 	cin.get();
 	return 0;
 }

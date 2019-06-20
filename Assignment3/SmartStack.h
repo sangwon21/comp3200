@@ -2,6 +2,7 @@
 
 #include <stack>
 #include <limits>
+#include <cstdlib>
 #include <cmath>
 #include "Data.h"
 

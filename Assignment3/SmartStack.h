@@ -48,37 +48,14 @@ namespace assignment3
 	{
 		if (mCount == 0)
 		{
-			mMax = number;
-			mMin = number;
-			mMaxStack.push(number);
-			mMinStack.push(number);
 			mSmartStack.push(Data<T>(number));
 		}
 		else
 		{
-			if (number > mMax)
-			{
-				mMax = number;
-				mMaxStack.push(number);
-			}
-			else if (number == mMax)
-			{
-				mMaxStack.push(number);
-			}
-			else if (number < mMin)
-			{
-				mMin = number;
-				mMinStack.push(number);
-			}
-			else if (number == mMin)
-			{
-				mMinStack.push(number);
-			}
 			Data<T> topData = mSmartStack.top();
 			Data<T> newData = topData.AddNumber(number);
 			mSmartStack.push(newData);
 		}
-
 		mCount++;
 	}
 
@@ -87,24 +64,6 @@ namespace assignment3
 	{
 		Data<T> top = mSmartStack.top();
 		mSmartStack.pop();
-
-		if (mCount == 1)
-		{
-			mMaxStack.pop();
-			mMinStack.pop();
-			mMax = std::numeric_limits<T>::min();
-			mMin = std::numeric_limits<T>::max();
-		}
-		else if (top.GetValue() == mMax)
-		{
-			mMaxStack.pop();
-			mMax = mMaxStack.top();
-		}
-		else if (top.GetValue() == mMin)
-		{
-			mMinStack.pop();
-			mMin = mMinStack.top();
-		}
 
 		mCount--;
 
@@ -124,7 +83,7 @@ namespace assignment3
 		{
 			return std::numeric_limits<T>::min();
 		}
-		return mMax;
+		return mSmartStack.top().GetMax();
 	}
 
 	template<typename T>
@@ -134,17 +93,17 @@ namespace assignment3
 		{
 			return std::numeric_limits<T>::max();
 		}
-		return mMin;
+		return mSmartStack.top().GetMin();
 	}
 
 	template<typename T>
 	inline double SmartStack<T>::GetAverage()
 	{
-		double average = static_cast<double>(mSmartStack.top().GetSum()) / static_cast<double>(mCount);
+		double average = static_cast<double>(mSmartStack.top().GetSum()) / mCount;
 		average += 0.0005;
 		average = average * 1000;
 		long long longAverage = static_cast<long long>(average);
-		
+
 		average = static_cast<double>(longAverage);
 		return average / 1000.0;
 	}
@@ -156,23 +115,6 @@ namespace assignment3
 		{
 			return static_cast<T>(0);
 		}
-		else if (std::fabs(mSmartStack.top().GetSum()) < std::numeric_limits<double>::epsilon())
-		{
-			return static_cast<T>(0);
-		}
-		else
-		{
-			double newSum = static_cast<double>(mSmartStack.top().GetSum());
-
-			newSum += 0.0005;
-			newSum = newSum * 1000;
-			long long newLongSum = static_cast<long long>(newSum);
-
-			if (newLongSum == 0L)
-			{
-				return static_cast<T>(0);
-			}
-		}
 		return mSmartStack.top().GetSum();
 	}
 
@@ -183,7 +125,7 @@ namespace assignment3
 		double squaredMean = average * average;
 
 		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / static_cast<double>(mCount) - squaredMean;
-		
+
 		variance += 0.0005;
 		variance = variance * 1000;
 		long long longVariance = static_cast<long long>(variance);

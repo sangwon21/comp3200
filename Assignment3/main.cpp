@@ -107,6 +107,18 @@ int main()
 	cout << curious << endl;
 	double test5 = -12.242 / 11.0;
 	cout << -12.242 / 11.0 << endl;
+
+	SmartStack<int> ai;
+	ai.Push(1);
+	ai.Push(2);
+	ai.Push(3);
+	ai.Push(1);
+	ai.Push(-1);
+	ai.Push(-2);
+	ai.Push(-3);
+	ai.Push(-1);
+	ai.Push(1);
+	cout << ai.GetSum() << endl;
 	cin.get();
 	return 0;
 }

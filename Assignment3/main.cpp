@@ -47,6 +47,7 @@ int main()
 	assert(ss.GetVariance() == 39.983);
 	assert(ss.GetStandardDeviation() == 6.323);
 	assert(ss.Peek() == 9.2f);
+	assert(!ss.IsEmpty());
 
 	float popped1 = ss.Pop();
 	float popped2 = ss.Pop();
@@ -58,45 +59,54 @@ int main()
 	ss.Pop();
 	ss.Pop();
 	ss.Pop();
-
+	assert(ss.IsEmpty());
 	cout << ss.GetCount() << endl;
 	cout << ss.GetSum() << endl;
 
 	ss.Push(1.0f);
 
-	cout << ss.GetSum() << endl;
-	cout << ss.GetAverage() << endl;
+	SmartStack<int> s;
+	s.Push(6);
+	s.Push(5);
+	s.Push(-2); // [ 6, 5, -2 ]
 
-	ss.Pop();
+	double average = s.GetAverage(); // 3.000
 
-	ss.Push(2.5f);
-	ss.Push(3.1f);
+	assert(average == 3.000);
+	double variance = s.GetVariance();
+	assert(variance == 12.667);
+	double standardDeviation = s.GetStandardDeviation(); // 3.559
+	assert(standardDeviation == 3.559);
 
-	SmartQueue<float> sw;
+	double test = 3.4125 + 1.23124 - 2.3812 + 4.1293 + 1.23845 - 12.24845
+		-3.4125 - 1.23124 + 2.3812 - 4.1293 - 1.23845 + 12.24845;
+	double test2 = 3.4125 + 1.23124 - 2.3812 + 4.1293 + 1.23845 - 12.24845
+		- 3.4125 - 1.23124 + 2.3812 - 4.1293 - 1.23845;
+	test2 = test2 * 1000 + 0.5;
+	unsigned int intValue = static_cast<unsigned int>(test2);
+	double test1 = static_cast<double>(intValue) / 1000.0;
 
-	sw.Enqueue(9.2f);
-	sw.Enqueue(-12.4f);
-	sw.Enqueue(1.1f);
-	sw.Enqueue(-5.9f);
-	sw.Enqueue(1.1f);
-	sw.Enqueue(10.2f);
-	sw.Enqueue(3.32f);
-	sw.Enqueue(4.6f);
-	sw.Enqueue(1.2f);
-	sw.Enqueue(3.4f);
+	SmartStack<double> ds;
+	ds.Push(3.4154);
+	ds.Push(1.23);
+	ds.Push(-2.3875);
+	ds.Push(4.1229);
+	ds.Push(1.2381);
+	ds.Push(-12.242);
+	ds.Push(-3.4154);
+	ds.Push(-1.23);
+	ds.Push(2.3875);
+	ds.Push(-4.1229);
+	ds.Push(-1.2381);
+//	ds.Push(12.24845);
 
-	assert(sw.GetCount() == 10U);
-	assert(sw.Peek() == 3.4f);
-	assert(sw.GetMax() == 10.2f);
-	assert(sw.GetMin() == -12.4f);
-	cout << sw.GetSum() << endl;
-	cout << 15.8200026f << endl;
-	assert(sw.GetSum() == 15.8200026f);
-	assert(sw.GetAverage() == 1.582);
-	assert(sw.GetVariance() == 39.983);
-	assert(sw.GetStandardDeviation() == 6.323);
-	//	assert(sw.Peek() == 9.2f);
-
+	//assert(test1 == ds.GetAverage());
+	double curious = ds.GetAverage();
+	double curious1 = ds.GetSum();
+	cout << curious1 << endl;
+	cout << curious << endl;
+	double test5 = -12.242 / 11.0;
+	cout << -12.242 / 11.0 << endl;
 	cin.get();
 	return 0;
 }

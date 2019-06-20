@@ -141,16 +141,22 @@ namespace assignment3
 	inline double SmartStack<T>::GetAverage()
 	{
 		double average = static_cast<double>(mSmartStack.top().GetSum()) / static_cast<double>(mCount);
-		average = average * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(average);
-
-		return static_cast<double>(intValue) / 1000.0;
+		average += 0.0005;
+		average = average * 1000;
+		long long longAverage = static_cast<long long>(average);
+		
+		average = static_cast<double>(longAverage);
+		return average / 1000.0;
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::GetSum()
 	{
 		if (mCount == static_cast<unsigned int>(0))
+		{
+			return static_cast<T>(0);
+		}
+		else if (abs(mSmartStack.top().GetSum()) < std::numeric_limits<T>::epsilon())
 		{
 			return static_cast<T>(0);
 		}
@@ -164,9 +170,13 @@ namespace assignment3
 		double squaredMean = average * average;
 
 		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / static_cast<double>(mCount) - squaredMean;
-		variance = variance * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(variance);
-		return static_cast<double>(intValue) / 1000.0;
+		
+		variance += 0.0005;
+		variance = variance * 1000;
+		long long longVariance = static_cast<long long>(variance);
+
+		variance = static_cast<double>(longVariance);
+		return variance / 1000.0;
 	}
 
 	template<typename T>
@@ -178,10 +188,12 @@ namespace assignment3
 		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / static_cast<double>(mCount) - squaredMean;
 
 		double standardDeviation = sqrt(variance);
-		standardDeviation = standardDeviation * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(standardDeviation);
+		standardDeviation += 0.0005;
+		standardDeviation = standardDeviation * 1000;
+		long long longStandardDeviation = static_cast<long long>(standardDeviation);
 
-		return static_cast<double>(intValue) / 1000.0;
+		standardDeviation = static_cast<double>(longStandardDeviation);
+		return standardDeviation / 1000.0;
 	}
 
 	template<typename T>

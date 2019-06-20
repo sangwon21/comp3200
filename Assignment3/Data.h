@@ -21,7 +21,7 @@ template<typename T>
 inline Data<T>::Data(T value)
 	: mValue(value)
 	, mSum(value)
-	, mSquaredSum(value* value)
+	, mSquaredSum(value * value)
 {
 }
 

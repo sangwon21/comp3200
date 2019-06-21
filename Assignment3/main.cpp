@@ -100,57 +100,73 @@ int main()
 	ds.Push(12.24);
 	ds.Push(-1.23);
 
-	//assert(test1 == ds.GetAverage());
-	double curious1 = ds.GetSum();
-	double curious = ds.GetAverage();
-	cout << "curious1 : " << curious1 << endl;
-	cout << curious << endl;
-	double test5 = -12.242 / 11.0;
-	cout << -12.242 / 11.0 << endl;
-	double test10 = std::numeric_limits<double>::epsilon();
-	cout << (test10 < 0.0079999999999995630) << endl;
+
 
 	SmartStack<int> ai;
-	ai.Push(175);
-	ai.Push(177);
-	ai.Push(179);
-	ai.Push(181);
-	ai.Push(183);
+	ai.Push(3);
+	ai.Push(2);
+	ai.Push(3);
+	ai.Push(6);
+	ai.Push(3);
+	ai.Push(4);
 
-	double l = 3.000;
-	cout << 3.000 << endl;
-	cout << ai.GetAverage() << endl;
-	assert(ai.GetAverage() == 179.000);
-	double k = ai.GetVariance();
-	cout << k << endl;
-	cout << ai.GetStandardDeviation() << endl;
+	SmartQueue<int> qi;
+	qi.Enqueue(3);
+	qi.Enqueue(2);
+	qi.Enqueue(4);
+	qi.Enqueue(3);
+	qi.Enqueue(3);
+	qi.Enqueue(2);
 
-	double newSum = -2.3454;
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
 
-	newSum += 0.0005;
-	newSum = newSum * 1000;
-	long long newLongSum = static_cast<long long>(newSum);
-	cout << newLongSum << endl;
-	cout << static_cast<double>(newLongSum) / 1000.0 << endl;
+	qi.Dequeue();
 
-	SmartQueue<int> iq;
-	iq.Enqueue(4);
-	iq.Enqueue(1);
-	iq.Enqueue(1);
-	iq.Enqueue(1);
-	cout << "-----------------------------------------------------------" << endl;
-	cout << iq.GetMax() << endl;
-	cout << iq.GetMin() << endl;
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
 
-	iq.Peek();
-	iq.Dequeue();
-	iq.Dequeue();
-	iq.Dequeue();
-	iq.Dequeue();
+	qi.Dequeue();
 
-	cout << iq.GetMax() << endl;
-	cout << iq.GetMin() << endl;
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
 
+	qi.Dequeue();
+
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
+
+	qi.Dequeue();
+
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
+
+	qi.Dequeue();
+
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
+
+	qi.Enqueue(4);
+	qi.Enqueue(3);
+	qi.Enqueue(5);
+	qi.Enqueue(5);
+	qi.Enqueue(4);
+
+	qi.Peek();
+
+	qi.Enqueue(3);
+	qi.Enqueue(7);
+
+
+	cout << "Max is : " << qi.GetMax() << endl;
+	cout << "Min is : " << qi.GetMin() << endl;
+	cout << endl;
 	cin.get();
 	return 0;
 }

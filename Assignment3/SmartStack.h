@@ -30,14 +30,10 @@ namespace assignment3
 		std::stack<Data<T>> mSmartStack;
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
-		T mMax;
-		T mMin;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
-		: mMax(std::numeric_limits<T>::min())
-		, mMin(std::numeric_limits<T>::max())
 	{
 	}
 
@@ -46,29 +42,25 @@ namespace assignment3
 	{
 		if (mSmartStack.empty() == true)
 		{
-			mMax = number;
-			mMin = number;
 			mSmartStack.push(Data<T>(number));
 			mMaxStack.push(number);
 			mMinStack.push(number);
 		}
 		else
 		{
-			if (number > mMax)
-			{
-				mMax = number;
-				mMaxStack.push(number);
-			}
-			else if (number == mMax)
+			if (number > mMaxStack.top())
 			{
 				mMaxStack.push(number);
 			}
-			else if (number < mMin)
+			else if (number == mMaxStack.top())
 			{
-				mMin = number;
+				mMaxStack.push(number);
+			}
+			else if (number < mMinStack.top())
+			{
 				mMinStack.push(number);
 			}
-			else if (number == mMin)
+			else if (number == mMinStack.top())
 			{
 				mMinStack.push(number);
 			}
@@ -88,18 +80,14 @@ namespace assignment3
 		{
 			mMaxStack.pop();
 			mMinStack.pop();
-			mMax = std::numeric_limits<T>::min();
-			mMin = std::numeric_limits<T>::max();
 		}
-		else if (top.GetValue() == mMax)
+		else if (top.GetValue() == mMaxStack.top())
 		{
 			mMaxStack.pop();
-			mMax = mMaxStack.top();
 		}
-		else if (top.GetValue() == mMin)
+		else if (top.GetValue() == mMinStack.top())
 		{
 			mMinStack.pop();
-			mMin = mMinStack.top();
 		}
 
 		return top.GetValue();
@@ -114,21 +102,21 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetMax()
 	{
-		if (mSmartStack.empty() == true)
+		if (mMaxStack.empty() == true)
 		{
 			return std::numeric_limits<T>::min();
 		}
-		return mMax;
+		return mMaxStack.top();
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::GetMin()
 	{
-		if (mSmartStack.empty() == true)
+		if (mMinStack.empty() == true)
 		{
 			return std::numeric_limits<T>::max();
 		}
-		return mMin;
+		return mMinStack.top();
 	}
 
 	template<typename T>

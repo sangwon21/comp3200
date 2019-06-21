@@ -22,7 +22,8 @@ int main()
 	float b = 3.4f + 1.2f + 4.6f + 3.32f + 10.2f + 1.1f + -5.9f + 1.1f + -12.4f + 9.2f;
 	float c = 9.2f - 12.4f + 1.1f - 5.9f + 1.1f + 10.2f + 3.32f + 4.6f + 1.2f + 3.4f;
 	SmartStack<float> ss;
-	
+	cout << "Max is : " << ss.GetMax() << endl;
+	cout << "Min is : " << ss.GetMin() << endl;
 	float er = 1.1f + 2.6f + 3.7f;
 	float qwe = 2.6f + 1.1f - 1.1f;
 	ss.Push(3.4f);
@@ -62,111 +63,25 @@ int main()
 	assert(ss.IsEmpty());
 	cout << ss.GetCount() << endl;
 	cout << ss.GetSum() << endl;
-
+	cout << "Max is : " << ss.GetMax() << endl;
+	cout << "Min is : " << ss.GetMin() << endl;
+	cout << "===================================================" << endl;
 	ss.Push(1.0f);
+	ss.Push(2.2f);
+	ss.Push(2.2f);
+	ss.Push(3.2f);
+	ss.Push(3.2f);
+	ss.Push(4.2f);
+	ss.Pop();
+	ss.Pop();
 
-	SmartStack<int> s;
-	s.Push(6);
-	s.Push(5);
-	s.Push(-2); // [ 6, 5, -2 ]
-
-	double average = s.GetAverage(); // 3.000
-
-	assert(average == 3.000);
-	double variance = s.GetVariance();
-	assert(variance == 12.667);
-	double standardDeviation = s.GetStandardDeviation(); // 3.559
-	assert(standardDeviation == 3.559);
-
-	double test = 3.4125 + 1.23124 - 2.3812 + 4.1293 + 1.23845 - 12.24845
-		-3.4125 - 1.23124 + 2.3812 - 4.1293 - 1.23845 + 12.24845;
-	double test2 = 3.4125 + 1.23124 - 2.3812 + 4.1293 + 1.23845 - 12.24845
-		- 3.4125 - 1.23124 + 2.3812 - 4.1293 - 1.23845;
-	test2 = test2 * 1000 + 0.5;
-	unsigned int intValue = static_cast<unsigned int>(test2);
-	double test1 = static_cast<double>(intValue) / 1000.0;
-
-	SmartStack<double> ds;
-	ds.Push(3.45);
-	ds.Push(1.23);
-	ds.Push(-2.38);
-	ds.Push(4.12);
-	ds.Push(1.23);
-	ds.Push(-12.24);
-	ds.Push(-3.45);
-	ds.Push(-1.23);
-	ds.Push(2.38);
-	ds.Push(-4.12);
-	ds.Push(12.24);
-	ds.Push(-1.23);
+	cout << "Count is : " << ss.GetCount() << endl;
+	cout << "Sum is : " << ss.GetSum() << endl;
+	cout << "Max is : " << ss.GetMax() << endl;
+	cout << "Min is : " << ss.GetMin() << endl;
+	cout << "===================================================" << endl;
 
 
-
-	SmartStack<int> ai;
-	ai.Push(3);
-	ai.Push(2);
-	ai.Push(3);
-	ai.Push(6);
-	ai.Push(3);
-	ai.Push(4);
-
-	SmartQueue<int> qi;
-	qi.Enqueue(3);
-	qi.Enqueue(2);
-	qi.Enqueue(4);
-	qi.Enqueue(3);
-	qi.Enqueue(3);
-	qi.Enqueue(2);
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
-
-	qi.Dequeue();
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
-
-	qi.Dequeue();
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
-
-	qi.Dequeue();
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
-
-	qi.Dequeue();
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
-
-	qi.Dequeue();
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
-
-	qi.Enqueue(4);
-	qi.Enqueue(3);
-	qi.Enqueue(5);
-	qi.Enqueue(5);
-	qi.Enqueue(4);
-
-	qi.Peek();
-
-	qi.Enqueue(3);
-	qi.Enqueue(7);
-
-
-	cout << "Max is : " << qi.GetMax() << endl;
-	cout << "Min is : " << qi.GetMin() << endl;
-	cout << endl;
 	cin.get();
 	return 0;
 }

@@ -44,6 +44,7 @@ int main()
 	cout << ss.GetSum() << endl;
 	assert(ss.GetSum() == 15.8200026f);
 	double av = ss.GetAverage();
+	cout << av << endl;
 	assert(ss.GetAverage() == 1.582);
 	assert(ss.GetVariance() == 39.983);
 	assert(ss.GetStandardDeviation() == 6.323);
@@ -66,16 +67,21 @@ int main()
 	cout << "Max is : " << ss.GetMax() << endl;
 	cout << "Min is : " << ss.GetMin() << endl;
 	cout << "===================================================" << endl;
-	ss.Push(1.0f);
+
+
+	ss.Push(1.2f);
+	ss.Push(-1.9374f);
 	ss.Push(2.2f);
-	ss.Push(2.2f);
-	ss.Push(3.2f);
-	ss.Push(3.2f);
-	ss.Push(4.2f);
-	ss.Pop();
-	ss.Pop();
+	ss.Push(-2.2542f);
+	ss.Push(3.9f);
+	ss.Push(5.627f);
+	ss.Push(2.563f);
+	ss.Push(-2.395f);
+	ss.Push(-4.32113f);
+	ss.Push(-3.7812f);
 
 	cout << "Count is : " << ss.GetCount() << endl;
+	cout << "Average is : " << ss.GetAverage() << endl;
 	cout << "Sum is : " << ss.GetSum() << endl;
 	cout << "Max is : " << ss.GetMax() << endl;
 	cout << "Min is : " << ss.GetMin() << endl;

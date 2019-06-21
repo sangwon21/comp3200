@@ -155,7 +155,7 @@ namespace assignment3
 		double average = static_cast<double>(mSum) / mCount;
 		average += 0.0005;
 		average = average * 1000;
-		long long longAverage = static_cast<long long>(average);
+		int longAverage = static_cast<int>(average);
 
 		average = static_cast<double>(longAverage);
 		return average / 1000.0;
@@ -178,9 +178,9 @@ namespace assignment3
 
 			newSum += 0.0005;
 			newSum = newSum * 1000;
-			long long newLongSum = static_cast<long long>(newSum);
+			int newLongSum = static_cast<int>(newSum);
 
-			if (newLongSum == 0LL)
+			if (newLongSum == 0)
 			{
 				return static_cast<T>(0);
 			}

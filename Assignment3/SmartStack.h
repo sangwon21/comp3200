@@ -231,6 +231,6 @@ namespace assignment3
 		{
 			return static_cast<T>(0);
 		}
-		return mSquaredSum.top();
+		return mSquaredSumStack.top();
 	}
 }

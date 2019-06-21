@@ -123,11 +123,9 @@ namespace assignment3
 	inline double SmartStack<T>::GetAverage()
 	{
 		double average = static_cast<double>(mSmartStack.top().GetSum()) / mSmartStack.size();
-		average = average * 1000;
-		long longAverage = lround(average);
+		average = round(average * 1000) / 1000.0;
 
-		average = static_cast<double>(longAverage);
-		return average / 1000.0;
+		return average;
 	}
 
 	template<typename T>

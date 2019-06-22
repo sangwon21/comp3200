@@ -36,7 +36,7 @@ namespace assignment3
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
 		: mSum(static_cast<T>(0))
-		, mSquaredSum(static_cast<T>(0))
+		, mSquaredSum(static_cast<double>(0))
 	{
 	}
 

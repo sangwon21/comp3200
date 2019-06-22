@@ -32,7 +32,7 @@ namespace assignment3
 		T mOldMax;
 		T mOldMin;
 		T mSum;
-		T mSquaredSum;
+		double mSquaredSum;
 	};
 
 	template<typename T>
@@ -40,7 +40,7 @@ namespace assignment3
 		: mOldMax(std::numeric_limits<T>::min())
 		, mOldMin(std::numeric_limits<T>::max())
 		, mSum(static_cast<T>(0))
-		, mSquaredSum(static_cast<T>(0))
+		, mSquaredSum(static_cast<double>(0))
 	{
 	}
 
@@ -69,7 +69,7 @@ namespace assignment3
 		}
 
 		mSum += number;
-		mSquaredSum += number * number;
+		mSquaredSum += pow(static_cast<double>(number), 2);
 	}
 
 	template<typename T>
@@ -117,7 +117,7 @@ namespace assignment3
 		}
 
 		mSum -= front;
-		mSquaredSum -= front * front;
+		mSquaredSum -= pow(static_cast<double>(front), 2);
 
 		return front;
 	}
@@ -189,9 +189,9 @@ namespace assignment3
 	inline double SmartQueue<T>::GetVariance()
 	{
 		double average = static_cast<double>(mSum) / mSmartQueue.size();
-		double squaredMean = pow(average, 2.0);
+		double squaredMean = pow(average, 2);
 
-		double variance = static_cast<double>(mSquaredSum) / mSmartQueue.size() - squaredMean;
+		double variance = mSquaredSum / mSmartQueue.size() - squaredMean;
 		variance = round(variance * 1000) / 1000.0;
 
 		return variance;
@@ -201,9 +201,9 @@ namespace assignment3
 	inline double SmartQueue<T>::GetStandardDeviation()
 	{
 		double average = static_cast<double>(mSum) / mSmartQueue.size();
-		double squaredMean = pow(average, 2.0);
+		double squaredMean = pow(average, 2);
 
-		double variance = static_cast<double>(mSquaredSum) / mSmartQueue.size() - squaredMean;
+		double variance = mSquaredSum / mSmartQueue.size() - squaredMean;
 		double standardDeviation = sqrt(variance);
 		standardDeviation = round(standardDeviation * 1000) / 1000.0;
 

@@ -171,6 +171,71 @@ int main()
 	double o = 2.4576 * 2.4576;
 	double o1 = pow(2.4567, 2);
 
+	QueueStack<float> qsf(3);
+
+	qsf.Enqueue(-10.2f);
+	qsf.Enqueue(10.2f);
+	qsf.Enqueue(-10.2f);
+	qsf.Enqueue(10.2f);
+	qsf.Enqueue(-10.2f);
+	qsf.Enqueue(10.2f);
+	qsf.Enqueue(10.2f);
+	qsf.Enqueue(10.2f);
+	qsf.Enqueue(10.2f);
+	qsf.Enqueue(10.2f);
+	cout << "--------------------another test--------------" << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << qsf.Dequeue() << endl;
+	cout << "Max is : " << qsf.GetMax() << endl;
+	cout << "Min is : " << qsf.GetMin() << endl;
+
+
 	cin.get();
 	return 0;
 }

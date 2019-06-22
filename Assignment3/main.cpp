@@ -235,7 +235,16 @@ int main()
 	cout << "Max is : " << qsf.GetMax() << endl;
 	cout << "Min is : " << qsf.GetMin() << endl;
 
+	QueueStack<int> ti(3);
 
+	ti.Enqueue(1);
+	ti.Enqueue(2);
+	ti.Enqueue(3);
+	ti.Enqueue(4);
+	ti.Enqueue(5);
+
+	int nom = ti.Dequeue();
+	cout << nom << endl;
 	cin.get();
 	return 0;
 }

@@ -123,6 +123,7 @@ namespace assignment3
 			mLastStackPointer->push(number);
 		}
 		mSum += number;
+		mCount++;
 	}
 
 	template<typename T>
@@ -149,7 +150,7 @@ namespace assignment3
 		}
 
 		mSum -= number;
-
+		mCount--;
 		return number;
 	}
 

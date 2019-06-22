@@ -205,11 +205,10 @@ namespace assignment3
 	template<typename T>
 	inline double QueueStack<T>::GetAverage()
 	{
-		double average = static_cast<double>(mSum / mCount);
-		average = average * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(average);
+		double average = static_cast<double>(mSum) / mStackCount;
+		average = round(average * 1000) / 1000.0;
 
-		return static_cast<double>(intValue) / 1000.0;
+		return average;
 	}
 
 	template<typename T>

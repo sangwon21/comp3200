@@ -36,7 +36,7 @@ inline Data<T>::Data(T value, T sum, T squaredSum)
 template<typename T>
 inline Data<T> Data<T>::AddNumber(T number)
 {
-	Data newData(number, mSum + number, mSquaredSum + number * number);
+	Data<T> newData(number, mSum + number, mSquaredSum + number * number);
 	return newData;
 }
 

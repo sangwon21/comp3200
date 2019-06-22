@@ -30,10 +30,12 @@ namespace assignment3
 		std::stack<Data<T>> mSmartStack;
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
+		T mSum;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
+		: mSum(static_cast<T>(0))
 	{
 	}
 
@@ -68,6 +70,7 @@ namespace assignment3
 			Data<T> newData = topData.AddNumber(number);
 			mSmartStack.push(newData);
 		}
+		mSum += number;
 	}
 
 	template<typename T>
@@ -90,6 +93,11 @@ namespace assignment3
 			mMinStack.pop();
 		}
 
+		mSum -= top.GetValue();
+		if (mSmartStack.empty() == true)
+		{
+			mSum = static_cast<T>(0);
+		}
 		return top.GetValue();
 	}
 
@@ -122,7 +130,8 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetAverage()
 	{
-		double average = static_cast<double>(mSmartStack.top().GetSum()) / mSmartStack.size();
+		double average = static_cast<double>(mSum) / mSmartStack.size();
+		double rounded = round(average * 1000);
 		average = round(average * 1000) / 1000.0;
 
 		return average;
@@ -135,12 +144,8 @@ namespace assignment3
 		{
 			return static_cast<T>(0);
 		}
-		else if (std::fabs(mSmartStack.top().GetSum() - static_cast<T>(0)) < std::numeric_limits<double>::epsilon())
-		{
-			return static_cast<T>(0);
-		}
 
-		return mSmartStack.top().GetSum();
+		return mSum;
 	}
 
 	template<typename T>

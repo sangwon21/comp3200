@@ -2,6 +2,7 @@
 #include "SmartStack.h"
 #include "SmartQueue.h"
 #include "QueueStack.h"
+#include "Data.h"
 #include <iostream>
 #include <limits.h>
 
@@ -20,6 +21,9 @@ int main()
 		+ static_cast<double>(1.1f) + static_cast<double>(10.2f) + static_cast<double>(3.32f) + static_cast<double>(4.6f) +
 		static_cast<double>(1.2f) + static_cast<double>(3.4f));
 	float b = 3.4f + 1.2f + 4.6f + 3.32f + 10.2f + 1.1f + -5.9f + 1.1f + -12.4f + 9.2f;
+	b += 12.4f;
+	float b1 = 3.4f + 1.2f + 4.6f + 3.32f + 10.2f + 1.1f + -5.9f + 1.1f + 9.2f;
+	assert(b == b1);
 	float c = 9.2f - 12.4f + 1.1f - 5.9f + 1.1f + 10.2f + 3.32f + 4.6f + 1.2f + 3.4f;
 	SmartStack<float> ss;
 	cout << "Max is : " << ss.GetMax() << endl;
@@ -69,17 +73,22 @@ int main()
 	cout << "===================================================" << endl;
 
 
-	ss.Push(1.2f);
-	ss.Push(-1.9374f);
-	ss.Push(2.2f);
-	ss.Push(-2.2542f);
-	ss.Push(3.9f);
-	ss.Push(5.627f);
-	ss.Push(2.563f);
 	ss.Push(-2.395f);
+	ss.Push(-2.2542f);
+	ss.Push(-1.9374f);
+	ss.Push(1.2f);
+	ss.Push(2.2f);
+	ss.Push(5.6267487f);
+	ss.Push(3.9f);
+	ss.Push(2.563f);
 	ss.Push(-4.32113f);
 	ss.Push(-3.7812f);
-
+	ss.Push(0.0f);
+	ss.Pop();
+	ss.Push(1.2357f);
+	ss.Push(-2.3814565f);
+	ss.Push(-3.586813f);
+	ss.Push(-23.12874f);
 	cout << "Count is : " << ss.GetCount() << endl;
 	cout << "Average is : " << ss.GetAverage() << endl;
 	cout << "Sum is : " << ss.GetSum() << endl;

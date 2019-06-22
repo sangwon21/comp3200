@@ -153,7 +153,7 @@ namespace assignment3
 	inline double SmartStack<T>::GetVariance()
 	{
 		double average = static_cast<double>(mSum) / mSmartStack.size();
-		double squaredMean = pow(average, 2.0);
+		double squaredMean = pow(average, 2);
 
 		double variance = static_cast<double>(mSquaredSum) / mSmartStack.size() - squaredMean;
 		variance = round(variance * 1000) / 1000.0;
@@ -165,7 +165,7 @@ namespace assignment3
 	inline double SmartStack<T>::GetStandardDeviation()
 	{
 		double average = static_cast<double>(mSum) / mSmartStack.size();
-		double squaredMean = pow(average, 2.0);
+		double squaredMean = pow(average, 2);
 
 		double variance = static_cast<double>(mSquaredSum) / mSmartStack.size() - squaredMean;
 		double standardDeviation = sqrt(variance);

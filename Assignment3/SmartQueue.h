@@ -25,145 +25,205 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		SmartStack<T> mFront;
-		SmartStack<T> mBack;
-		T mMax;
-		T mMin;
-		unsigned int mCount;
+		std::queue<T> mSmartQueue;
+		std::stack<T> mMaxNew;
+		std::stack<T> mMaxOld;
+		std::stack<T> mMinNew;
+		std::stack<T> mMinOld;
+		T mOldMax;
+		T mOldMin;
+		T mSum;
+		T mSquaredSum;
 	};
 
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
-		: mCount(0)
-		, mMax(std::numeric_limits<T>::min())
-		, mMin(std::numeric_limits<T>::max())
+		: mOldMax(std::numeric_limits<T>::min())
+		, mOldMin(std::numeric_limits<T>::max())
+		, mSum(static_cast<T>(0))
+		, mSquaredSum(static_cast<T>(0))
 	{
 	}
 
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T number)
 	{
-		mBack.Push(number);
-		mCount++;
+		if (mSmartQueue.empty() == true)
+		{
+			mSmartQueue.push(number);
+			mMaxOld.push(number);
+			mMinOld.push(number);
+		}
+		else
+		{
+			if (number > mOldMax)
+			{
+				mOldMax = number;
+			}
+			else if (number < mOldMin)
+			{
+				mOldMin = number;
+			}
+			mMinOld.push(number);
+			mMaxOld.push(number);
+			mSmartQueue.push(number);
+		}
+
+		mSum += number;
+		mSquaredSum += number * number;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Peek()
 	{
-
-		if (mFront.IsEmpty() == true)
-		{
-			while (mBack.IsEmpty() != true)
-			{
-				T top = mBack.Pop();
-				mFront.Push(top);
-			}
-		}
-
-		return mFront.Peek();
+		return mSmartQueue.front();
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Dequeue()
 	{
-		if (mFront.IsEmpty() == true)
+		if (mMaxNew.empty() == true || mMinNew.empty() == true)
 		{
-			while (mBack.IsEmpty() != true)
+			T maxTop = mMaxOld.top();
+			while (mMaxOld.empty() == false)
 			{
-				T top = mBack.Pop();
-				mFront.Push(top);
+				T top = mMaxOld.top();
+				if (top >= maxTop)
+				{
+					mMaxNew.push(top);
+					maxTop = top;
+				}
+				mMaxOld.pop();
 			}
+			mOldMax = std::numeric_limits<T>::min();
+			T minTop = mMinOld.top();
+			while (mMinOld.empty() == false)
+			{
+				T top = mMinOld.top();
+				if (top <= minTop)
+				{
+					mMinNew.push(top);
+					minTop = top;
+				}
+				mMinOld.pop();
+			}
+			mOldMin = std::numeric_limits<T>::max();
 		}
 
-		T number = mFront.Pop();
-		mCount--;
+		T front = mSmartQueue.front();
 
-		return number;
+		mSmartQueue.pop();
+		if (mSmartQueue.size() == 0)
+		{
+			mMaxNew.pop();
+			mMinNew.pop();
+		}
+		else if (front == mMaxNew.top())
+		{
+			mMaxNew.pop();
+		}
+		else if (front == mMinNew.top())
+		{
+			mMinNew.pop();
+		}
+
+		mSum -= front;
+		mSquaredSum -= front * front;
+
+		return front;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::GetMax()
 	{
-		if (mCount == 0)
+		if (mSmartQueue.size() == 0)
 		{
 			return std::numeric_limits<T>::min();
 		}
 
-		if (mFront.IsEmpty() != true)
+		if (mMaxNew.empty() != true && mMaxOld.empty() != true)
 		{
-			return mFront.GetMax() > mBack.GetMax() ? mFront.GetMax() : mBack.GetMax();
+			return mMaxNew.top() > mOldMax ? mMaxNew.top() : mOldMax;
 		}
-		return mBack.GetMax();
+
+		if (mMaxNew.empty() != true)
+		{
+			return mMaxNew.top();
+		}
+
+		return mOldMax;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::GetMin()
 	{
-		if (mCount == 0)
+		if (mSmartQueue.size() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
 
-		if (mFront.IsEmpty() != true)
+		if (mMinNew.empty() != true && mMinOld.empty() != true)
 		{
-			return mFront.GetMin() < mBack.GetMin() ? mFront.GetMin() : mBack.GetMin();
+			return mMinNew.top() < mOldMin ? mMinNew.top() : mOldMin;
 		}
-		return mBack.GetMin();
+
+
+		if (mMinNew.empty() != true)
+		{
+			return mMinNew.top();
+		}
+
+		return mOldMin;
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetAverage()
 	{
-		double sum = static_cast<double>(mFront.GetSum() + mBack.GetSum());
-		double average = static_cast<double>(sum / mCount);
-		average = average * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(average);
+		double average = static_cast<double>(mSum) / mSmartQueue.size();
+		average = round(average * 1000) / 1000.0;
 
-		return static_cast<double>(intValue) / 1000.0;
+		return average;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::GetSum()
 	{
-		T a = mFront.GetSum();
-		T b = mBack.GetSum();
-		return mFront.GetSum() + mBack.GetSum();
+		if (mSmartQueue.empty() == true)
+		{
+			return static_cast<T>(0);
+		}
+
+		return mSum;
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetVariance()
 	{
-		double sum = static_cast<double>(mFront.GetSum() + mBack.GetSum());
-		double average = static_cast<double>(sum / mCount);
-		double squaredMean = average * average;
+		double average = static_cast<double>(mSum) / mSmartQueue.size();
+		double squaredMean = pow(average, 2.0);
 
-		double squaredSum = static_cast<double>(mFront.GetSquaredSum() + mBack.GetSquaredSum());
-		double variance = static_cast<double>(squaredSum / static_cast<double>(mCount)) - squaredMean;
-		variance = variance * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(variance);
-		return static_cast<double>(intValue) / 1000.0;
+		double variance = static_cast<double>(mSquaredSum) / mSmartQueue.size() - squaredMean;
+		variance = round(variance * 1000) / 1000.0;
+
+		return variance;
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetStandardDeviation()
 	{
-		double sum = static_cast<double>(mFront.GetSum() + mBack.GetSum());
-		double average = static_cast<double>(sum / mCount);
-		double squaredMean = average * average;
+		double average = static_cast<double>(mSum) / mSmartQueue.size();
+		double squaredMean = pow(average, 2.0);
 
-		double squaredSum = static_cast<double>(mFront.GetSquaredSum() + mBack.GetSquaredSum());
-		double variance = static_cast<double>(squaredSum / static_cast<double>(mCount)) - squaredMean;
-
+		double variance = static_cast<double>(mSquaredSum) / mSmartQueue.size() - squaredMean;
 		double standardDeviation = sqrt(variance);
-		standardDeviation = standardDeviation * 1000 + 0.5;
-		unsigned int intValue = static_cast<unsigned int>(standardDeviation);
+		standardDeviation = round(standardDeviation * 1000) / 1000.0;
 
-		return static_cast<double>(intValue) / 1000.0;
+		return standardDeviation;
 	}
 
 	template<typename T>
 	inline unsigned int SmartQueue<T>::GetCount()
 	{
-		return mCount;
+		return mSmartQueue.size();
 	}
 }

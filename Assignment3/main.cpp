@@ -5,6 +5,7 @@
 #include "Data.h"
 #include <iostream>
 #include <limits.h>
+#include <cmath>
 
 using namespace std;
 using namespace assignment3;
@@ -166,6 +167,9 @@ int main()
 	cout << "Popped One is  " << sq.Dequeue() << endl;
 	cout << "Max is : " << sq.GetMax() << endl;
 	cout << "Min is : " << sq.GetMin() << endl;
+
+	double o = 2.4576 * 2.4576;
+	double o1 = pow(2.4567, 2);
 
 	cin.get();
 	return 0;

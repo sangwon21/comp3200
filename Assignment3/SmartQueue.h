@@ -27,9 +27,8 @@ namespace assignment3
 	private:
 		std::queue<T> mSmartQueue;
 		std::stack<T> mMaxNew;
-		std::stack<T> mMaxOld;
 		std::stack<T> mMinNew;
-		std::stack<T> mMinOld;
+		std::stack<T> mOld;
 		T mOldMax;
 		T mOldMin;
 		T mSum;
@@ -51,8 +50,7 @@ namespace assignment3
 		if (mSmartQueue.empty() == true)
 		{
 			mSmartQueue.push(number);
-			mMaxOld.push(number);
-			mMinOld.push(number);
+			mOld.push(number);
 			mOldMin = number;
 			mOldMax = number;
 		}
@@ -66,8 +64,7 @@ namespace assignment3
 			{
 				mOldMin = number;
 			}
-			mMinOld.push(number);
-			mMaxOld.push(number);
+			mOld.push(number);
 			mSmartQueue.push(number);
 		}
 
@@ -86,29 +83,24 @@ namespace assignment3
 	{
 		if (mMaxNew.empty() == true || mMinNew.empty() == true)
 		{
-			T maxTop = mMaxOld.top();
-			while (mMaxOld.empty() == false)
+			T maxTop = mOld.top();
+			T minTop = mOld.top();
+			while (mOld.empty() == false)
 			{
-				T top = mMaxOld.top();
+				T top = mOld.top();
 				if (top >= maxTop)
 				{
 					mMaxNew.push(top);
 					maxTop = top;
 				}
-				mMaxOld.pop();
-			}
-			mOldMax = std::numeric_limits<T>::min();
-			T minTop = mMinOld.top();
-			while (mMinOld.empty() == false)
-			{
-				T top = mMinOld.top();
 				if (top <= minTop)
 				{
 					mMinNew.push(top);
 					minTop = top;
 				}
-				mMinOld.pop();
+				mOld.pop();
 			}
+			mOldMax = std::numeric_limits<T>::min();
 			mOldMin = std::numeric_limits<T>::max();
 		}
 
@@ -138,7 +130,7 @@ namespace assignment3
 			return std::numeric_limits<T>::min();
 		}
 
-		if (mMaxNew.empty() != true && mMaxOld.empty() != true)
+		if (mMaxNew.empty() != true && mOld.empty() != true)
 		{
 			return mMaxNew.top() > mOldMax ? mMaxNew.top() : mOldMax;
 		}
@@ -159,7 +151,7 @@ namespace assignment3
 			return std::numeric_limits<T>::max();
 		}
 
-		if (mMinNew.empty() != true && mMinOld.empty() != true)
+		if (mMinNew.empty() != true && mOld.empty() != true)
 		{
 			return mMinNew.top() < mOldMin ? mMinNew.top() : mOldMin;
 		}

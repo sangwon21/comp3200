@@ -70,7 +70,7 @@ namespace assignment3
 			mSmartStack.push(number);
 		}
 		mSum += number;
-		mSquaredSum += number * number;
+		mSquaredSum += pow(static_cast<double>(number), 2);
 	}
 
 	template<typename T>

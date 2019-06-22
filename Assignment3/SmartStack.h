@@ -23,8 +23,6 @@ namespace assignment3
 		double GetStandardDeviation();
 		unsigned int GetCount();
 
-		bool IsEmpty();
-		double GetSquaredSum();
 	private:
 		std::stack<T> mSmartStack;
 		std::stack<T> mMaxStack;
@@ -112,7 +110,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetMax()
 	{
-		if (mMaxStack.empty() == true)
+		if (mMaxStack.size() == 0)
 		{
 			return std::numeric_limits<T>::min();
 		}
@@ -122,7 +120,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetMin()
 	{
-		if (mMinStack.empty() == true)
+		if (mMinStack.size() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
@@ -141,7 +139,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetSum()
 	{
-		if (mSmartStack.empty() == true)
+		if (mSmartStack.size() == 0)
 		{
 			return static_cast<T>(0);
 		}
@@ -177,22 +175,6 @@ namespace assignment3
 	template<typename T>
 	inline unsigned int SmartStack<T>::GetCount()
 	{
-		return mSmartStack.size();
-	}
-
-	template<typename T>
-	inline bool SmartStack<T>::IsEmpty()
-	{
-		return mSmartStack.empty();
-	}
-
-	template<typename T>
-	inline double SmartStack<T>::GetSquaredSum()
-	{
-		if (mSmartStack.empty() == true)
-		{
-			return static_cast<double>(0);
-		}
-		return mSquaredSum;
+		return static_cast<unsigned int>(mSmartStack.size());
 	}
 }

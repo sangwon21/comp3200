@@ -99,16 +99,16 @@ int main()
 	
 	SmartQueue<float> sq;
 
+	sq.Enqueue(-10.2f);
+	sq.Enqueue(10.2f);
+	sq.Enqueue(-10.2f);
+	sq.Enqueue(10.2f);
+	sq.Enqueue(-10.2f);
 	sq.Enqueue(10.2f);
 	sq.Enqueue(10.2f);
-	sq.Enqueue(1.2f);
-	sq.Enqueue(4.6f);
-	sq.Enqueue(3.32f);
-	sq.Enqueue(1.1f);
-	sq.Enqueue(-5.9f);
-	sq.Enqueue(1.1f);
-	sq.Enqueue(-12.4f);
-	sq.Enqueue(9.2f);
+	sq.Enqueue(10.2f);
+	sq.Enqueue(10.2f);
+	sq.Enqueue(10.2f);
 
 	cout << "------------------------------------------" << endl;
 	cout << "Popped One is  " << sq.Dequeue() << endl;
@@ -117,13 +117,6 @@ int main()
 
 	cout << "------------------------------------------" << endl;
 	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
-
-
-
-	sq.Enqueue(15.6f);
-	cout << "------------------------------------------" << endl;
 	cout << "Max is : " << sq.GetMax() << endl;
 	cout << "Min is : " << sq.GetMin() << endl;
 
@@ -161,6 +154,19 @@ int main()
 	cout << "Popped One is  " << sq.Dequeue() << endl;
 	cout << "Max is : " << sq.GetMax() << endl;
 	cout << "Min is : " << sq.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << sq.Dequeue() << endl;
+	cout << "Max is : " << sq.GetMax() << endl;
+	cout << "Min is : " << sq.GetMin() << endl;
+	
+	sq.Enqueue(2.3f);
+
+	cout << "------------------------------------------" << endl;
+	cout << "Popped One is  " << sq.Dequeue() << endl;
+	cout << "Max is : " << sq.GetMax() << endl;
+	cout << "Min is : " << sq.GetMin() << endl;
+
 	cin.get();
 	return 0;
 }

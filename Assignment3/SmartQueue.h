@@ -53,6 +53,8 @@ namespace assignment3
 			mSmartQueue.push(number);
 			mMaxOld.push(number);
 			mMinOld.push(number);
+			mOldMin = number;
+			mOldMax = number;
 		}
 		else
 		{
@@ -113,16 +115,11 @@ namespace assignment3
 		T front = mSmartQueue.front();
 
 		mSmartQueue.pop();
-		if (mSmartQueue.size() == 0)
-		{
-			mMaxNew.pop();
-			mMinNew.pop();
-		}
-		else if (front == mMaxNew.top())
+		if (front == mMaxNew.top())
 		{
 			mMaxNew.pop();
 		}
-		else if (front == mMinNew.top())
+		if (front == mMinNew.top())
 		{
 			mMinNew.pop();
 		}

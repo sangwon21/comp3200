@@ -3,7 +3,6 @@
 #include <stack>
 #include <limits>
 #include <cmath>
-#include "Data.h"
 
 namespace assignment3
 {
@@ -27,15 +26,17 @@ namespace assignment3
 		bool IsEmpty();
 		T GetSquaredSum();
 	private:
-		std::stack<Data<T>> mSmartStack;
+		std::stack<T> mSmartStack;
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
 		T mSum;
+		T mSquaredSum;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
 		: mSum(static_cast<T>(0))
+		, mSquaredSum(static_cast<T>(0))
 	{
 	}
 
@@ -44,7 +45,7 @@ namespace assignment3
 	{
 		if (mSmartStack.empty() == true)
 		{
-			mSmartStack.push(Data<T>(number));
+			mSmartStack.push(number);
 			mMaxStack.push(number);
 			mMinStack.push(number);
 		}
@@ -66,17 +67,16 @@ namespace assignment3
 			{
 				mMinStack.push(number);
 			}
-			Data<T> topData = mSmartStack.top();
-			Data<T> newData = topData.AddNumber(number);
-			mSmartStack.push(newData);
+			mSmartStack.push(number);
 		}
 		mSum += number;
+		mSquaredSum += number * number;
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::Pop()
 	{
-		Data<T> top = mSmartStack.top();
+		T top = mSmartStack.top();
 		mSmartStack.pop();
 
 		if (mSmartStack.empty() == true)
@@ -84,27 +84,29 @@ namespace assignment3
 			mMaxStack.pop();
 			mMinStack.pop();
 		}
-		else if (top.GetValue() == mMaxStack.top())
+		else if (top == mMaxStack.top())
 		{
 			mMaxStack.pop();
 		}
-		else if (top.GetValue() == mMinStack.top())
+		else if (top == mMinStack.top())
 		{
 			mMinStack.pop();
 		}
 
-		mSum -= top.GetValue();
+		mSum -= top;
+		mSquaredSum -= top * top;
 		if (mSmartStack.empty() == true)
 		{
 			mSum = static_cast<T>(0);
+			mSquaredSum = static_cast<T>(0);
 		}
-		return top.GetValue();
+		return top;
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::Peek()
 	{
-		return mSmartStack.top().GetValue();
+		return mSmartStack.top();
 	}
 
 	template<typename T>
@@ -151,34 +153,26 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetVariance()
 	{
-		double average = static_cast<double>(mSmartStack.top().GetSum()) / mSmartStack.size();
+		double average = static_cast<double>(mSum) / mSmartStack.size();
 		double squaredMean = average * average;
 
-		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / mSmartStack.size() - squaredMean;
-
-		variance += 0.0005;
-		variance = variance * 1000;
-		long long longVariance = static_cast<long long>(variance);
-
-		variance = static_cast<double>(longVariance);
-		return variance / 1000.0;
+		double variance = static_cast<double>(mSquaredSum) / mSmartStack.size() - squaredMean;
+		variance = round(variance * 1000) / 1000.0;
+		
+		return variance;
 	}
 
 	template<typename T>
 	inline double SmartStack<T>::GetStandardDeviation()
 	{
-		double average = static_cast<double>(mSmartStack.top().GetSum()) / mSmartStack.size();
+		double average = static_cast<double>(mSum) / mSmartStack.size();
 		double squaredMean = average * average;
 
-		double variance = static_cast<double>(mSmartStack.top().GetSquaredSum()) / mSmartStack.size() - squaredMean;
-
+		double variance = static_cast<double>(mSquaredSum) / mSmartStack.size() - squaredMean;
 		double standardDeviation = sqrt(variance);
-		standardDeviation += 0.0005;
-		standardDeviation = standardDeviation * 1000;
-		long long longStandardDeviation = static_cast<long long>(standardDeviation);
+		standardDeviation = round(standardDeviation * 1000) / 1000.0;
 
-		standardDeviation = static_cast<double>(longStandardDeviation);
-		return standardDeviation / 1000.0;
+		return standardDeviation;
 	}
 
 	template<typename T>
@@ -200,6 +194,6 @@ namespace assignment3
 		{
 			return static_cast<T>(0);
 		}
-		return mSmartStack.top().GetSquaredSum();
+		return mSquaredSum;
 	}
 }

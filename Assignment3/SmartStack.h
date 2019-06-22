@@ -24,13 +24,13 @@ namespace assignment3
 		unsigned int GetCount();
 
 		bool IsEmpty();
-		T GetSquaredSum();
+		double GetSquaredSum();
 	private:
 		std::stack<T> mSmartStack;
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
 		T mSum;
-		T mSquaredSum;
+		double mSquaredSum;
 	};
 
 	template<typename T>
@@ -155,7 +155,7 @@ namespace assignment3
 		double average = static_cast<double>(mSum) / mSmartStack.size();
 		double squaredMean = pow(average, 2);
 
-		double variance = static_cast<double>(mSquaredSum) / mSmartStack.size() - squaredMean;
+		double variance = mSquaredSum / mSmartStack.size() - squaredMean;
 		variance = round(variance * 1000) / 1000.0;
 
 		return variance;
@@ -167,7 +167,7 @@ namespace assignment3
 		double average = static_cast<double>(mSum) / mSmartStack.size();
 		double squaredMean = pow(average, 2);
 
-		double variance = static_cast<double>(mSquaredSum) / mSmartStack.size() - squaredMean;
+		double variance = mSquaredSum / mSmartStack.size() - squaredMean;
 		double standardDeviation = sqrt(variance);
 		standardDeviation = round(standardDeviation * 1000) / 1000.0;
 
@@ -187,11 +187,11 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline T SmartStack<T>::GetSquaredSum()
+	inline double SmartStack<T>::GetSquaredSum()
 	{
 		if (mSmartStack.empty() == true)
 		{
-			return static_cast<T>(0);
+			return static_cast<double>(0);
 		}
 		return mSquaredSum;
 	}

@@ -25,10 +25,11 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		std::stack<T> mOld;
+		std::queue<T> q;
+		/*std::stack<T> mOld;
 		std::stack<T> mNew;
 		std::stack<T> mMaxNew;
-		std::stack<T> mMinNew;
+		std::stack<T> mMinNew;*/
 		T mOldMax;
 		T mOldMin;
 		T mSum;
@@ -47,25 +48,25 @@ namespace assignment3
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T number)
 	{
-		if (mOld.empty() == true)
-		{
-			mOld.push(number);
-			mOldMin = number;
-			mOldMax = number;
-		}
-		else
-		{
-			if (number > mOldMax)
-			{
-				mOldMax = number;
-			}
-			else if (number < mOldMin)
-			{
-				mOldMin = number;
-			}
-			mOld.push(number);
-		}
-
+		//if (mOld.empty() == true)
+		//{
+		//	mOld.push(number);
+		//	mOldMin = number;
+		//	mOldMax = number;
+		//}
+		//else
+		//{
+		//	if (number > mOldMax)
+		//	{
+		//		mOldMax = number;
+		//	}
+		//	else if (number < mOldMin)
+		//	{
+		//		mOldMin = number;
+		//	}
+		//	mOld.push(number);
+		//}
+		q.push(number);
 		mSum += number;
 		mSquaredSum += number * number;
 	}
@@ -73,7 +74,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartQueue<T>::Peek()
 	{
-		if (mNew.empty() == true)
+		/*if (mNew.empty() == true)
 		{
 			T maxTop = mOld.top();
 			T minTop = mOld.top();
@@ -101,67 +102,68 @@ namespace assignment3
 			}
 			mOldMax = std::numeric_limits<T>::lowest();
 			mOldMin = std::numeric_limits<T>::max();
-		}
+		}*/
 
-		return mNew.top();
+		return q.front();
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Dequeue()
 	{
-		if (mNew.empty() == true)
-		{
-			T maxTop = mOld.top();
-			T minTop = mOld.top();
-			while (mOld.empty() == false)
-			{
-				T top = mOld.top();
-				if (top >= maxTop && top <= minTop)
-				{
-					mMaxNew.push(top);
-					mMinNew.push(top);
-					maxTop = top;
-					minTop = top;
-				}
-				else if (top <= minTop)
-				{
-					mMinNew.push(top);
-					minTop = top;
-				}
-				else if (top >= maxTop)
-				{
-					mMaxNew.push(top);
-					maxTop = top;
-				}
-				mNew.push(top);
-				mOld.pop();
-			}
-			mOldMax = std::numeric_limits<T>::lowest();
-			mOldMin = std::numeric_limits<T>::max();
-		}
+		//if (mNew.empty() == true)
+		//{
+		//	T maxTop = mOld.top();
+		//	T minTop = mOld.top();
+		//	while (mOld.empty() == false)
+		//	{
+		//		T top = mOld.top();
+		//		if (top >= maxTop && top <= minTop)
+		//		{
+		//			mMaxNew.push(top);
+		//			mMinNew.push(top);
+		//			maxTop = top;
+		//			minTop = top;
+		//		}
+		//		else if (top <= minTop)
+		//		{
+		//			mMinNew.push(top);
+		//			minTop = top;
+		//		}
+		//		else if (top >= maxTop)
+		//		{
+		//			mMaxNew.push(top);
+		//			maxTop = top;
+		//		}
+		//		mNew.push(top);
+		//		mOld.pop();
+		//	}
+		//	mOldMax = std::numeric_limits<T>::lowest();
+		//	mOldMin = std::numeric_limits<T>::max();
+		//}
 
-		T front = mNew.top();
+		//T front = mNew.top();
 
-		mNew.pop();
-		if (front == mMaxNew.top())
-		{
-			mMaxNew.pop();
-		}
-		if (front == mMinNew.top())
-		{
-			mMinNew.pop();
-		}
+		//mNew.pop();
+		//if (front == mMaxNew.top())
+		//{
+		//	mMaxNew.pop();
+		//}
+		//if (front == mMinNew.top())
+		//{
+		//	mMinNew.pop();
+		//}
 
-		mSum -= front;
-		mSquaredSum -= front * front;
-
+		//mSum -= front;
+		//mSquaredSum -= front * front;
+		T front = q.front();
+		q.pop();
 		return front;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::GetMax()
 	{
-		if (mNew.empty() == true && mOld.empty() == true)
+		/*if (mNew.empty() == true && mOld.empty() == true)
 		{
 			return std::numeric_limits<T>::lowest();
 		}
@@ -174,7 +176,7 @@ namespace assignment3
 		if (mMaxNew.empty() != true)
 		{
 			return mMaxNew.top();
-		}
+		}*/
 
 		return mOldMax;
 	}
@@ -182,7 +184,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartQueue<T>::GetMin()
 	{
-		if (mNew.empty() == true && mOld.empty() == true)
+		/*if (mNew.empty() == true && mOld.empty() == true)
 		{
 			return std::numeric_limits<T>::max();
 		}
@@ -196,7 +198,7 @@ namespace assignment3
 		if (mMinNew.empty() != true)
 		{
 			return mMinNew.top();
-		}
+		}*/
 
 		return mOldMin;
 	}
@@ -204,51 +206,51 @@ namespace assignment3
 	template<typename T>
 	inline double SmartQueue<T>::GetAverage()
 	{
-		double average = static_cast<double>(mSum) / (mNew.size() + mOld.size());
-		average = round(average * 1000) / 1000.0;
+		//double average = static_cast<double>(mSum) / (mNew.size() + mOld.size());
+		//average = round(average * 1000) / 1000.0;
 
-		return average;
+		return 0;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::GetSum()
 	{
-		if (mNew.empty() == true && mOld.empty() == true)
+		/*if (mNew.empty() == true && mOld.empty() == true)
 		{
 			return static_cast<T>(0);
-		}
+		}*/
 
-		return mSum;
+		return 0;
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetVariance()
 	{
-		double average = static_cast<double>(mSum) / (mNew.size() + mOld.size());
+		/*double average = static_cast<double>(mSum) / (mNew.size() + mOld.size());
 		double squaredMean = pow(average, 2.0);
 
 		double variance = static_cast<double>(mSquaredSum) / (mNew.size() + mOld.size()) - squaredMean;
-		variance = round(variance * 1000) / 1000.0;
+		variance = round(variance * 1000) / 1000.0;*/
 
-		return variance;
+		return 0;
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetStandardDeviation()
 	{
-		double average = static_cast<double>(mSum) / (mNew.size() + mOld.size());
+		/*double average = static_cast<double>(mSum) / (mNew.size() + mOld.size());
 		double squaredMean = pow(average, 2.0);
 
 		double variance = static_cast<double>(mSquaredSum) / (mNew.size() + mOld.size()) - squaredMean;
 		double standardDeviation = sqrt(variance);
-		standardDeviation = round(standardDeviation * 1000) / 1000.0;
+		standardDeviation = round(standardDeviation * 1000) / 1000.0;*/
 
-		return standardDeviation;
+		return 0;
 	}
 
 	template<typename T>
 	inline unsigned int SmartQueue<T>::GetCount()
 	{
-		return mNew.size() + mOld.size();
+		return q.size();
 	}
 }

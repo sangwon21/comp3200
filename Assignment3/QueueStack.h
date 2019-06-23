@@ -38,7 +38,7 @@ namespace assignment3
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack(unsigned int maxStackSize)
-		: mMax(std::numeric_limits<T>::min())
+		: mMax(std::numeric_limits<T>::lowest())
 		, mMin(std::numeric_limits<T>::max())
 		, mSum(static_cast<T>(0))
 		, mLastStackPointer(nullptr)
@@ -163,7 +163,7 @@ namespace assignment3
 	template<typename T>
 	inline T QueueStack<T>::GetMax()
 	{
-		T max = std::numeric_limits<T>::min();
+		T max = std::numeric_limits<T>::lowest();
 		for (unsigned int i = 0; i < mStackCount; i++)
 		{
 			std::stack<T>* stackPointer = mQueueStack.front();

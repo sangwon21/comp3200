@@ -26,19 +26,13 @@ namespace assignment3
 
 	private:
 		std::queue<T> mSmartQueue;
-		std::stack<std::pair<T, T>> mNew;
-		std::stack<T> mOld;
-		T mOldMax;
-		T mOldMin;
 		T mSum;
 		double mSquaredSum;
 	};
 
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
-		: mOldMax(std::numeric_limits<T>::min())
-		, mOldMin(std::numeric_limits<T>::max())
-		, mSum(static_cast<T>(0))
+		: mSum(static_cast<T>(0))
 		, mSquaredSum(static_cast<double>(0))
 	{
 	}
@@ -46,27 +40,7 @@ namespace assignment3
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T number)
 	{
-		if (mSmartQueue.empty() == true)
-		{
-			mSmartQueue.push(number);
-			mOld.push(number);
-			mOldMin = number;
-			mOldMax = number;
-		}
-		else
-		{
-			if (number > mOldMax)
-			{
-				mOldMax = number;
-			}
-			else if (number < mOldMin)
-			{
-				mOldMin = number;
-			}
-			mOld.push(number);
-			mSmartQueue.push(number);
-		}
-
+		mSmartQueue.push(number);
 		mSum += number;
 		mSquaredSum += pow(static_cast<double>(number), 2);
 	}
@@ -80,50 +54,8 @@ namespace assignment3
 	template<typename T>
 	inline T SmartQueue<T>::Dequeue()
 	{
-		if (mNew.empty() == true)
-		{
-			if (mOld.empty() == false);
-			{
-				T maxTop = mOld.top();
-				T minTop = mOld.top();
-				while (mOld.empty() == false)
-				{
-					T top = mOld.top();
-					if (top >= maxTop && top <= minTop)
-					{
-						mNew.push(std::make_pair(top, top));
-						maxTop = top;
-						minTop = top;
-					}
-					else if (top <= minTop)
-					{
-						mNew.push(std::make_pair(maxTop, top));
-						minTop = top;
-					}
-					else if (top >= maxTop)
-					{
-						mNew.push(std::make_pair(top, minTop));
-						maxTop = top;
-					}
-					mOld.pop();
-				}
-				mOldMax = std::numeric_limits<T>::min();
-				mOldMin = std::numeric_limits<T>::max();
-			}
-		}
-
 		T front = mSmartQueue.front();
-
 		mSmartQueue.pop();
-		if (front == mNew.top().first)
-		{
-			mNew.pop();
-		}
-		else if (front == mNew.top().second)
-		{
-			mNew.pop();
-		}
-
 		mSum -= front;
 		mSquaredSum -= pow(static_cast<double>(front), 2);
 
@@ -138,17 +70,24 @@ namespace assignment3
 			return std::numeric_limits<T>::lowest();
 		}
 
-		if (mNew.empty() != true && mOld.empty() != true)
+		unsigned int size = mSmartQueue.size();
+
+		T max = mSmartQueue.front();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
-			return mNew.top().first > mOldMax ? mNew.top().first : mOldMax;
+			T front = mSmartQueue.front();
+			mSmartQueue.pop();
+
+			if (max < front)
+			{
+				max = front;
+			}
+
+			mSmartQueue.push(front);
 		}
 
-		if (mNew.empty() != true)
-		{
-			return mNew.top().first;
-		}
-
-		return mOldMax;
+		return max;
 	}
 
 	template<typename T>
@@ -158,19 +97,24 @@ namespace assignment3
 		{
 			return std::numeric_limits<T>::max();
 		}
+		unsigned int size = mSmartQueue.size();
 
-		if (mNew.empty() != true && mOld.empty() != true)
+		T min = mSmartQueue.front();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
-			return mNew.top().second < mOldMin ? mNew.top().second : mOldMin;
+			T front = mSmartQueue.front();
+			mSmartQueue.pop();
+
+			if (min > front)
+			{
+				min = front;
+			}
+
+			mSmartQueue.push(front);
 		}
 
-
-		if (mNew.empty() != true)
-		{
-			return mNew.top().second;
-		}
-
-		return mOldMin;
+		return min;
 	}
 
 	template<typename T>

@@ -30,8 +30,6 @@ namespace assignment3
 		T mSum;
 		std::stack<T>* mLastStackPointer;
 		unsigned int mMaxStackSize;
-		unsigned int mCount;
-		unsigned int mStackCount;
 	};
 
 	template<typename T>
@@ -39,8 +37,6 @@ namespace assignment3
 		: mSum(static_cast<T>(0))
 		, mLastStackPointer(nullptr)
 		, mMaxStackSize(maxStackSize)
-		, mCount(static_cast<unsigned int>(0))
-		, mStackCount(static_cast<unsigned int>(0))
 	{
 	}
 
@@ -49,16 +45,14 @@ namespace assignment3
 		: mSum(rhs.mSum)
 		, mMaxStackSize(rhs.mMaxStackSize)
 		, mLastStackPointer(nullptr)
-		, mCount(rhs.mCount)
-		, mStackCount(rhs.mStackCount)
 	{
 		std::queue<std::stack<T>*> tmpQueue(rhs.mQueueStack);
-		for (unsigned int i = 0; i < mStackCount; i++)
+		for (unsigned int i = 0; i < rhs.GetStackCount(); i++)
 		{
 			std::stack<T>* stackPointer = tmpQueue.front();
 			std::stack<T>* newStackPointer = new std::stack<T>(*stackPointer);
 			tmpQueue.pop();
-			if (i == mStackCount - 1)
+			if (i == rhs.GetStackCount() - 1)
 			{
 				mLastStackPointer = newStackPointer;
 			}
@@ -73,16 +67,14 @@ namespace assignment3
 		{
 			mSum = rhs.mSum;
 			mMaxStackSize = rhs.mMaxStackSize;
-			mCount = rhs.mCount;
-			mStackCount = rhs.mStackCount;
 
 			std::queue<std::stack<T>*> tmpQueue(rhs.mQueueStack);
-			for (unsigned int i = 0; i < mStackCount; i++)
+			for (unsigned int i = 0; i < rhs.GetStackCount(); i++)
 			{
 				std::stack<T>* stackPointer = tmpQueue.front();
 				std::stack<T>* newStackPointer = new std::stack<T>(*stackPointer);
 				tmpQueue.pop();
-				if (i == mStackCount - 1)
+				if (i == rhs.GetStackCount() - 1)
 				{
 					mLastStackPointer = newStackPointer;
 				}
@@ -96,7 +88,8 @@ namespace assignment3
 	template<typename T>
 	inline QueueStack<T>::~QueueStack()
 	{
-		for (unsigned int i = 0; i < mStackCount; i++)
+		unsigned int stackCount = GetStackCount();
+		for (unsigned int i = 0; i < stackCount; i++)
 		{
 			std::stack<T>* stackPointer = mQueueStack.front();
 			mQueueStack.pop();
@@ -107,20 +100,18 @@ namespace assignment3
 	template<typename T>
 	inline void QueueStack<T>::Enqueue(T number)
 	{
-		if (mCount % mMaxStackSize == 0)
+		if (GetCount() % mMaxStackSize == 0)
 		{
 			std::stack<T>* newStackPointer = new std::stack<T>;
 			newStackPointer->push(number);
 			mLastStackPointer = newStackPointer;
 			mQueueStack.push(newStackPointer);
-			mStackCount++;
 		}
 		else
 		{
 			mLastStackPointer->push(number);
 		}
 		mSum += number;
-		mCount++;
 	}
 
 	template<typename T>
@@ -140,7 +131,6 @@ namespace assignment3
 			mQueueStack.front()->pop();
 			mQueueStack.pop();
 			delete deletedStackPointer;
-			mStackCount--;
 		}
 		else
 		{
@@ -148,20 +138,19 @@ namespace assignment3
 		}
 
 		mSum -= number;
-		mCount--;
 		return number;
 	}
 
 	template<typename T>
 	inline T QueueStack<T>::GetMax()
 	{
-		if (mCount == 0)
+		if (GetCount() == 0)
 		{
 			return std::numeric_limits<T>::lowest();
 		}
 
 		T max = std::numeric_limits<T>::lowest();
-		for (unsigned int i = 0; i < mStackCount; i++)
+		for (unsigned int i = 0; i < GetStackCount(); i++)
 		{
 			std::stack<T>* stackPointer = mQueueStack.front();
 			mQueueStack.pop();
@@ -194,13 +183,13 @@ namespace assignment3
 	template<typename T>
 	inline T QueueStack<T>::GetMin()
 	{
-		if (mCount == 0)
+		if (GetCount() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
 
 		T min = std::numeric_limits<T>::max();
-		for (unsigned int i = 0; i < mStackCount; i++)
+		for (unsigned int i = 0; i < GetStackCount(); i++)
 		{
 			std::stack<T>* stackPointer = mQueueStack.front();
 			mQueueStack.pop();
@@ -232,7 +221,7 @@ namespace assignment3
 	template<typename T>
 	inline double QueueStack<T>::GetAverage()
 	{
-		double average = static_cast<double>(mSum) / mCount;
+		double average = static_cast<double>(mSum) / GetCount();
 		average = round(average * 1000) / 1000.0;
 
 		return average;
@@ -247,12 +236,22 @@ namespace assignment3
 	template<typename T>
 	inline unsigned int QueueStack<T>::GetCount()
 	{
-		return mCount;
+		if (mQueueStack.size() == 0)
+		{
+			return static_cast<T>(0);
+		}
+
+		if (mQueueStack.size() == 1)
+		{
+			return mQueueStack.front()->size();
+		}
+
+		return (mQueueStack.size() - 2) * mMaxStackSize + mQueueStack.front()->size() + mLastStackPointer->size();
 	}
 
 	template<typename T>
 	inline unsigned int QueueStack<T>::GetStackCount()
 	{
-		return mStackCount;
+		return mQueueStack.size();
 	}
 }

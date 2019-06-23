@@ -97,108 +97,108 @@ int main()
 	//cout << "===================================================" << endl;
 
 	
-	SmartQueue<float> sq;
+	//SmartQueue<float> sq;
 
 	//cout << "------------------------------------------" << endl;
 	//cout << "Popped One is  " << sq.Dequeue() << endl;
 	//cout << "Count is : " << sq.GetCount() << endl;
 	//cout << "Max is : " << sq.GetMax() << endl;
 	//cout << "Min is : " << sq.GetMin() << endl;
-	sq.Enqueue(-10.2f);
-	sq.Enqueue(10.2f);
-	sq.Enqueue(-10.2f);
-	sq.Enqueue(10.2f);
-	sq.Enqueue(-10.2f);
-	sq.Enqueue(10.2f);
-	sq.Enqueue(10.2f);
-	sq.Enqueue(10.2f);
-	sq.Enqueue(10.2f);
-	sq.Enqueue(10.2f);
+	//sq.Enqueue(-10.2f);
+	//sq.Enqueue(10.2f);
+	//sq.Enqueue(-10.2f);
+	//sq.Enqueue(10.2f);
+	//sq.Enqueue(-10.2f);
+	//sq.Enqueue(10.2f);
+	//sq.Enqueue(10.2f);
+	//sq.Enqueue(10.2f);
+	//sq.Enqueue(10.2f);
+	//sq.Enqueue(10.2f);
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	sq.Enqueue(14.4f);
-	cout << "-------------------------after enqueue-----------------" << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//sq.Enqueue(14.4f);
+	//cout << "-------------------------after enqueue-----------------" << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	sq.Enqueue(15.4f);
-	cout << "-------------------------after enqueue-----------------" << endl;
-	cout << "Peek is : " << sq.Peek() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//sq.Enqueue(15.4f);
+	//cout << "-------------------------after enqueue-----------------" << endl;
+	//cout << "Peek is : " << sq.Peek() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
-	cout << "------------------------------------------" << endl;
-	cout << "Popped One is  " << sq.Dequeue() << endl;
-	cout << "Count is : " << sq.GetCount() << endl;
-	cout << "Max is : " << sq.GetMax() << endl;
-	cout << "Min is : " << sq.GetMin() << endl;
+	//cout << "------------------------------------------" << endl;
+	//cout << "Popped One is  " << sq.Dequeue() << endl;
+	//cout << "Count is : " << sq.GetCount() << endl;
+	//cout << "Max is : " << sq.GetMax() << endl;
+	//cout << "Min is : " << sq.GetMin() << endl;
 
 
 	//
@@ -387,40 +387,88 @@ int main()
 	//cout << "Min is : " << qs.GetMin() << endl;
 	
 	
-	//SmartStack<int> ti;
-	//cout << "------------------------------------------" << endl;
-	//cout << "Count is : " << ti.GetCount() << endl;
-	//cout << "Sum is : " << ti.GetSum() << endl;
-	//cout << "Max is : " << ti.GetMax() << endl;
-	//cout << "Min is : " << ti.GetMin() << endl;
+	QueueStack<int> ti(3);
+	cout << "------------------------------------------" << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
 
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Push(1);
-	//ti.Pop();
-	//ti.Pop();
-	//ti.Pop();
-	//ti.Pop();
-	//ti.Pop();
-	//ti.Pop();
-	//ti.Pop();
-	//ti.Pop();
-	//cout << "------------------------------------------" << endl;
-	//cout << "Count is : " << ti.GetCount() << endl;
-	//cout << "Sum is : " << ti.GetSum() << endl;
-	//cout << "Max is : " << ti.GetMax() << endl;
-	//cout << "Min is : " << ti.GetMin() << endl;
+	ti.Enqueue(1);
+	ti.Enqueue(2);
+	ti.Enqueue(3);
+	ti.Enqueue(4);
+	ti.Enqueue(5);
+	ti.Enqueue(6);
+	ti.Enqueue(7);
+	ti.Enqueue(8);
 
-	//cout << "------------------------------------------" << endl;
-	//cout << "Count is : " << ti.GetCount() << endl;
-	//cout << "Sum is : " << ti.GetSum() << endl;
-	//cout << "Max is : " << ti.GetMax() << endl;
-	//cout << "Min is : " << ti.GetMin() << endl;
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+	cout << "------------------------------------------" << endl;
+	cout << "Dequeued one is : " << ti.Dequeue() << endl;
+	cout << "Count is : " << ti.GetCount() << endl;
+	cout << "Sum is : " << ti.GetSum() << endl;
+	cout << "StackCount is : " << ti.GetStackCount() << endl;
+	cout << "Max is : " << ti.GetMax() << endl;
+	cout << "Min is : " << ti.GetMin() << endl;
+
+
 
 	cin.get();
 	return 0;

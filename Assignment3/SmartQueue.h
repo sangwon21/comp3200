@@ -12,6 +12,12 @@ namespace assignment3
 	{
 	public:
 		SmartQueue<T>();
+		
+		struct Data
+		{
+			T max;
+			T min;
+		};
 
 		void Enqueue(T number);
 		T Peek();
@@ -26,8 +32,7 @@ namespace assignment3
 
 	private:
 		std::queue<T> mSmartQueue;
-		std::stack<T> mMaxNew;
-		std::stack<T> mMinNew;
+		std::stack<Data> mNew;
 		std::stack<T> mOld;
 		T mOldMax;
 		T mOldMin;
@@ -81,22 +86,31 @@ namespace assignment3
 	template<typename T>
 	inline T SmartQueue<T>::Dequeue()
 	{
-		if (mMaxNew.empty() == true || mMinNew.empty() == true)
+		if (mNew.empty() == true)
 		{
 			T maxTop = mOld.top();
 			T minTop = mOld.top();
 			while (mOld.empty() == false)
 			{
 				T top = mOld.top();
-				if (top >= maxTop)
+				if (top >= maxTop && top <= minTop)
 				{
-					mMaxNew.push(top);
+					Data newData(top, top);
+					mNew.push(newData);
 					maxTop = top;
-				}
-				if (top <= minTop)
-				{
-					mMinNew.push(top);
 					minTop = top;
+				}
+				else if (top <= minTop)
+				{
+					Data newData(maxTop, top);
+					mNew.push(newData);
+					minTop = top;
+				}
+				else if (top >= maxTop)
+				{
+					Data newData(top, minTop);
+					mNew.push(newData);
+					maxTop = top;
 				}
 				mOld.pop();
 			}
@@ -107,13 +121,13 @@ namespace assignment3
 		T front = mSmartQueue.front();
 
 		mSmartQueue.pop();
-		if (front == mMaxNew.top())
+		if (front == mNew.top())
 		{
-			mMaxNew.pop();
+			mNew.pop();
 		}
-		if (front == mMinNew.top())
+		else if (front == mNew.top())
 		{
-			mMinNew.pop();
+			mNew.pop();
 		}
 
 		mSum -= front;
@@ -130,14 +144,14 @@ namespace assignment3
 			return std::numeric_limits<T>::min();
 		}
 
-		if (mMaxNew.empty() != true && mOld.empty() != true)
+		if (mNew.empty() != true && mOld.empty() != true)
 		{
-			return mMaxNew.top() > mOldMax ? mMaxNew.top() : mOldMax;
+			return mNew.top().max > mOldMax ? mNew.top().max : mOldMax;
 		}
 
-		if (mMaxNew.empty() != true)
+		if (mNew.empty() != true)
 		{
-			return mMaxNew.top();
+			return mNew.top().max;
 		}
 
 		return mOldMax;
@@ -151,15 +165,15 @@ namespace assignment3
 			return std::numeric_limits<T>::max();
 		}
 
-		if (mMinNew.empty() != true && mOld.empty() != true)
+		if (mNew.empty() != true && mOld.empty() != true)
 		{
-			return mMinNew.top() < mOldMin ? mMinNew.top() : mOldMin;
+			return mNew.top().min < mOldMin ? mNew.top().min : mOldMin;
 		}
 
 
-		if (mMinNew.empty() != true)
+		if (mNew.empty() != true)
 		{
-			return mMinNew.top();
+			return mNew.top().min;
 		}
 
 		return mOldMin;

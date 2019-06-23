@@ -69,12 +69,12 @@ namespace assignment3
 			mMaxStackSize = rhs.mMaxStackSize;
 
 			std::queue<std::stack<T>*> tmpQueue(rhs.mQueueStack);
-			for (unsigned int i = 0; i < rhs.GetStackCount(); i++)
+			for (unsigned int i = 0; i < static_cast<unsigned int>(rhs.GetStackCount()); i++)
 			{
 				std::stack<T>* stackPointer = tmpQueue.front();
 				std::stack<T>* newStackPointer = new std::stack<T>(*stackPointer);
 				tmpQueue.pop();
-				if (i == rhs.GetStackCount() - 1)
+				if (i == static_cast<unsigned int>(rhs.GetStackCount()) - 1)
 				{
 					mLastStackPointer = newStackPointer;
 				}
@@ -238,7 +238,7 @@ namespace assignment3
 	{
 		if (mQueueStack.size() == 0)
 		{
-			return static_cast<T>(0);
+			return static_cast<unsigned int>(0);
 		}
 
 		if (mQueueStack.size() == 1)
@@ -252,6 +252,6 @@ namespace assignment3
 	template<typename T>
 	inline unsigned int QueueStack<T>::GetStackCount()
 	{
-		return mQueueStack.size();
+		return static_cast<unsigned int>(mQueueStack.size());
 	}
 }

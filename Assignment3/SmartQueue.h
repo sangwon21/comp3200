@@ -13,6 +13,7 @@ namespace assignment3
 	public:
 		SmartQueue<T>();
 		
+		template <typename T>
 		struct Data
 		{
 			T max;
@@ -32,7 +33,7 @@ namespace assignment3
 
 	private:
 		std::queue<T> mSmartQueue;
-		std::stack<Data> mNew;
+		std::stack<Data<T>> mNew;
 		std::stack<T> mOld;
 		T mOldMax;
 		T mOldMin;

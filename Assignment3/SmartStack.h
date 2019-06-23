@@ -112,7 +112,7 @@ namespace assignment3
 	{
 		if (mMaxStack.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 		return mMaxStack.top();
 	}
@@ -175,6 +175,6 @@ namespace assignment3
 	template<typename T>
 	inline unsigned int SmartStack<T>::GetCount()
 	{
-		return static_cast<unsigned int>(mSmartStack.size());
+		return mSmartStack.size();
 	}
 }

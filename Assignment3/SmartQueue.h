@@ -145,14 +145,6 @@ namespace assignment3
 		T front = mNew.top().first;
 
 		mNew.pop();
-		if (front == mNew.top().second.first)
-		{
-			mNew.pop();
-		}
-		else if (front == mNew.top().second.second)
-		{
-			mNew.pop();
-		}
 
 		mSum -= front;
 		mSquaredSum -= pow(static_cast<double>(front), 2);

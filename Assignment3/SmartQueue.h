@@ -12,13 +12,6 @@ namespace assignment3
 	{
 	public:
 		SmartQueue<T>();
-		
-		template <typename T>
-		struct Data
-		{
-			T max;
-			T min;
-		};
 
 		void Enqueue(T number);
 		T Peek();
@@ -33,7 +26,7 @@ namespace assignment3
 
 	private:
 		std::queue<T> mSmartQueue;
-		std::stack<Data<T>> mNew;
+		std::stack<std::pair<T,T>> mNew;
 		std::stack<T> mOld;
 		T mOldMax;
 		T mOldMin;
@@ -96,21 +89,18 @@ namespace assignment3
 				T top = mOld.top();
 				if (top >= maxTop && top <= minTop)
 				{
-					Data newData(top, top);
-					mNew.push(newData);
+					mNew.push(std::make_pair(top, top));
 					maxTop = top;
 					minTop = top;
 				}
 				else if (top <= minTop)
 				{
-					Data newData(maxTop, top);
-					mNew.push(newData);
+					mNew.push(std::make_pair(maxTop, top));
 					minTop = top;
 				}
 				else if (top >= maxTop)
 				{
-					Data newData(top, minTop);
-					mNew.push(newData);
+					mNew.push(std::make_pair(top, minTop));
 					maxTop = top;
 				}
 				mOld.pop();
@@ -122,11 +112,11 @@ namespace assignment3
 		T front = mSmartQueue.front();
 
 		mSmartQueue.pop();
-		if (front == mNew.top())
+		if (front == mNew.top().first)
 		{
 			mNew.pop();
 		}
-		else if (front == mNew.top())
+		else if (front == mNew.top().second)
 		{
 			mNew.pop();
 		}
@@ -147,12 +137,12 @@ namespace assignment3
 
 		if (mNew.empty() != true && mOld.empty() != true)
 		{
-			return mNew.top().max > mOldMax ? mNew.top().max : mOldMax;
+			return mNew.top().first > mOldMax ? mNew.top().first : mOldMax;
 		}
 
 		if (mNew.empty() != true)
 		{
-			return mNew.top().max;
+			return mNew.top().first;
 		}
 
 		return mOldMax;
@@ -168,13 +158,13 @@ namespace assignment3
 
 		if (mNew.empty() != true && mOld.empty() != true)
 		{
-			return mNew.top().min < mOldMin ? mNew.top().min : mOldMin;
+			return mNew.top().second < mOldMin ? mNew.top().second : mOldMin;
 		}
 
 
 		if (mNew.empty() != true)
 		{
-			return mNew.top().min;
+			return mNew.top().second;
 		}
 
 		return mOldMin;

@@ -23,7 +23,7 @@ namespace assignment3
 		double GetAverage();
 		T GetSum();
 		unsigned int GetCount();
-		unsigned int GetStackCount();
+		unsigned int GetStackCount() const;
 
 	private:
 		std::queue<std::stack<T>*> mQueueStack;
@@ -69,12 +69,13 @@ namespace assignment3
 			mMaxStackSize = rhs.mMaxStackSize;
 
 			std::queue<std::stack<T>*> tmpQueue(rhs.mQueueStack);
-			for (unsigned int i = 0; i < static_cast<unsigned int>(rhs.GetStackCount()); i++)
+			unsigned int stackCount = rhs.GetStackCount();
+			for (unsigned int i = 0; i < stackCount; i++)
 			{
 				std::stack<T>* stackPointer = tmpQueue.front();
 				std::stack<T>* newStackPointer = new std::stack<T>(*stackPointer);
 				tmpQueue.pop();
-				if (i == static_cast<unsigned int>(rhs.GetStackCount()) - 1)
+				if (i == stackCount - 1)
 				{
 					mLastStackPointer = newStackPointer;
 				}
@@ -250,7 +251,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline unsigned int QueueStack<T>::GetStackCount()
+	inline unsigned int QueueStack<T>::GetStackCount() const
 	{
 		return static_cast<unsigned int>(mQueueStack.size());
 	}

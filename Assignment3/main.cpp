@@ -468,8 +468,18 @@ int main()
 	cout << "Max is : " << ti.GetMax() << endl;
 	cout << "Min is : " << ti.GetMin() << endl;
 
+	QueueStack<int> fi(3);
 
+	fi.Enqueue(3);
 
+	fi = ti;
+	
+	cout << "------------------------------------------" << endl;
+	cout << "Count is : " << fi.GetCount() << endl;
+	cout << "Sum is : " << fi.GetSum() << endl;
+	cout << "StackCount is : " << fi.GetStackCount() << endl;
+	cout << "Max is : " << fi.GetMax() << endl;
+	cout << "Min is : " << fi.GetMin() << endl;
 	cin.get();
 	return 0;
 }

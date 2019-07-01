@@ -112,7 +112,7 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 {
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		os << v[i] << " ,";
+		os << v[i] << ", ";
 		if (i == v.size() - 1)
 		{
 			os << v[i];
@@ -126,7 +126,7 @@ std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m)
 {
 	for (auto i = m.begin(); i != m.end(); ++i)
 	{
-		os << "{ " << i->first << " ," << i->second << " }" << '\n';
+		os << "{ " << i->first << ", " << i->second << " }" << '\n';
 	}
 	return os;
 }

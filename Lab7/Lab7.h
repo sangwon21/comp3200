@@ -126,7 +126,7 @@ std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m)
 {
 	for (auto i = m.begin(); i != m.end(); ++i)
 	{
-		os << "{ " << i->first << ", " << i->second << " }" << '\n';
+		os << "{ " << i->first << ", " << i->second << " }" << std::endl;
 	}
 	return os;
 }

@@ -112,11 +112,15 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 {
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		os << v[i] << ", ";
 		if (i == v.size() - 1)
 		{
 			os << v[i];
 		}
+		else
+		{
+			os << v[i] << ", ";
+		}
+
 	}
 	return os;
 }

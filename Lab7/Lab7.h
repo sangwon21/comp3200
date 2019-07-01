@@ -16,7 +16,7 @@ namespace lab7
 
 		for (unsigned int i = 0; i < length; i++)
 		{
-			m.insert(std::pair(keys[i], values[i]));
+			m.insert(std::pair<K, V>(keys[i], values[i]));
 		}
 
 		return m;
@@ -92,7 +92,7 @@ std::map<K, V> operator+(const std::map<K, V>& m1, const std::map<K, V>& m2)
 		iter = combined.find(i->first);
 		if (iter == combined.end())
 		{
-			combined.insert(std::pair(i->first, i->second));
+			combined.insert(std::pair<K, V>(i->first, i->second));
 		}
 	}
 
@@ -101,7 +101,7 @@ std::map<K, V> operator+(const std::map<K, V>& m1, const std::map<K, V>& m2)
 		iter = combined.find(i->first);
 		if (iter == combined.end())
 		{
-			combined.insert(std::pair(i->first, i->second));
+			combined.insert(std::pair<K, V>(i->first, i->second));
 		}
 	}
 	return combined;

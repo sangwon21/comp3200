@@ -27,10 +27,6 @@ namespace lab8
 	inline FixedVector<T, N>::FixedVector()
 		: mSize(0)
 	{
-		for (size_t i = 0; i < N; i++)
-		{
-			mArray[i] = 0;
-		}
 	}
 
 	template<typename T, size_t N>

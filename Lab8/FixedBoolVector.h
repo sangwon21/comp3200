@@ -30,10 +30,6 @@ namespace lab8
 	inline FixedVector<bool, N>::FixedVector()
 		: mSize(0)
 	{
-		for (size_t i = 0; i < (N / 32 + 1); i++)
-		{
-			mArray[i] = 0;
-		}
 	}
 
 	template<size_t N>

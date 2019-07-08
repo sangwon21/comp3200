@@ -20,23 +20,20 @@ namespace lab8
 		size_t GetCapacity();
 	private:
 		T mArray[N];
-		size_t mCapacity;
 		size_t mSize;
 	};
 
 	template<typename T, size_t N>
 	inline FixedVector<T, N>::FixedVector()
-		: mCapacity(N)
-		, mSize(0)
+		: mSize(0)
 	{
 	}
 
 	template<typename T, size_t N>
 	inline FixedVector<T, N>::FixedVector(const FixedVector<T, N>& rhs)
-		: mCapacity(rhs.mCapacity)
-		, mSize(rhs.mSize)
+		: mSize(rhs.mSize)
 	{
-		for (size_t i = 0; i < mCapacity; i++)
+		for (size_t i = 0; i < N; i++)
 		{
 			mArray[i] = rhs.mArray[i];
 		}
@@ -47,9 +44,8 @@ namespace lab8
 	{
 		if (rhs != *this)
 		{
-			mCapacity = rhs.mCapacity;
 			mSize = rhs.mSize;
-			for (size_t i = 0; i < mCapacity; i++)
+			for (size_t i = 0; i < N; i++)
 			{
 				mArray[i] = rhs.mArray[i];
 			}
@@ -66,7 +62,7 @@ namespace lab8
 	template<typename T, size_t N>
 	inline bool FixedVector<T, N>::Add(const T& t)
 	{
-		if (mSize >= mCapacity)
+		if (mSize >= N)
 		{
 			return false;
 		}
@@ -132,6 +128,6 @@ namespace lab8
 	template<typename T, size_t N>
 	inline size_t FixedVector<T, N>::GetCapacity()
 	{
-		return mCapacity;
+		return N;
 	}
 }

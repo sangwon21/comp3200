@@ -38,6 +38,7 @@ int main()
 	assert(iv.GetSize() == 3);
 	assert(iv.GetIndex(i2) == -1);
 
+
 	cin.get();
 	return 0;
 }

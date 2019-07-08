@@ -42,7 +42,7 @@ namespace lab8
 	template<typename T, size_t N>
 	inline FixedVector<T, N>& FixedVector<T, N>::operator=(const FixedVector<T, N>& rhs)
 	{
-		if (rhs != *this)
+		if (&rhs != this)
 		{
 			mSize = rhs.mSize;
 			for (size_t i = 0; i < N; i++)
@@ -68,7 +68,7 @@ namespace lab8
 		}
 
 		mArray[mSize++] = t;
-		return false;
+		return true;
 	}
 
 	template<typename T, size_t N>

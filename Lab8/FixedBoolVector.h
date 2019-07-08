@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstdint>
-#include <iostream>
-#include <bitset>
+//#include <iostream>
+//#include <bitset>
 namespace lab8
 {
 	template<size_t N>
@@ -100,13 +100,13 @@ namespace lab8
 		
 		for (unsigned int i = index; i < mSize - 1; i++)
 		{
-			std::cout << "1 : "<< std::bitset<8>(mArray[(i + 1) / 32]) << std::endl;
-			std::cout << "2 : "<< std::bitset<8>((1 << (i + 1) % 32)) << std::endl;
+			//std::cout << "1 : "<< std::bitset<8>(mArray[(i + 1) / 32]) << std::endl;
+			//std::cout << "2 : "<< std::bitset<8>((1 << (i + 1) % 32)) << std::endl;
 			int32_t tmp = mArray[(i + 1) / 32] & (1 << (i + 1) % 32);
 			tmp >>= ((i + 1) % 32);
-			std::cout <<"3 : "<< std::bitset<8>(tmp) << std::endl;
+			//std::cout <<"3 : "<< std::bitset<8>(tmp) << std::endl;
 			mArray[i / 32] &= ~(1 << i % 32);
-			std::cout << "4 : " << std::bitset<8>(mArray[i / 32]) << std::endl;
+			//std::cout << "4 : " << std::bitset<8>(mArray[i / 32]) << std::endl;
 			mArray[i / 32] |= (tmp << i);
 			
 		}

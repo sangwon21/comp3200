@@ -8,11 +8,23 @@ using namespace std;
 
 int main()
 {
-	TreeNode<int> n(std::make_unique<int>(2));
+	BinarySearchTree<int> tree;
 
-	std::shared_ptr<TreeNode<int>> parent = std::make_shared<TreeNode<int>>(std::make_unique<int>(5));
-	TreeNode<int> n2(parent, std::make_unique<int>(2));
+	tree.Insert(std::make_unique<int>(10));
+	tree.Insert(std::make_unique<int>(15));
+	tree.Insert(std::make_unique<int>(5));
+	tree.Insert(std::make_unique<int>(4));
+	tree.Insert(std::make_unique<int>(19));
+	tree.Insert(std::make_unique<int>(20));
+	tree.Insert(std::make_unique<int>(17));
+	tree.Insert(std::make_unique<int>(12));
 
+	std::vector<int> v = tree.TraverseInOrder(tree.GetRootNode().lock()); // [ 4, 5, 10, 12, 15, 17, 19, 20 ]
+	
+	for (unsigned int i = 0; i < v.size(); i++)
+	{
+		cout << i << " is " << v[i] << endl;
+	}
 	cout << "The End of the Test" << endl;
 	cin.get();
 	return 0;

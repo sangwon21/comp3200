@@ -19,12 +19,23 @@ int main()
 	tree.Insert(std::make_unique<int>(17));
 	tree.Insert(std::make_unique<int>(12));
 
-	std::vector<int> v = tree.TraverseInOrder(tree.GetRootNode().lock()); // [ 4, 5, 10, 12, 15, 17, 19, 20 ]
-	
+	std::vector<int> v = tree.TraverseInOrder(tree.GetRootNode().lock());
+
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		cout << i << " is " << v[i] << endl;
+		cout << i << " is : " << v[i] << endl;
 	}
+
+	cout << tree.Delete(-1) << endl;
+	cout << tree.Delete(15) << endl;
+
+	v = tree.TraverseInOrder(tree.GetRootNode().lock());
+
+	for (unsigned int i = 0; i < v.size(); i++)
+	{
+		cout << i << " is : " << v[i] << endl;
+	}
+
 	cout << "The End of the Test" << endl;
 	cin.get();
 	return 0;

@@ -34,14 +34,13 @@ namespace assignment4
 		}
 
 		std::shared_ptr<TreeNode<T>> cmp = mRoot;
-
 		std::shared_ptr<TreeNode<T>> rightPlace = nullptr;
 
 		while (cmp != nullptr)
 		{
 			rightPlace = cmp;
 
-			if ( *(cmp->Data) > *data)
+			if (*(cmp->Data) > * data)
 			{
 				cmp = cmp->Left;
 			}
@@ -51,13 +50,15 @@ namespace assignment4
 			}
 		}
 
-		if (*(rightPlace->Data) > *data)
+		if (*(rightPlace->Data) > * data)
 		{
 			rightPlace->Left = std::make_shared<TreeNode<T>>(std::move(data));
+			rightPlace->Left->Parent = rightPlace;
 		}
 		else
 		{
 			rightPlace->Right = std::make_shared<TreeNode<T>>(std::move(data));
+			rightPlace->Right->Parent = rightPlace;
 		}
 	}
 
@@ -95,14 +96,97 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		return false;
+		bool bJudge = false;
+
+		std::shared_ptr<TreeNode<T>> current = mRoot;
+
+		while (current != nullptr)
+		{
+			if (*(current->Data) > data)
+			{
+				current = current->Left;
+			}
+			else if (*(current->Data) < data)
+			{
+				current = current->Right;
+			}
+			else
+			{
+				bJudge = true;
+				if (current->Left == nullptr && current->Right == nullptr)
+				{
+					if (current->Parent.lock()->Right == current)
+					{
+						current->Parent.lock()->Right = nullptr;
+					}
+					else if (current->Parent.lock()->Left == current)
+					{
+						current->Parent.lock()->Left = nullptr;
+					}
+					current = nullptr;
+				}
+				else if (current->Left == nullptr)
+				{
+					if (current->Parent.lock()->Right == current)
+					{
+						current->Parent.lock()->Right = current->Right;
+					}
+					else if (current->Parent.lock()->Left == current)
+					{
+						current->Parent.lock()->Left = current->Right;
+					}
+					current->Right = nullptr;
+					current = nullptr;
+				}
+				else if (current->Right == nullptr)
+				{
+					if (current->Parent.lock()->Right == current)
+					{
+						current->Parent.lock()->Right = current->Left;
+					}
+					else if (current->Parent.lock()->Left == current)
+					{
+						current->Parent.lock()->Left = current->Left;
+					}
+					current->Left = nullptr;
+					current = nullptr;
+				}
+				else
+				{
+					std::shared_ptr<TreeNode<T>> succParent = current->Right;
+
+					std::shared_ptr<TreeNode<T>> succ = current->Right;
+
+					while (succ->Left != nullptr)
+					{
+						succParent = succ;
+						succ = succ->Left;
+					}
+
+					succParent->Left = succ->Right;
+					succ->Right = current->Right;
+					succ->Left = current->Left;
+					if (current->Parent.lock()->Left == current)
+					{
+						current->Parent.lock()->Left = succ;
+					}
+					else
+					{
+						current->Parent.lock()->Right = succ;
+					}
+
+					current = nullptr;
+				}
+			}
+		}
+		return bJudge;
 	}
 
 	template<typename T>
 	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
 	{
 		std::vector<T> v;
-		
+
 		if (startNode == nullptr)
 		{
 			return v;
@@ -126,7 +210,7 @@ namespace assignment4
 
 			current = current->Right;
 		}
-		
+
 		return v;
 	}
 

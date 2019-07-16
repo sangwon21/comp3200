@@ -40,7 +40,7 @@ namespace assignment4
 		{
 			rightPlace = cmp;
 
-			if (*(cmp->Data) > * data)
+			if (*(cmp->Data) >= * data)
 			{
 				cmp = cmp->Left;
 			}
@@ -50,7 +50,7 @@ namespace assignment4
 			}
 		}
 
-		if (*(rightPlace->Data) > * data)
+		if (*(rightPlace->Data) >= * data)
 		{
 			rightPlace->Left = std::make_shared<TreeNode<T>>(std::move(data));
 			rightPlace->Left->Parent = rightPlace;

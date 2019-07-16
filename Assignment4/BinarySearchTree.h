@@ -21,7 +21,7 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
-		static std::shared_ptr<TreeNode<T>> mRoot;
+		std::shared_ptr<TreeNode<T>> mRoot;
 	};
 
 	template<typename T>
@@ -82,11 +82,11 @@ namespace assignment4
 
 			if (*(start->Data) > data)
 			{
-				start = start->Right;
+				start = start->Left;
 			}
 			else
 			{
-				start = start->Left;
+				start = start->Right;
 			}
 		}
 
@@ -97,6 +97,7 @@ namespace assignment4
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
 		bool bJudge = false;
+
 
 		std::shared_ptr<TreeNode<T>> current = mRoot;
 
@@ -115,66 +116,132 @@ namespace assignment4
 				bJudge = true;
 				if (current->Left == nullptr && current->Right == nullptr)
 				{
-					if (current->Parent.lock()->Right == current)
+					if (current == mRoot)
 					{
-						current->Parent.lock()->Right = nullptr;
+						mRoot = nullptr;
+						current = nullptr;
+						return bJudge;
 					}
-					else if (current->Parent.lock()->Left == current)
+					// 자식 위치 찾기
+					if (current->Parent.lock() != nullptr)
 					{
-						current->Parent.lock()->Left = nullptr;
+						if (current->Parent.lock()->Right == current)
+						{
+							current->Parent.lock()->Right = nullptr;
+						}
+						else if (current->Parent.lock()->Left == current)
+						{
+							current->Parent.lock()->Left = nullptr;
+						}
 					}
-					current = nullptr;
-				}
-				else if (current->Left == nullptr)
-				{
-					if (current->Parent.lock()->Right == current)
-					{
-						current->Parent.lock()->Right = current->Right;
-					}
-					else if (current->Parent.lock()->Left == current)
-					{
-						current->Parent.lock()->Left = current->Right;
-					}
-					current->Right = nullptr;
 					current = nullptr;
 				}
 				else if (current->Right == nullptr)
 				{
-					if (current->Parent.lock()->Right == current)
+					// 부모 -> 자식 연결
+					if (current->Parent.lock() != nullptr)
 					{
-						current->Parent.lock()->Right = current->Left;
+						if (current->Parent.lock()->Right == current)
+						{
+							current->Parent.lock()->Right = current->Left;
+						}
+						else if (current->Parent.lock()->Left == current)
+						{
+							current->Parent.lock()->Left = current->Left;
+						}
 					}
-					else if (current->Parent.lock()->Left == current)
+					current->Left->Parent = current->Parent;
+					if (current == mRoot)
 					{
-						current->Parent.lock()->Left = current->Left;
+						mRoot = current->Left;
 					}
-					current->Left = nullptr;
 					current = nullptr;
 				}
 				else
 				{
+					// 후계자 부모
 					std::shared_ptr<TreeNode<T>> succParent = current->Right;
 
+					// 후계자
 					std::shared_ptr<TreeNode<T>> succ = current->Right;
 
+					// 후계자 찾기
 					while (succ->Left != nullptr)
 					{
 						succParent = succ;
 						succ = succ->Left;
 					}
 
-					succParent->Left = succ->Right;
-					succ->Right = current->Right;
-					succ->Left = current->Left;
-					if (current->Parent.lock()->Left == current)
+					if (succ == succParent)
 					{
-						current->Parent.lock()->Left = succ;
+
+						// 부모 -> 후계자
+						if (current->Parent.lock() != nullptr)
+						{
+							if (current->Parent.lock()->Left == current)
+							{
+								current->Parent.lock()->Left = succ;
+							}
+							else
+							{
+								current->Parent.lock()->Right = succ;
+							}
+						}
+						// 후계자 -> 부모
+						succ->Parent = current->Parent;
+						// 지워질 얘 자식 연결
+						succ->Left = current->Left;
+						if (current->Left != nullptr)
+						{
+							current->Left->Parent = succ;
+						}
+						if (current == mRoot)
+						{
+							mRoot = succ;
+						}
+						current = nullptr;
+						return bJudge;
 					}
-					else
+					// succ부모랑 -> succ Right 연결
+					succParent->Left = succ->Right;
+					if (succ->Right != nullptr)
 					{
-						current->Parent.lock()->Right = succ;
+						succ->Right->Parent = succParent;
 					}
 
+					succ->Left = current->Left;
+					succ->Right = current->Right;
+
+					if (current->Left != nullptr)
+					{
+						current->Left->Parent = succ;
+					}
+					if (current->Right != nullptr)
+					{
+						current->Right->Parent = succ;
+					}
+
+
+					// 부모 -> 후계자
+					if (current->Parent.lock() != nullptr)
+					{
+						if (current->Parent.lock()->Left == current)
+						{
+							current->Parent.lock()->Left = succ;
+						}
+						else
+						{
+							current->Parent.lock()->Right = succ;
+						}
+					}
+					// 후계자 -> 부모
+					succ->Parent = current->Parent;
+
+
+					if (current == mRoot)
+					{
+						mRoot = succ;
+					}
 					current = nullptr;
 				}
 			}
@@ -193,7 +260,7 @@ namespace assignment4
 		}
 
 		std::stack<std::shared_ptr<TreeNode<T>>> s;
-		std::shared_ptr<TreeNode<T>> current = mRoot;
+		std::shared_ptr<TreeNode<T>> current = startNode;
 
 		while (current != nullptr || s.empty() == false)
 		{
@@ -213,7 +280,4 @@ namespace assignment4
 
 		return v;
 	}
-
-	template <typename T>
-	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::mRoot = nullptr;
 }

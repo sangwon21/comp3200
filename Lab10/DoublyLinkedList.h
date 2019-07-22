@@ -78,9 +78,9 @@ namespace lab10
 		}
 
 		curNode->Previous.lock()->Next = nodePtr;
-		nodePtr->Previous.lock() = curNode->Previous.lock();
+		nodePtr->Previous = curNode->Previous.lock();
 
-		curNode->Previous.lock() = nodePtr;
+		curNode->Previous = nodePtr;
 		nodePtr->Next = curNode;
 	}
 

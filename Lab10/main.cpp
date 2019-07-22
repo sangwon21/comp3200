@@ -21,14 +21,16 @@ int main()
 	assert(*node->Data == 3);
 
 	list.Insert(std::make_unique<int>(10), 2);
-	list.Insert(std::make_unique<int>(11), 0);
+	list.Insert(std::make_unique<int>(100), 0);
 	node = list[0];
 	cout << *node->Data << endl;
-	assert(*node->Data == 11);
+	assert(*node->Data == 100);
 	
 	list.Insert(std::make_unique<int>(70), 8);
-	node = list[9];
-	assert(*node->Data == 70);
+	node = list[8];
+	cout << *(node->Previous.lock()->Data) << endl;
 
+	cout << "Hell" << endl;
+	cin.get();
 	return 0;
 }

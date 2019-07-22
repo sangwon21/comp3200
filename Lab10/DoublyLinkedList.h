@@ -93,15 +93,27 @@ namespace lab10
 		{
 			return false;
 		}
+		
+		if (iter == root)
+		{
+			iter->Next->Previous.lock() = nullptr;
+			root = iter->Next;
+			iter->Next = nullptr;
+			return true;
+		}
+		
 		// before
 		iter->Previous.lock()->Next = iter->Next;
-		// after
-		iter->Next->Previous = iter->Previous.lock();
-
 		// deleting iter
 		iter->Previous.lock() = nullptr;
-		iter->Next = nullptr;
-		
+
+		// after
+		if (iter->Next != nullptr)
+		{
+			iter->Next->Previous = iter->Previous.lock();
+			iter->Next = nullptr;
+		}
+	
 		return true;
 	}
 

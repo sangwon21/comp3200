@@ -28,17 +28,17 @@ int main()
 	cout << size << endl;
 	assert(size == 7);
 
-	bool bDeleted = list.Delete(3);
+	bool bDeleted = list.Delete(7);
 	assert(bDeleted);
 
-	bDeleted = list.Delete(3);
+	bDeleted = list.Delete(7);
 	assert(!bDeleted);
 
 	size = list.GetLength();
 	assert(size == 6);
 
 	std::shared_ptr<Node<int>> node = list[2];
-	assert(*node->Data == 4);
+	assert(*node->Data == 3);
 
 	list.Insert(std::make_unique<int>(10), 2);
 

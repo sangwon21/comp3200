@@ -77,6 +77,13 @@ namespace lab10
 	template<typename T>
 	unsigned int DoublyLinkedList<T>::GetLength() const
 	{
-		return 0;
+		unsigned int length = 0;
+		std::shared_ptr<Node<T>> iter = root;
+		while (root != nullptr)
+		{
+			length++;
+			iter = iter->Next;
+		}
+		return length;
 	}
 }

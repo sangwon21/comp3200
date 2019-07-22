@@ -73,14 +73,37 @@ namespace lab10
 		curNode->Next->Previous = node;
 		node->Next = curNode->Next;
 
-		curNode->next = node;
+		curNode->Next = node;
 		node->Previous = curNode;
 	}
 
 	template<typename T>
 	bool DoublyLinkedList<T>::Delete(const T& data)
 	{
-		return false;
+		std::shared_ptr<Node<T>> iter = root;
+
+		while (iter != nullptr)
+		{
+			if (*(iter->Data) == data)
+			{
+				break;
+			}
+		}
+
+		if (iter == nullptr)
+		{
+			return false;
+		}
+		// before
+		iter->Previous->Next = iter->Next;
+		// after
+		iter->Next->Previous = iter->Previous;
+
+		// deleting iter
+		iter->Preious = nullptr;
+		iter->Next = nullptr;
+		
+		return true;
 	}
 
 	template<typename T>

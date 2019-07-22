@@ -63,7 +63,7 @@ namespace lab10
 		
 		if (index == 0)
 		{
-			root->Previous.lock() = nodePtr;
+			root->Previous = nodePtr;
 			nodePtr->Next = root;
 			root = nodePtr;
 			return;

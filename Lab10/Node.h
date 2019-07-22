@@ -18,10 +18,13 @@ namespace lab10
 	template<typename T>
 	Node<T>::Node(std::unique_ptr<T> data)
 	{
+		Data = std::move(data);
 	}
 
 	template<typename T>
 	Node<T>::Node(std::unique_ptr<T> data, std::shared_ptr<Node<T>> prev)
 	{
+		Data = std::move(data);
+		Previous = prev;
 	}
 }

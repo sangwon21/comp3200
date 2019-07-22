@@ -124,9 +124,19 @@ namespace lab10
 	template<typename T>
 	std::shared_ptr<Node<T>> DoublyLinkedList<T>::operator[](unsigned int index) const
 	{
-		auto x = std::make_unique<T>();
-		std::shared_ptr<Node<T>> temp = std::make_shared<Node<T>>(std::move(x));
-		return temp;
+		if (index > GetLength() - 1)
+		{
+			return nullptr;
+		}
+		std::shared_ptr<Node<T>> iter = root;
+		unsigned int start = 0;
+		while (start < index)
+		{
+			start++;
+			iter = iter->Next;
+		}
+
+		return iter;
 	}
 
 	template<typename T>

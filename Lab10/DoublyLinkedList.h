@@ -31,22 +31,20 @@ namespace lab10
 	template<typename T>
 	void DoublyLinkedList<T>::Insert(std::unique_ptr<T> data)
 	{
-		Node<T> node(data);
+		std::shared_ptr<Node<T>> nodePtr = std::make_shared<Node<T>>(Node<T>(std::move(data)));
 		if (root == nullptr)
 		{
-			root = node;
+			root = nodePtr;
 			return;
 		}
 		std::shared_ptr<Node<T>> curNode = root;
-		std::shared_ptr<Node<T>> prevNode = nullptr;
-		while (curNode != nullptr)
+		while (curNode->Next != nullptr)
 		{
-			prevNode = curNode;
 			curNode = curNode->Next;
 		}
 		
-		curNode = node;
-		node->Previous = prevNode;
+		curNode->Next = nodePtr;
+		nodePtr->Previous = curNode;
 	}
 
 	template<typename T>
@@ -60,7 +58,7 @@ namespace lab10
 		{
 			return;
 		}
-		Node<T> node(data);
+		std::shared_ptr<Node<T>> nodePtr = std::make_shared<Node<T>>(Node<T>(std::move(data)));
 		std::shared_ptr<Node<T>> curNode = root;
 		unsigned int count = 0;
 		
@@ -70,11 +68,11 @@ namespace lab10
 			count++;
 		}
 
-		curNode->Next->Previous = node;
-		node->Next = curNode->Next;
+		curNode->Previous.lock()->Next = nodePtr;
+		nodePtr->Previous.lock() = curNode->Previous.lock();
 
-		curNode->Next = node;
-		node->Previous = curNode;
+		curNode->Previous.lock() = nodePtr;
+		nodePtr->Next = curNode;
 	}
 
 	template<typename T>
@@ -88,6 +86,7 @@ namespace lab10
 			{
 				break;
 			}
+			iter = iter->Next;
 		}
 
 		if (iter == nullptr)
@@ -95,12 +94,12 @@ namespace lab10
 			return false;
 		}
 		// before
-		iter->Previous->Next = iter->Next;
+		iter->Previous.lock()->Next = iter->Next;
 		// after
-		iter->Next->Previous = iter->Previous;
+		iter->Next->Previous = iter->Previous.lock();
 
 		// deleting iter
-		iter->Preious = nullptr;
+		iter->Previous.lock() = nullptr;
 		iter->Next = nullptr;
 		
 		return true;
@@ -117,6 +116,7 @@ namespace lab10
 			{
 				return true;
 			}
+			iter = iter->Next;
 		}
 		return false;
 	}
@@ -142,13 +142,19 @@ namespace lab10
 	template<typename T>
 	unsigned int DoublyLinkedList<T>::GetLength() const
 	{
+		if (root == nullptr)
+		{
+			return 0;
+		}
+
 		unsigned int length = 0;
 		std::shared_ptr<Node<T>> iter = root;
-		while (iter != nullptr)
+		
+		while (iter->Next != nullptr)
 		{
 			length++;
 			iter = iter->Next;
 		}
-		return length;
+		return length + 1;
 	}
 }

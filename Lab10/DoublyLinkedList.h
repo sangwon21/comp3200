@@ -52,7 +52,7 @@ namespace lab10
 	template<typename T>
 	void DoublyLinkedList<T>::Insert(std::unique_ptr<T> data, unsigned int index)
 	{
-		if (index > GetLength())
+		if (index > GetLength() - 1)
 		{
 			Insert(std::move(data));
 		}
@@ -134,7 +134,7 @@ namespace lab10
 	{
 		unsigned int length = 0;
 		std::shared_ptr<Node<T>> iter = root;
-		while (root != nullptr)
+		while (iter != nullptr)
 		{
 			length++;
 			iter = iter->Next;

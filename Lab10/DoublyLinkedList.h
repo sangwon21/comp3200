@@ -53,12 +53,21 @@ namespace lab10
 		if (index > GetLength() - 1)
 		{
 			Insert(std::move(data));
+			return;
 		}
 		if (index < 0)
 		{
 			return;
 		}
 		std::shared_ptr<Node<T>> nodePtr = std::make_shared<Node<T>>(Node<T>(std::move(data)));
+		
+		if (index == 0)
+		{
+			root->Previous.lock() = nodePtr;
+			nodePtr->Next = root;
+			root = nodePtr;
+			return;
+		}
 		std::shared_ptr<Node<T>> curNode = root;
 		unsigned int count = 0;
 		

@@ -109,6 +109,15 @@ namespace lab10
 	template<typename T>
 	bool DoublyLinkedList<T>::Search(const T& data) const
 	{
+		std::shared_ptr<Node<T>> iter = root;
+
+		while (iter != nullptr)
+		{
+			if (*(iter->Data) == data)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 

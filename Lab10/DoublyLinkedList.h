@@ -52,6 +52,29 @@ namespace lab10
 	template<typename T>
 	void DoublyLinkedList<T>::Insert(std::unique_ptr<T> data, unsigned int index)
 	{
+		if (index > GetLength())
+		{
+			Insert(std::move(data));
+		}
+		if (index < 0)
+		{
+			return;
+		}
+		Node<T> node(data);
+		std::shared_ptr<Node<T>> curNode = root;
+		unsigned int count = 0;
+		
+		while (count < index)
+		{
+			curNode = curNode->Next;
+			count++;
+		}
+
+		curNode->Next->Previous = node;
+		node->Next = curNode->Next;
+
+		curNode->next = node;
+		node->Previous = curNode;
 	}
 
 	template<typename T>

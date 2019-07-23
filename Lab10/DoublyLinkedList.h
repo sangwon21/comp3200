@@ -18,8 +18,9 @@ namespace lab10
 		bool Search(const T& data) const;
 
 		std::shared_ptr<Node<T>> operator[](unsigned int index) const;
-		std::shared_ptr<Node<T>> mRoot;
 		unsigned int GetLength() const;
+	private:
+		std::shared_ptr<Node<T>> mRoot;
 	};
 
 	template<typename T> DoublyLinkedList<T>::DoublyLinkedList()

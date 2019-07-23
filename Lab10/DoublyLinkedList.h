@@ -18,13 +18,12 @@ namespace lab10
 		bool Search(const T& data) const;
 
 		std::shared_ptr<Node<T>> operator[](unsigned int index) const;
-		std::shared_ptr<Node<T>> root;
+		std::shared_ptr<Node<T>> mRoot;
 		unsigned int GetLength() const;
 	};
 
-	template<typename T>
-	DoublyLinkedList<T>::DoublyLinkedList()
-		: root(nullptr)
+	template<typename T> DoublyLinkedList<T>::DoublyLinkedList()
+		: mRoot(nullptr)
 	{
 	}
 
@@ -32,17 +31,17 @@ namespace lab10
 	void DoublyLinkedList<T>::Insert(std::unique_ptr<T> data)
 	{
 		std::shared_ptr<Node<T>> nodePtr = std::make_shared<Node<T>>(Node<T>(std::move(data)));
-		if (root == nullptr)
+		if (mRoot == nullptr)
 		{
-			root = nodePtr;
+			mRoot = nodePtr;
 			return;
 		}
-		std::shared_ptr<Node<T>> curNode = root;
+		std::shared_ptr<Node<T>> curNode = mRoot;
 		while (curNode->Next != nullptr)
 		{
 			curNode = curNode->Next;
 		}
-		
+
 		curNode->Next = nodePtr;
 		nodePtr->Previous = curNode;
 	}
@@ -60,17 +59,17 @@ namespace lab10
 			return;
 		}
 		std::shared_ptr<Node<T>> nodePtr = std::make_shared<Node<T>>(Node<T>(std::move(data)));
-		
+
 		if (index == 0)
 		{
-			root->Previous = nodePtr;
-			nodePtr->Next = root;
-			root = nodePtr;
+			mRoot->Previous = nodePtr;
+			nodePtr->Next = mRoot;
+			mRoot = nodePtr;
 			return;
 		}
-		std::shared_ptr<Node<T>> curNode = root;
+		std::shared_ptr<Node<T>> curNode = mRoot;
 		unsigned int count = 0;
-		
+
 		while (count < index)
 		{
 			curNode = curNode->Next;
@@ -87,7 +86,7 @@ namespace lab10
 	template<typename T>
 	bool DoublyLinkedList<T>::Delete(const T& data)
 	{
-		std::shared_ptr<Node<T>> iter = root;
+		std::shared_ptr<Node<T>> iter = mRoot;
 
 		while (iter != nullptr)
 		{
@@ -102,15 +101,15 @@ namespace lab10
 		{
 			return false;
 		}
-		
-		if (iter == root)
+
+		if (iter == mRoot)
 		{
 			iter->Next->Previous.lock() = nullptr;
-			root = iter->Next;
+			mRoot = iter->Next;
 			iter->Next = nullptr;
 			return true;
 		}
-		
+
 		// before
 		iter->Previous.lock()->Next = iter->Next;
 		// deleting iter
@@ -122,14 +121,14 @@ namespace lab10
 			iter->Next->Previous = iter->Previous.lock();
 			iter->Next = nullptr;
 		}
-	
+
 		return true;
 	}
 
 	template<typename T>
 	bool DoublyLinkedList<T>::Search(const T& data) const
 	{
-		std::shared_ptr<Node<T>> iter = root;
+		std::shared_ptr<Node<T>> iter = mRoot;
 
 		while (iter != nullptr)
 		{
@@ -149,7 +148,7 @@ namespace lab10
 		{
 			return nullptr;
 		}
-		std::shared_ptr<Node<T>> iter = root;
+		std::shared_ptr<Node<T>> iter = mRoot;
 		unsigned int start = 0;
 		while (start < index)
 		{
@@ -163,14 +162,14 @@ namespace lab10
 	template<typename T>
 	unsigned int DoublyLinkedList<T>::GetLength() const
 	{
-		if (root == nullptr)
+		if (mRoot == nullptr)
 		{
 			return 0;
 		}
 
 		unsigned int length = 0;
-		std::shared_ptr<Node<T>> iter = root;
-		
+		std::shared_ptr<Node<T>> iter = mRoot;
+
 		while (iter->Next != nullptr)
 		{
 			length++;

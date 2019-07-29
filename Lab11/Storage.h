@@ -13,7 +13,7 @@ namespace lab11
 		Storage(const Storage<T>& rhs);
 		Storage(Storage<T>&& rhs);
 		Storage<T>& operator=(const Storage<T>& rhs);
-		Storage<T>& operator=(const Storage<T>&& rhs);
+		Storage<T>& operator=(Storage<T>&& rhs);
 
 		bool Update(unsigned int index, const T& data);
 		const std::unique_ptr<T[]>& GetData() const;
@@ -71,26 +71,32 @@ namespace lab11
 	{
 		if (this != &rhs)
 		{
+			mList.reset();
 			mSize = rhs.mSize;
+
+			mList = std::move(rhs.mList);
+
 			for (unsigned int i = 0; i < mSize; i++)
 			{
 				mList[i] = rhs.mList[i];
 			}
 		}
-		return this;
+		return *this;
 	}
 
 	template<typename T>
-	inline Storage<T>& Storage<T>::operator=(const Storage<T>&& rhs)
+	inline Storage<T>& Storage<T>::operator=(Storage<T>&& rhs)
 	{
 		if (this != &rhs)
 		{
-			mList = std::move(rhs.mList);
+			mList.reset();
+
 			mSize = rhs.mSize;
+			mList = std::move(rhs.mList);
 			rhs.mList = nullptr;
 			rhs.mSize = 0;
 		}
-		return this;
+		return *this;
 	}
 
 	template<typename T>

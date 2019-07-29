@@ -1,5 +1,5 @@
 #include <cassert>
-
+#include <iostream>
 #include "Storage.h"
 
 using namespace lab11;
@@ -82,6 +82,8 @@ int main()
 		storage5.Update(i, SIZE2 - i - 1);
 		assert(data5[i] == SIZE2 - i - 1);
 	}
+
+	std::cin.get();
 	
 	return 0;
 }

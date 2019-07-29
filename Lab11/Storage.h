@@ -27,7 +27,7 @@ namespace lab11
 	Storage<T>::Storage(unsigned int length)
 		: mSize(length)
 	{
-		mList = new T[mSize];
+		mList = std::make_unique<T[]>(mSize);
 		for (unsigned int i = 0; i < length; i++)
 		{
 			mList[i] = 0;
@@ -36,9 +36,9 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length, const T& initialValue)
-		: mList(new T[length])
-		, mSize(length)
+		: mSize(length)
 	{
+		mList = std::make_unique<T[]>(mSize);
 		for (unsigned int i = 0; i < length; i++)
 		{
 			mList[i] = initialValue;
@@ -48,8 +48,8 @@ namespace lab11
 	template<typename T>
 	inline Storage<T>::Storage(const Storage<T>& rhs)
 		: mSize(rhs.mSize)
-		, mList(new T[mSize])
 	{
+		mList = std::make_unique<T[]>(mSize);
 		for (unsigned int i = 0; i < mSize; i++)
 		{
 			mList[i] = rhs.mList[i];

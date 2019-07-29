@@ -25,9 +25,9 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
-		: mList(new T[length])
-		, mSize(length)
+		: mSize(length)
 	{
+		mList = new T[mSize];
 		for (unsigned int i = 0; i < length; i++)
 		{
 			mList[i] = 0;
@@ -71,10 +71,8 @@ namespace lab11
 	{
 		if (this != &rhs)
 		{
-			mList.reset();
 			mSize = rhs.mSize;
-
-			mList = std::move(rhs.mList);
+			mList.reset(new T[mSize]);
 
 			for (unsigned int i = 0; i < mSize; i++)
 			{

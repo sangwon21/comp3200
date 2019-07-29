@@ -23,15 +23,13 @@ namespace lab11
 		unsigned int mSize;
 	};
 
-	template<typename T>
-	Storage<T>::Storage(unsigned int length)
+	template<typename T> Storage<T>::Storage(unsigned int length)
 		: mSize(length)
 	{
 		mList = std::make_unique<T[]>(mSize);
 	}
 
-	template<typename T>
-	Storage<T>::Storage(unsigned int length, const T& initialValue)
+	template<typename T> Storage<T>::Storage(unsigned int length, const T& initialValue)
 		: mSize(length)
 	{
 		mList = std::make_unique<T[]>(mSize);
@@ -61,7 +59,7 @@ namespace lab11
 		rhs.mSize = 0;
 	}
 
-	
+
 	template<typename T>
 	inline Storage<T>& Storage<T>::operator=(const Storage<T>& rhs)
 	{

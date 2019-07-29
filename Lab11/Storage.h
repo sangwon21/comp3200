@@ -30,7 +30,7 @@ namespace lab11
 		mList = std::make_unique<T[]>(mSize);
 		for (unsigned int i = 0; i < length; i++)
 		{
-			mList[i] = 0;
+			mList[i] = static_cast<T>(0);
 		}
 	}
 

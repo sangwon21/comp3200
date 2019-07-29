@@ -83,6 +83,7 @@ int main()
 		assert(data5[i] == SIZE2 - i - 1);
 	}
 
+	std::cout << "The End of the Test" << std::endl;
 	std::cin.get();
 	
 	return 0;

@@ -28,10 +28,6 @@ namespace lab11
 		: mSize(length)
 	{
 		mList = std::make_unique<T[]>(mSize);
-		for (unsigned int i = 0; i < length; i++)
-		{
-			mList[i] = static_cast<T>(0);
-		}
 	}
 
 	template<typename T>
